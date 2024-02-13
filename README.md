@@ -4,9 +4,21 @@
 - **Desenvolvedores:**
   - Bruno Corrêa;
   - João Cypriano;
-  - João Olivo;
+  - João Victor Olivo;
   - Pâmela Silva
   - Rodrigo Finco Junior;
+
+## Missões/Objetivos
+- Ex 1 - Gitflow => Pronto
+- - Ex 2 - Classes principais => Pendente
+- - Ex 3 - Encapsulamento => Pendente
+- - Ex 4 - Interface e herança => Pendente
+- - Ex 5 - Enums => Pendente
+- - Ex 6 - Override => Pendente
+- - Ex 7 - Tratamento de erros => Pendente
+- - Ex 8 - Listas de Dados => Pendente
+- - Ex 9 - Fluxo de Login => Pendente
+- - Ex 10 - Fluxo de Ações => Pendente
 
 ## Bases do projeto
 
@@ -18,7 +30,7 @@
   - Turma
 
 
-- Classes futuras:
+- Outras Classes:
   - IFuncionario
   - Funcionario
   - Diretor
