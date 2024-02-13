@@ -51,7 +51,6 @@ Todo o sistema deve ser criado usando o gitflow: <br/>
 - develop → junção de código criado pelo grupo
 - feature/ → deve ter o nome da funcionalidade após o '/', dever ter um push para 
 a develop a cada fim do desenvolvimento dessa funcionalidade.
-[Topo](#-missõesobjetivos)
 
 ## 📚 [M1S06] Ex 2 - Classes principais
 Criar as classes para entidades principais: <br/>
@@ -61,12 +60,10 @@ Criar as classes para entidades principais: <br/>
 - **Curso** - atributos: Nome do Curso, Professor do Curso
 - **Turma** - atributos: Lista de alunos, Ano, Curso
   - métodos: listar alunos, adicionar aluno, remover aluno
-[Topo](#-missõesobjetivos)
 
 ## 📚 [M1S06] Ex 3 - Encapsulamento
 Implemente os construtores, defina os modificadores de acesso e utilize 
 encapsulamento e sobrecarga de métodos.
-[Topo](#-missõesobjetivos)
 
 ## 📚 [M1S06] Ex 4 - Interface e Herança
 - Crie a interface IFuncionario esse Funcionario deve ter os métodos: promover
@@ -75,7 +72,6 @@ encapsulamento e sobrecarga de métodos.
 - Crie a Classe Professor deverá herdar de Funcionário.
 - Também devemos ter a classe Diretor, que irá herdar de Funcionário.
   - Diretor - atributos: Tempo de cargo
-[Topo](#-missõesobjetivos)
 
 ## 📚 [M1S06] Ex 5 - Enums
 - Crie um enum para representar Status de Matricula e adicione ele como
@@ -84,18 +80,15 @@ atributo a Aluno
 - Crie um enum para representar o Cargo do Funcionário.
   - Valores: Iniciante, Experiente, Avançado
 - Demonstrar o uso de values() e valueOf().
-[Topo](#-missõesobjetivos)
 
 ## 📚 [M1S06] Ex 6 - Override
 Utilize o @Override e adicione um toString() personalizado a cada classe 
 descrita anteriormente.
-[Topo](#-missõesobjetivos)
 
 ## 📚 [M1S06] Ex 7 - Tratamento de erros
 - Identifique diferentes tipos de erro Runtime
 - Implemente tratamento de exceções com try, catch, finally.
 - Utilize throws quando necessário.
-[Topo](#-missõesobjetivos)
 
 ## 📚 [M1S06] Ex 8 - Listas de Dados
 - Crie uma classe DadosProfessores, essa classe terá uma lista de professores.
@@ -104,7 +97,6 @@ descrita anteriormente.
   - Metodos: adicionar diretores, remover diretores por id, buscar diretores por id (id é a posição do diretor)
 - Crie uma classe DadosAlunos, essa classe terá uma lista de alunos.
   - Metodos: adicionar alunos, remover alunos por id, buscar alunos por id (id é a posição do aluno)
-[Topo](#-missõesobjetivos)
   
 ## 📚 [M1S06] Ex 9 - Fluxo de login
 - **Tela 1** - Ao entrar no sistema ele deve perguntar se você é funcionário ou 
@@ -114,7 +106,6 @@ aluno.
 - O usuário criado deve receber os dados necessários para criar um objeto da 
 classe escolhida (professor, diretor ou aluno).
 - Adicione esse usuário a lista correspondente.
-[Topo](#-missõesobjetivos)
 
 ## 📚 [M1S06] Ex 10 - Fluxo de Ações
 Após criação ou seleção o usuário deve ter as seguinte opções:
@@ -128,11 +119,9 @@ um professor aos DadosProfessores e pode remover ou adicionar alunos aos DadosAl
 - **Tela 3** - Após selecionar e executar uma ação o programa deve perguntar se o usuário 
 deseja selecionar outra ação ou se deseja sair do sistema. 
 - Ao sair ele deve voltar as opções de login
-[Topo](#-missõesobjetivos)
 
 ## 📚 Alterações enviadas pelo professor via Discord
 - O aluno deve poder selecionar uma turma ao iniciar o programa. 
   - Caso não selecione uma turma ele deve ser adicionar pelo diretor a uma turma posteriormente.
 - O diretor deve poder criar uma turma, listar alunos da turma, adicionar alunos e remover alunos da turma.
 - Aluno - atributos: Nome, idade
-[Topo](#-missõesobjetivos)
