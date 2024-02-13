@@ -33,17 +33,17 @@
 ---
 
 ## 🎯  Missões/Objetivos
--[x] [Ex 1 - Gitflow](#-m1s06-ex-1---gitflow)
--[ ] [Ex 2 - Classes principais](#-m1s06-ex-2---classes-principais)
--[ ] [Ex 3 - Encapsulamento](#-m1s06-ex-3---encapsulamento)
--[ ] [Ex 4 - Interface e herança](#-m1s06-ex-4---interface-e-herança)
--[ ] [Ex 5 - Enums](#-m1s06-ex-5---enums)
--[ ] [Ex 6 - Override](#-m1s06-ex-6---override)
--[ ] [Ex 7 - Tratamento de erros](#-m1s06-ex-7---tratamento-de-erros)
--[ ] [Ex 8 - Listas de Dados](#-m1s06-ex-8---listas-de-dados) 
--[ ] [Ex 9 - Fluxo de Login](#-m1s06-ex-9---fluxo-de-login)
--[ ] [Ex 10 - Fluxo de Ações](#-m1s06-ex-10---fluxo-de-ações)
--[ ] [Alterações passadas pelo professor via Discord](#-alterações-enviadas-pelo-professor-via-discord)
+- [x] [Ex 1 - Gitflow](#-m1s06-ex-1---gitflow)
+- [ ] [Ex 2 - Classes principais](#-m1s06-ex-2---classes-principais)
+- [ ] [Ex 3 - Encapsulamento](#-m1s06-ex-3---encapsulamento)
+- [ ] [Ex 4 - Interface e herança](#-m1s06-ex-4---interface-e-herança)
+- [ ] [Ex 5 - Enums](#-m1s06-ex-5---enums)
+- [ ] [Ex 6 - Override](#-m1s06-ex-6---override)
+- [ ] [Ex 7 - Tratamento de erros](#-m1s06-ex-7---tratamento-de-erros)
+- [ ] [Ex 8 - Listas de Dados](#-m1s06-ex-8---listas-de-dados) 
+- [ ] [Ex 9 - Fluxo de Login](#-m1s06-ex-9---fluxo-de-login)
+- [ ] [Ex 10 - Fluxo de Ações](#-m1s06-ex-10---fluxo-de-ações)
+- [ ] [Alterações passadas pelo professor via Discord](#-alterações-enviadas-pelo-professor-via-discord)
 
 ## 📚 [M1S06] Ex 1 - Gitflow
 Todo o sistema deve ser criado usando o gitflow: <br/>
