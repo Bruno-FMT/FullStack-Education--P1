@@ -1,13 +1,11 @@
 package objetos.funcionarios;
 
-public class Diretor {
-    private int anosCargo;
+public class Diretor extends Funcionario {
 
-    public int getAnosCargo() {
-        return anosCargo;
+    public Diretor(String nome, int idade, double salario, int anosCargo) {
+        super(nome, idade, salario, anosCargo);
     }
 
-    public void setAnosCargo(int anosCargo) {
-        this.anosCargo = anosCargo;
+    public Diretor() {
     }
 }

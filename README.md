@@ -10,8 +10,8 @@
 
 ## Missões/Objetivos
 - Ex 1 - Gitflow => Pronto
-- - Ex 2 - Classes principais => Pendente
-- - Ex 3 - Encapsulamento => Pendente
+- Ex 2 - Classes principais => Pronto
+- Ex 3 - Encapsulamento => Pronto
 - - Ex 4 - Interface e herança => Pendente
 - - Ex 5 - Enums => Pendente
 - - Ex 6 - Override => Pendente

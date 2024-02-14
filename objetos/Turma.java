@@ -15,11 +15,11 @@ public class Turma {
     public void adicionarAluno(Aluno aluno) {
         alunos.add(aluno);
     }
-    public void removerAluno(Aluno aluno) {
-        alunos.remove(aluno);
+    public void removerAluno(Aluno objetoAluno) {
+        alunos.remove(objetoAluno);
     }
-    public void removerAluno(int pos) {
-        alunos.remove(pos);
+    public void removerAluno(int posicao) {
+        alunos.remove(posicao);
     }
 
     public Curso getCurso() {
