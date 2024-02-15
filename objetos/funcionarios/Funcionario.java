@@ -1,11 +1,21 @@
 package objetos.funcionarios;
 
-import objetos.StatusMatricula;
-
 public class Funcionario {
     private String nome;
+    private int idade;
     private double salario;
-    private CargoFuncionario cargo = CargoFuncionario.INICIANTE;
+    private NiveisCargoFuncionario nivelCargo;
+    private int anosCargo;
+
+    public Funcionario(String nome, int idade, double salario, int anosCargo) {
+        this.nome = nome;
+        this.idade = idade;
+        this.salario = salario;
+        this.anosCargo = anosCargo;
+        this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
+    }
+
+    public Funcionario() {}
 
     public String getNome() {
         return nome;
@@ -23,24 +33,24 @@ public class Funcionario {
         this.salario = salario;
     }
 
-    public CargoFuncionario getCargo() {
-        return cargo;
+    public NiveisCargoFuncionario getNivelCargo() {
+        return nivelCargo;
     }
 
-    public boolean setCargo(String cargo) {
+    public boolean setNivelCargo(String cargo) {
         try {
-            this.cargo = CargoFuncionario.valueOf(cargo);
+            this.nivelCargo = NiveisCargoFuncionario.valueOf(cargo);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println("Cargo invalido.");
+            System.out.println("Nível de cargo invalido.");
             return false;
         }
     }
 
-    public void imprimirOpcoesCargoFuncionario() {
-        CargoFuncionario[] cargoFuncionarios = CargoFuncionario.values();
-        for (CargoFuncionario cargo : cargoFuncionarios) {
-            System.out.println(cargo);
+    public void imprimirNiveisCargoFuncionario() {
+        NiveisCargoFuncionario[] niveisCargo = NiveisCargoFuncionario.values();
+        for (NiveisCargoFuncionario nivel : niveisCargo) {
+            System.out.println(nivel);
         }
     }
 }

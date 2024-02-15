@@ -18,8 +18,8 @@ public class Turma {
     public void removerAluno(Aluno aluno) {
         alunos.remove(aluno);
     }
-    public void removerAluno(int pos) {
-        alunos.remove(pos);
+    public void removerAluno(int posicao) {
+        alunos.remove(posicao);
     }
 
     public Curso getCurso() {

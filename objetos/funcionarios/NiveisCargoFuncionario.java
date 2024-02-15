@@ -1,6 +1,6 @@
 package objetos.funcionarios;
 
-public enum CargoFuncionario {
+public enum NiveisCargoFuncionario {
     INICIANTE,
     EXPERIENTE,
     AVANCADO

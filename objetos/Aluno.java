@@ -3,7 +3,13 @@ package objetos;
 public class Aluno {
     private String nome;
     private int idade;
-    private StatusMatricula statusMatricula = StatusMatricula.ATIVO;
+    private StatusMatricula statusMatricula;
+
+    public Aluno(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+        this.statusMatricula = StatusMatricula.ATIVO;
+    }
 
     public void listarCurso() {
 
