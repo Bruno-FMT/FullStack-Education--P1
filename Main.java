@@ -1,3 +1,5 @@
+import util.PedirEntrada;
+
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +9,7 @@ public class Main {
 
         while (true) {
             imprimirMenu();
-            int itemSelecionadoMenu = Utils.nextInt(entrada);
+            int itemSelecionadoMenu = PedirEntrada.pedirInt(entrada);
             switch (itemSelecionadoMenu) {
                 case 1:
                     String nomeFuncionario = login(entrada);
