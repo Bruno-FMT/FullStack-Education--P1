@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DadosProfessores {
-    public static List<Professor> professoresCadastrados = new ArrayList<>();
+    private static List<Professor> professoresCadastrados = new ArrayList<>();
+
+    public static List<Professor> getProfessoresCadastrados() {
+        return professoresCadastrados;
+    }
 
     public void adicionarProfessor(Professor professor) {
         professoresCadastrados.add(professor);

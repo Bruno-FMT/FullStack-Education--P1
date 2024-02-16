@@ -6,5 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DadosTurmas {
-    public static List<Turma> tumasCadastradas = new ArrayList<>();
+    private static List<Turma> turmasCadastradas = new ArrayList<>();
+
+    public void removerTurma(Turma turma) {
+        turmasCadastradas.remove(turma);
+    }
+
+    public List<Turma> getTurmasCadastradas() {
+        return turmasCadastradas;
+    }
+
+    public void setTurma(Turma turma) {
+        turmasCadastradas.add(turma);
+    }
 }

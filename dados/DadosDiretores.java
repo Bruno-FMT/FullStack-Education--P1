@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DadosDiretores {
-    public static List<Diretor> diretoresCadastrados = new ArrayList<>();
+    private static List<Diretor> diretoresCadastrados = new ArrayList<>();
+
+    public static List<Diretor> getDiretoresCadastrados() {
+        return diretoresCadastrados;
+    }
 
     public void adicionarDiretor(Diretor diretor) {
         diretoresCadastrados.add(diretor);
