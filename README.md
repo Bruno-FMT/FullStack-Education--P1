@@ -40,7 +40,7 @@
 - [ ] [Ex 5 - Enums](#-m1s06-ex-5---enums)
 - [ ] [Ex 6 - Override](#-m1s06-ex-6---override)
 - [ ] [Ex 7 - Tratamento de erros](#-m1s06-ex-7---tratamento-de-erros)
-- [ ] [Ex 8 - Listas de Dados](#-m1s06-ex-8---listas-de-dados)
+- [x] [Ex 8 - Listas de Dados](#-m1s06-ex-8---listas-de-dados)
 - [ ] [Ex 9 - Fluxo de Login](#-m1s06-ex-9---fluxo-de-login)
 - [ ] [Ex 10 - Fluxo de Ações](#-m1s06-ex-10---fluxo-de-ações)
 - [ ] [Alterações passadas pelo professor via Discord](#-alterações-enviadas-pelo-professor-via-discord)
