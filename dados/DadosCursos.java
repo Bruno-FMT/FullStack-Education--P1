@@ -16,11 +16,11 @@ public class DadosCursos {
         return cursosCadastrados;
     }
 
-    public void setCurso(Curso curso) {
+    public void adicionarCurso(Curso curso) {
         cursosCadastrados.add(curso);
     }
 
-    public void setCursos(List<Curso> cursos){
+    public void adicionarCursos(List<Curso> cursos){
         cursosCadastrados.addAll(cursos);
     }
 }

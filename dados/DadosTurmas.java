@@ -16,11 +16,11 @@ public class DadosTurmas {
         return turmasCadastradas;
     }
 
-    public void setTurma(Turma turma) {
+    public void adicionarTurma(Turma turma) {
         turmasCadastradas.add(turma);
     }
 
-    public void setTurmas(List<Turma> turmas) {
+    public void adicionarTurmas(List<Turma> turmas) {
         turmasCadastradas.addAll(turmas);
     }
 }
