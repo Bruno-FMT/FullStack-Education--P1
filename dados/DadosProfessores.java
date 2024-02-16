@@ -17,6 +17,10 @@ public class DadosProfessores {
         System.out.println("Professor adicionado com sucesso.");
     }
 
+    public void adicionarProfessores(List<Professor> professores){
+        professoresCadastrados.addAll(professores);
+    }
+
     public void removerProfessorPorId(int id) {
         for (Professor professor : professoresCadastrados) {
             if (professor.getId() == id) {

@@ -19,4 +19,8 @@ public class DadosTurmas {
     public void setTurma(Turma turma) {
         turmasCadastradas.add(turma);
     }
+
+    public void setTurmas(List<Turma> turmas) {
+        turmasCadastradas.addAll(turmas);
+    }
 }

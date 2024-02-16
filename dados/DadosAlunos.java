@@ -17,6 +17,10 @@ public class DadosAlunos {
         System.out.println("Aluno adicionado com sucesso.");
     }
 
+    public void adicionarAlunos(List<Aluno> alunos) {
+        alunosCadastrados.addAll(alunos);
+    }
+
     public void removerAlunoPorId(int id) {
         for (Aluno aluno : alunosCadastrados) {
             if (aluno.getId() == id) {

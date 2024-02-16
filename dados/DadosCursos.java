@@ -19,4 +19,8 @@ public class DadosCursos {
     public void setCurso(Curso curso) {
         cursosCadastrados.add(curso);
     }
+
+    public void setCursos(List<Curso> cursos){
+        cursosCadastrados.addAll(cursos);
+    }
 }
