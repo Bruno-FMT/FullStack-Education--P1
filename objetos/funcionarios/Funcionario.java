@@ -47,7 +47,7 @@ public class Funcionario {
         }
     }
 
-    public static void imprimirNiveisCargoFuncionario() {
+    public static void imprimirNiveisCargo() {
         NiveisCargoFuncionario[] niveisCargo = NiveisCargoFuncionario.values();
         for (int i = 0; i < niveisCargo.length; i++) {
             System.out.println((i + 1) + "- " + niveisCargo[i]);
