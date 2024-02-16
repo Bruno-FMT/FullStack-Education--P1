@@ -1,16 +1,20 @@
 package objetos;
 
 public class Aluno {
+    private static int proximoId;
     private String nome;
     private int idade;
-    public void listarCurso() {
+    private int id;
 
+    public Aluno(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+        this.id = proximoId;
+        proximoId++;
     }
-    public void adicionarCurso() {
 
-    }
-    public void removerCurso() {
-
+    public int getId() {
+        return id;
     }
 
     public String getNome() {
