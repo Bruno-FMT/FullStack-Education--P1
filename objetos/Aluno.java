@@ -51,10 +51,10 @@ public class Aluno {
         }
     }
 
-    public void imprimirOpcoesStatusMatricula() {
+    public static void imprimirOpcoesStatusMatricula() {
         StatusMatricula[] opcoesStatus = StatusMatricula.values();
-        for (StatusMatricula status : opcoesStatus) {
-            System.out.println(status);
+        for (int i = 0; i < opcoesStatus.length; i++) {
+            System.out.println((i + 1) + "- " + opcoesStatus[i]);
         }
     }
 }

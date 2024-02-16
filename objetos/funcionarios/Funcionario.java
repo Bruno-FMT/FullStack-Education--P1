@@ -37,9 +37,9 @@ public class Funcionario {
         return nivelCargo;
     }
 
-    public boolean setNivelCargo(String cargo) {
+    public boolean setNivelCargo(String nivelCargo) {
         try {
-            this.nivelCargo = NiveisCargoFuncionario.valueOf(cargo);
+            this.nivelCargo = NiveisCargoFuncionario.valueOf(nivelCargo);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println("Nível de cargo invalido.");
@@ -47,10 +47,10 @@ public class Funcionario {
         }
     }
 
-    public void imprimirNiveisCargoFuncionario() {
+    public static void imprimirNiveisCargoFuncionario() {
         NiveisCargoFuncionario[] niveisCargo = NiveisCargoFuncionario.values();
-        for (NiveisCargoFuncionario nivel : niveisCargo) {
-            System.out.println(nivel);
+        for (int i = 0; i < niveisCargo.length; i++) {
+            System.out.println((i + 1) + "- " + niveisCargo[i]);
         }
     }
 }

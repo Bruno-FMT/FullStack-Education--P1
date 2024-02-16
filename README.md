@@ -101,8 +101,8 @@ descrita anteriormente.
 ## 📚 [M1S06] Ex 9 - Fluxo de login
 - **Tela 1** - Ao entrar no sistema ele deve perguntar se você é funcionário ou
   aluno.
+- **Tela 1** - Essa tela também deve dar a opção de Encerrar o programa.
 - **Tela 2** - Ao selecionar uma opção, você deve se identificar ou criar um novo usuário.
-- **Tela 2** - Essa tela também deve dar a opção de Encerrar o programa.
 - O usuário criado deve receber os dados necessários para criar um objeto da
   classe escolhida (professor, diretor ou aluno).
 - Adicione esse usuário a lista correspondente.
