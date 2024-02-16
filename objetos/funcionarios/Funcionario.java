@@ -5,6 +5,7 @@ public class Funcionario {
     private String nome;
     private int idade;
     private double salario;
+    private NiveisCargoFuncionario nivelCargo;
     private int anosCargo;
     private int id;
 
@@ -13,6 +14,7 @@ public class Funcionario {
         this.idade = idade;
         this.salario = salario;
         this.anosCargo = anosCargo;
+        this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
         this.id = proximoId;
         proximoId++;
     }
@@ -51,5 +53,26 @@ public class Funcionario {
 
     public void setSalario(double salario) {
         this.salario = salario;
+    }
+
+    public NiveisCargoFuncionario getNivelCargo() {
+        return nivelCargo;
+    }
+
+    public boolean setNivelCargo(String nivelCargo) {
+        try {
+            this.nivelCargo = NiveisCargoFuncionario.valueOf(nivelCargo);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Nível de cargo invalido.");
+            return false;
+        }
+    }
+
+    public static void imprimirNiveisCargo() {
+        NiveisCargoFuncionario[] niveisCargo = NiveisCargoFuncionario.values();
+        for (int i = 0; i < niveisCargo.length; i++) {
+            System.out.println((i + 1) + "- " + niveisCargo[i]);
+        }
     }
 }
