@@ -1,5 +1,7 @@
 package objetos.funcionarios;
 
+import enums.NiveisCargoFuncionario;
+
 public class Funcionario {
     private String nome;
     private int idade;

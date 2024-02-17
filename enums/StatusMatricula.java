@@ -1,4 +1,4 @@
-package objetos;
+package enums;
 
 public enum StatusMatricula {
     ATIVO,

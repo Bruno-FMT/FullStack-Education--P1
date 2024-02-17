@@ -1,4 +1,4 @@
-package objetos.funcionarios;
+package enums;
 
 public enum NiveisCargoFuncionario {
     INICIANTE,

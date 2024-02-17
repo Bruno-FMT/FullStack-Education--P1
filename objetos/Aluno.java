@@ -1,6 +1,7 @@
 package objetos;
 
 import dados.DadosAlunos;
+import enums.StatusMatricula;
 
 import java.util.List;
 
