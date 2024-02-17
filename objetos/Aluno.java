@@ -22,9 +22,6 @@ public class Aluno {
     public void adicionarCurso() {
 
     }
-    public void removerCurso() {
-
-    }
 
     public String getNome() {
         return nome;
@@ -39,6 +36,8 @@ public class Aluno {
     }
 
     public void setIdade(int idade) {
+        if (idade < 0 || idade > 120)
+            throw new IllegalArgumentException("Idade deve estar entre 0-120");
         this.idade = idade;
     }
 
@@ -56,17 +55,6 @@ public class Aluno {
         }
     }
 
-    public static int getId(String nome) {
-        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
-        for (Aluno aluno : alunos){
-            if (aluno.getNome().equals(nome)) {
-                return alunos.indexOf(aluno);
-            }
-        }
-        System.out.println("Aluno não encontrado.");
-        return -1;
-    }
-
     public int getId() {
         List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
         if(alunos.contains(this)) {
@@ -81,5 +69,14 @@ public class Aluno {
         for (int i = 0; i < opcoesStatus.length; i++) {
             System.out.println((i + 1) + "- " + opcoesStatus[i]);
         }
+    }
+
+    @Override
+    public String toString(){
+        return String.format(
+                "| %40s | %6d |",
+                this.getNome(),
+                this.getIdade()
+        );
     }
 }
