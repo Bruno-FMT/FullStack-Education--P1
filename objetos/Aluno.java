@@ -1,8 +1,5 @@
 package objetos;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class Aluno {
 
     private String nome;
@@ -33,9 +30,8 @@ public class Aluno {
 
     @Override
     public String toString(){
-        System.out.printf("| %13s | %6s |\n", "Nome", "Idade");
         return String.format(
-                "| %13s | %6d |",
+                "| %40s | %6d |",
                 this.getNome(),
                 this.getIdade()
         );
