@@ -1,4 +1,5 @@
 package objetos.funcionarios;
 
-public class IFuncionario {
+public interface IFuncionario {
+    void promover(Professor professor, String nivelCargo);
 }
