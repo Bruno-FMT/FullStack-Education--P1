@@ -1,8 +1,13 @@
 package objetos;
 
+import dados.DadosAlunos;
+
+import java.util.List;
+
 public class Aluno {
     private String nome;
     private int idade;
+
     private StatusMatricula statusMatricula;
 
     public Aluno(String nome, int idade) {
@@ -49,6 +54,26 @@ public class Aluno {
             System.out.println("Status de matrícula invalido.");
             return false;
         }
+    }
+
+    public static int getId(String nome) {
+        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        for (Aluno aluno : alunos){
+            if (aluno.getNome().equals(nome)) {
+                return alunos.indexOf(aluno);
+            }
+        }
+        System.out.println("Aluno não encontrado.");
+        return -1;
+    }
+
+    public int getId() {
+        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        if(alunos.contains(this)) {
+            return alunos.indexOf(this);
+        }
+        System.out.println("Aluno não encontrado.");
+        return -1;
     }
 
     public static void imprimirOpcoesStatusMatricula() {

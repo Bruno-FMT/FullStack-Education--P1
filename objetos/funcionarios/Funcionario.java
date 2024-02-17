@@ -15,7 +15,21 @@ public class Funcionario {
         this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
     }
 
-    public Funcionario() {}
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public int getAnosCargo() {
+        return anosCargo;
+    }
+
+    public void setAnosCargo(int anosCargo) {
+        this.anosCargo = anosCargo;
+    }
 
     public String getNome() {
         return nome;
