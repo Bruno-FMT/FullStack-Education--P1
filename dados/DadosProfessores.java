@@ -22,21 +22,20 @@ public class DadosProfessores {
     }
 
     public void removerProfessorPorId(int id) {
-        for (Professor professor : professoresCadastrados) {
-            if (professor.getId() == id) {
-                professoresCadastrados.remove(professor);
-                System.out.println("Professor removido com sucesso.");
-            }
+        if (id >= 0 && id < professoresCadastrados.size()) {
+            professoresCadastrados.remove(id);
+            System.out.println("Professor removido com sucesso.");
+        } else {
+            System.out.println("Nenhum Professor encontrado com o id informado.");
         }
     }
 
     public Professor getProfessorPorId(int id) {
-        for (Professor professor : professoresCadastrados) {
-            if (professor.getId() == id) {
-                return professor;
-            }
+        if (id >= 0 && id < professoresCadastrados.size()) {
+            return professoresCadastrados.get(id);
+        } else {
+            System.out.println("Nenhum Professor encontrado com o id informado.");
+            return null;
         }
-        System.out.println("Nenhum Professor encontrado com o ID informado.");
-        return null;
     }
 }

@@ -1,18 +1,21 @@
 package objetos;
 
+import dados.DadosAlunos;
+import dados.DadosProfessores;
+import objetos.funcionarios.Professor;
+
+import java.util.List;
+
 public class Aluno {
-    private static int proximoId;
     private String nome;
     private int idade;
-    private int id;
+
     private StatusMatricula statusMatricula;
 
     public Aluno(String nome, int idade) {
         this.nome = nome;
         this.idade = idade;
         this.statusMatricula = StatusMatricula.ATIVO;
-        this.id = proximoId;
-        proximoId++;
     }
 
     public void listarCurso() {
@@ -23,10 +26,6 @@ public class Aluno {
     }
     public void removerCurso() {
 
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getNome() {
@@ -57,6 +56,18 @@ public class Aluno {
             System.out.println("Status de matrícula invalido.");
             return false;
         }
+    }
+
+    public int getId(String nome) {
+        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        for (Aluno aluno : alunos){
+            if (aluno.getNome().equals(nome)) {
+                return alunos.indexOf(aluno);
+            }
+        }
+
+        System.out.println("Aluno não encontrado.");
+        return -1;
     }
 
     public static void imprimirOpcoesStatusMatricula() {

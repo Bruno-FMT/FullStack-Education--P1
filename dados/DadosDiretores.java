@@ -18,21 +18,20 @@ public class DadosDiretores {
     }
 
     public void removerDiretorPorId(int id) {
-        for (Diretor diretor : diretoresCadastrados) {
-            if (diretor.getId() == id) {
-                diretoresCadastrados.remove(diretor);
-                System.out.println("Diretor removido com sucesso.");
-            }
+        if (id >= 0 && id < diretoresCadastrados.size()) {
+            diretoresCadastrados.remove(id);
+            System.out.println("Diretor removido com sucesso.");
+        } else {
+            System.out.println("Nenhum diretor encontrado com o id informado.");
         }
     }
 
     public Diretor getDiretorPorId(int id) {
-        for (Diretor diretor : diretoresCadastrados) {
-            if (diretor.getId() == id) {
-                return diretor;
-            }
+        if (id >= 0 && id < diretoresCadastrados.size()) {
+            return diretoresCadastrados.get(id);
+        } else {
+            System.out.println("Nenhum Diretor encontrado com o id informado.");
+            return null;
         }
-        System.out.println("Nenhum Diretor encontrado com o ID informado.");
-        return null;
     }
 }

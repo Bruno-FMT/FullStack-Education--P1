@@ -1,13 +1,11 @@
 package objetos.funcionarios;
 
 public class Funcionario {
-    private static int proximoId;
     private String nome;
     private int idade;
     private double salario;
     private NiveisCargoFuncionario nivelCargo;
     private int anosCargo;
-    private int id;
 
     public Funcionario(String nome, int idade, double salario, int anosCargo) {
         this.nome = nome;
@@ -15,8 +13,6 @@ public class Funcionario {
         this.salario = salario;
         this.anosCargo = anosCargo;
         this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
-        this.id = proximoId;
-        proximoId++;
     }
 
     public int getIdade() {
@@ -33,10 +29,6 @@ public class Funcionario {
 
     public void setAnosCargo(int anosCargo) {
         this.anosCargo = anosCargo;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getNome() {

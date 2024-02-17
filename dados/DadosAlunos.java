@@ -22,21 +22,20 @@ public class DadosAlunos {
     }
 
     public void removerAlunoPorId(int id) {
-        for (Aluno aluno : alunosCadastrados) {
-            if (aluno.getId() == id) {
-                alunosCadastrados.remove(aluno);
-                System.out.println("Aluno removido com sucesso.");
-            }
+        if (id >= 0 && id < alunosCadastrados.size()) {
+            alunosCadastrados.remove(id);
+            System.out.println("Aluno removido com sucesso.");
+        } else {
+            System.out.println("Nenhum aluno encontrado com o id informado.");
         }
     }
 
     public Aluno getAlunoPorId(int id) {
-        for (Aluno aluno : alunosCadastrados) {
-            if (aluno.getId() == id) {
-                return aluno;
-            }
+        if (id >= 0 && id < alunosCadastrados.size()) {
+            return alunosCadastrados.get(id);
+        } else {
+            System.out.println("Nenhum aluno encontrado com o id informado.");
+            return null;
         }
-        System.out.println("Nenhum aluno encontrado com o ID informado.");
-        return null;
     }
 }
