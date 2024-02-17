@@ -1,6 +1,5 @@
 package objetos.funcionarios;
 
-import dados.DadosDiretores;
 import dados.DadosProfessores;
 
 import java.util.List;
@@ -10,7 +9,7 @@ public class Professor extends Funcionario {
         super(nome, idade, salario, anosCargo);
     }
 
-    public int getId(String nome) {
+    public static int getId(String nome) {
         List<Professor> professores = DadosProfessores.getProfessoresCadastrados();
         for (Professor professor : professores){
             if (professor.getNome().equals(nome)) {
@@ -18,6 +17,15 @@ public class Professor extends Funcionario {
             }
         }
 
+        System.out.println("Professor não encontrado.");
+        return -1;
+    }
+
+    public int getId() {
+        List<Professor> professores = DadosProfessores.getProfessoresCadastrados();
+        if(professores.contains(this)) {
+            return professores.indexOf(this);
+        }
         System.out.println("Professor não encontrado.");
         return -1;
     }
