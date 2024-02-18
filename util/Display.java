@@ -1,7 +1,12 @@
 package util;
 
 import dados.DadosAlunos;
+import dados.DadosDiretores;
+import dados.DadosProfessores;
 import objetos.Aluno;
+import objetos.funcionarios.Diretor;
+import objetos.funcionarios.Funcionario;
+import objetos.funcionarios.Professor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,11 +14,10 @@ import java.util.Scanner;
 
 public class Display {
 
-    public static void displayAluno(Scanner scan, Aluno aluno) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+    public static void criarAluno(Scanner scan, Aluno aluno) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
 
         boolean continuar = true;
-        Method metodo = transformarMetodo(aluno, "setNome", String.class);
-        if (!definirAtributoConta(scan, aluno, metodo, new String[]{"nome completo"})) {
+        if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setNome", String.class), new String[]{"nome completo"})) {
             continuar = false;
         } else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setIdade", int.class), new String[]{"idade"})) {
             continuar = false;
@@ -22,7 +26,8 @@ public class Display {
         } else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setSenha", String.class), new String[]{"senha"})) {
             continuar = false;
         }
-        if(continuar) {
+        if (continuar) {
+            aluno.setStatusMatricula("ATIVO");
             DadosAlunos.adicionarAluno(aluno);
         }
         System.out.println("Continuar: " + continuar);
@@ -33,17 +38,64 @@ public class Display {
         System.out.println();
     }
 
-    public static void testing() {
-        System.out.println("Hello world!");
+    public static void criarProfessor(Scanner scan, Professor professor) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+
+        boolean continuar = true;
+        Class<Funcionario> classe = Funcionario.class;
+        if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setNome", String.class), new String[]{"nome completo"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setIdade", int.class), new String[]{"idade"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setUsuario", String.class), new String[]{"usuário"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setSenha", String.class), new String[]{"senha"})) {
+            continuar = false;
+        }
+        if (continuar) {
+            professor.setNivelCargo("INICIANTE");
+            DadosProfessores.adicionarProfessor(professor);
+        }
+        System.out.println("Continuar: " + continuar);
+        System.out.println("Nome: " + professor.getNome());
+        System.out.println("Idade: " + professor.getIdade());
+        System.out.println("Usuario: " + professor.getUsuario());
+        System.out.println("Senha: " + professor.getSenha());
+        System.out.println();
     }
 
-    public static void methodTest(Method method) throws InvocationTargetException, IllegalAccessException {
-        method.invoke(null);
+    public static void criarDiretor(Scanner scan, Diretor diretor) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+
+        boolean continuar = true;
+        Class<Funcionario> classe = Funcionario.class;
+        if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setNome", String.class), new String[]{"nome completo"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setIdade", int.class), new String[]{"idade"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setUsuario", String.class), new String[]{"usuário"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setSenha", String.class), new String[]{"senha"})) {
+            continuar = false;
+        }
+        if (continuar) {
+            diretor.setNivelCargo("INICIANTE");
+            DadosDiretores.adicionarDiretor(diretor);
+        }
+        System.out.println("Continuar: " + continuar);
+        System.out.println("Nome: " + diretor.getNome());
+        System.out.println("Idade: " + diretor.getIdade());
+        System.out.println("Usuario: " + diretor.getUsuario());
+        System.out.println("Senha: " + diretor.getSenha());
+        System.out.println();
+    }
+
+    public static Method transformarMetodo(Class<?> classe, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException {
+//        Pega a classe, e pesquisa o método pelo nome
+        return classe.getDeclaredMethod(nomeMetodo, parametros);
     }
 
     public static Method transformarMetodo(Object objeto, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException {
 //        Pega a classe do objeto, e pesquisa o método pelo nome
-        return objeto.getClass().getDeclaredMethod(nomeMetodo, parametros);
+            return objeto.getClass().getDeclaredMethod(nomeMetodo, parametros);
     }
 
     public static boolean definirAtributoConta(Scanner scan, Object objeto, Method metodo, String[] parametrosNome) throws InvocationTargetException, IllegalAccessException {
@@ -53,6 +105,8 @@ public class Display {
             Object[] argumentos = new Object[parametrosTipos.length];
 
             for (int i = 0; i < parametrosTipos.length; i++) {
+//                Verifica cada parâmetro, e pede a entrada do tipo daquele parâmetro
+//                Armazena as entradas em argumentos[]
                 System.out.print("Digite seu/sua " + parametrosNome[i] + ": ");
                 if (parametrosTipos[i].equals(String.class)) {
                     argumentos[i] = PedirEntrada.pedirString(scan);
@@ -74,21 +128,23 @@ public class Display {
                     argumentos[i] = PedirEntrada.pedirDouble(scan);
                 }
             }
-            //  Método invoke retorna um Object, portanto não pode ser usado diretamente.
-            //  Porém, ao igualar a true com equals(), estará boolean
-            if (metodo.invoke(objeto, argumentos).equals(true)) {
+            try {
+                metodo.invoke(objeto, argumentos); // Chama o método
+            } catch (Exception e) {
+//                Tratamento de erro, caso a entrada não satisfaça as condições
+                System.out.println(e.getCause().getMessage()); // Exibe mensagem
+                System.out.println("Entrada(s) inválida(s).");
+
                 System.out.println("Quer continuar? [s/n]");
-                return PedirEntrada.pedirBoolean(scan); // retorna o boolean do scan
+                if (!PedirEntrada.pedirBoolean(scan)) {
+                    return false;
+                }
+                continue;
             }
 
-            System.out.println("Entrada(s) inválida(s).");
-
+//            Se der certo, pergunta se quer continuar
             System.out.println("Quer continuar? [s/n]");
-            if (!PedirEntrada.pedirBoolean(scan)) {
-                return false;
-            }
-
-//            System.out.print("Digite um(a) "+ parametrosNome[i] +" válido(a): ");
+            return PedirEntrada.pedirBoolean(scan); // retorna o boolean do scan
         }
     }
 }

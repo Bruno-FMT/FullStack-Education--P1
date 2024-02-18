@@ -1,5 +1,5 @@
-import dados.DadosAlunos;
 import objetos.Aluno;
+import objetos.funcionarios.Professor;
 import util.Display;
 
 import java.lang.reflect.InvocationTargetException;
@@ -9,6 +9,8 @@ public class Main {
     public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         Scanner scan = new Scanner(System.in);
         Aluno aluno = new Aluno();
-        Display.displayAluno(scan, aluno);
+        new Aluno("Jerry Smith", 69, "aluno", "aluno123");
+        Display.criarProfessor(scan, new Professor());
+        Display.criarAluno(scan, aluno);
     }
 }

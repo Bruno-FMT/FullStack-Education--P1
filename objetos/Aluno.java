@@ -20,13 +20,15 @@ public class Aluno {
         setStatusMatricula("ATIVO");
         DadosAlunos.adicionarAluno(this);
     }
+
     public Aluno(String nome, int idade) {
         setNome(nome);
         setIdade(idade);
         setStatusMatricula("ATIVO");
     }
 
-    public Aluno() {}
+    public Aluno() {
+    }
 
     public void listarCurso() {
 
@@ -44,31 +46,29 @@ public class Aluno {
         return nome;
     }
 
-    public boolean setNome(String nome) {
+    public void setNome(String nome) {
         if (nome.isBlank() || nome.length() < 5) {
-            return false;
+            throw new IllegalArgumentException("Nome deve ter conteúdo e pelo menos 5 caracteres");
         }
         this.nome = nome;
-        return true;
     }
 
     public int getIdade() {
         return idade;
     }
 
-    public boolean setIdade(int idade) {
-        if (idade >= 0 && idade <= 120) {
-            this.idade = idade;
-            return true;
+    public void setIdade(int idade) {
+        if (idade < 0 || idade > 120) {
+            throw new IllegalArgumentException("Idade deve estar entre 0-120");
         }
-        return false;
+        this.idade = idade;
     }
 
     public String getUsuario() {
         return usuario;
     }
 
-    public boolean setUsuario(String usuario) {
+    public void setUsuario(String usuario) {
         boolean jaExiste = false;
         for (Aluno aluno : DadosAlunos.getAlunosCadastrados()) {
             if (aluno.getUsuario().equals(usuario)) {
@@ -76,45 +76,38 @@ public class Aluno {
                 break;
             }
         }
-        if (usuario.length() >= 4 && usuario.length() <= 20 && !jaExiste) {
-            this.usuario = usuario;
-            return true;
-        }
         if (jaExiste) {
-            System.out.println("Usuário já existente!");
+            throw new IllegalArgumentException("Usuário já existente!");
         }
         if (usuario.length() > 20) {
-            System.out.println("Usuário muito longo! (Máximo: 20)");
+            throw new IllegalArgumentException("Usuário muito longo! (Máximo: 20)");
         }
-        System.out.println("Usuário muito curto! (Mínimo: 4)");
-        return false;
+        if (usuario.length() < 4) {
+            throw new IllegalArgumentException("Usuário muito curto! (Mínimo: 4)");
+        }
+        this.usuario = usuario;
     }
 
     public String getSenha() {
         return senha;
     }
 
-    public boolean setSenha(String senha) {
-        if (senha.length() >= 8) {
-            this.senha = senha;
-            return true;
-        } else {
-            System.out.println("Senha muito curta!");
-            return false;
+    public void setSenha(String senha) {
+        if (senha.length() < 8) {
+            throw new IllegalArgumentException("Senha muito curta! (Mínimo: 8)");
         }
+        this.senha = senha;
     }
 
     public StatusMatricula getStatusMatricula() {
         return statusMatricula;
     }
 
-    public boolean setStatusMatricula(String statusMatricula) {
+    public void setStatusMatricula(String statusMatricula) {
         try {
             this.statusMatricula = StatusMatricula.valueOf(statusMatricula);
-            return true;
         } catch (IllegalArgumentException e) {
-            System.out.println("Status de matrícula invalido.");
-            return false;
+            throw new IllegalArgumentException("Status de matrícula inválido ("+ statusMatricula +")", e);
         }
     }
 
@@ -143,5 +136,14 @@ public class Aluno {
         for (int i = 0; i < opcoesStatus.length; i++) {
             System.out.println((i + 1) + "- " + opcoesStatus[i]);
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "| %40s | %6d |",
+                this.getNome(),
+                this.getIdade()
+        );
     }
 }
