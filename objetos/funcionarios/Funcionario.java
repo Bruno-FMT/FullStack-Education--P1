@@ -7,6 +7,10 @@ public class Funcionario implements IFuncionario {
     private NiveisCargoFuncionario nivelCargo;
     private int anosCargo; //Tempo de trabalho na empresa
 
+    public Funcionario(){
+        this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
+    }
+
     public Funcionario(String nome, int idade, double salario, int anosCargo) {
         this.nome = nome;
         this.idade = idade;

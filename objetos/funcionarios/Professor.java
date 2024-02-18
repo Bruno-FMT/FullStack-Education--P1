@@ -5,6 +5,10 @@ import dados.DadosProfessores;
 import java.util.List;
 
 public class Professor extends Funcionario {
+
+    public Professor(){
+    }
+
     public Professor(String nome, int idade, double salario, int anosCargo) {
         super(nome, idade, salario, anosCargo);
     }
