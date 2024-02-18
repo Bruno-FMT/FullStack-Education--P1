@@ -12,16 +12,16 @@ public class DadosAlunos {
         return alunosCadastrados;
     }
 
-    public void adicionarAluno(Aluno aluno) {
+    public static void adicionarAluno(Aluno aluno) {
         alunosCadastrados.add(aluno);
         System.out.println("Aluno adicionado com sucesso.");
     }
 
-    public void adicionarAlunos(List<Aluno> alunos) {
+    public static void adicionarAlunos(List<Aluno> alunos) {
         alunosCadastrados.addAll(alunos);
     }
 
-    public void removerAlunoPorId(int id) {
+    public static void removerAlunoPorId(int id) {
         if (id >= 0 && id < alunosCadastrados.size()) {
             alunosCadastrados.remove(id);
             System.out.println("Aluno removido com sucesso.");
@@ -30,7 +30,7 @@ public class DadosAlunos {
         }
     }
 
-    public Aluno getAlunoPorId(int id) {
+    public static Aluno getAlunoPorId(int id) {
         if (id >= 0 && id < alunosCadastrados.size()) {
             return alunosCadastrados.get(id);
         } else {
