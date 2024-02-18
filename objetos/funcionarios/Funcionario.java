@@ -47,8 +47,8 @@ public class Funcionario implements IFuncionario {
         this.salario = salario;
     }
 
-    public void promover(Professor professor,String nivelCargo) {
-        professor.setNivelCargo(nivelCargo);
+    public void promover(Funcionario funcionario,String nivelCargo) {
+        funcionario.setNivelCargo(nivelCargo);
     }
 
     public NiveisCargoFuncionario getNivelCargo() {
