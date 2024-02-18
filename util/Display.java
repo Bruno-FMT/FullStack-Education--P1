@@ -1,3 +1,6 @@
+package util;
+
+import dados.DadosAlunos;
 import objetos.Aluno;
 import util.PedirEntrada;
 
@@ -6,54 +9,31 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Display { //TODO: Utilizar métodos como parâmetro para reutilizar código de definirNome, definirIdade etc...
-    //TODO: Aprender a suportar métodos com parâmetros e com parâmetros diferentes
+public class Display {
 
-    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, ClassNotFoundException {
+    public static void displayAluno(Scanner scan, Aluno aluno) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
 
         boolean continuar = true;
-        Scanner scan = new Scanner(System.in);
-        Aluno aluno = new Aluno();
         Method metodo = transformarMetodo(aluno, "setNome", String.class);
-        if (!definirAtributoConta(scan, aluno, metodo)) {}
-        else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setIdade", int.class))) {}
-        else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setUsuario", String.class))) {}
-        else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setSenha", String.class))) {}
-
+        if (!definirAtributoConta(scan, aluno, metodo, new String[]{"nome completo"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setIdade", int.class), new String[]{"idade"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setUsuario", String.class), new String[]{"usuário"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setSenha", String.class), new String[]{"senha"})) {
+            continuar = false;
+        }
+        if(continuar) {
+            DadosAlunos.adicionarAluno(aluno);
+        }
         System.out.println("Continuar: " + continuar);
         System.out.println("Nome: " + aluno.getNome());
         System.out.println("Idade: " + aluno.getIdade());
         System.out.println("Usuario: " + aluno.getUsuario());
         System.out.println("Senha: " + aluno.getSenha());
         System.out.println();
-
     }
-
-    public static boolean testeDefinir(String nome) {
-        System.out.println("Rodou testeDefinir()");
-        return false;
-    }
-
-    public static void staticteste() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
-        Class<?> classe = Class.forName("Display");
-        java.lang.reflect.Method method = classe.getDeclaredMethod("testing");
-        methodTest(method);
-    }
-
-    public void teste() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        java.lang.reflect.Method method;
-        method = this.getClass().getMethod("testing");
-        methodTest(method);
-
-    }
-
-//    public void testing() {
-//        System.out.println("Hello World!");
-//    }
-//
-//    public static void methodTest(Consumer<Display> myMethod) {
-//        myMethod.accept(null);
-//    }
 
     public static void testing() {
         System.out.println("Hello world!");
@@ -63,28 +43,19 @@ public class Display { //TODO: Utilizar métodos como parâmetro para reutilizar
         method.invoke(null);
     }
 
-
-    public static void criarConta(ArrayList<Method> metodos) throws InvocationTargetException, IllegalAccessException {
-        for (Method metodo : metodos) {
-            metodo.invoke(null);
-        }
-    }
-
-    // TODO: Aceitar passagem de Classe para achar o método. Retornar métodow
     public static Method transformarMetodo(Object objeto, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        //        definirAtributoConta(metodo, objeto);
-        return objeto.getClass().getDeclaredMethod(nomeMetodo, parametros); //Pega a classe do objeto, e pesquisa o método pelo nome
+//        Pega a classe do objeto, e pesquisa o método pelo nome
+        return objeto.getClass().getDeclaredMethod(nomeMetodo, parametros);
     }
 
-    // TODO: Aceitar String como parâmetro para o display do tipo de dado (nome do dado)
-    public static boolean definirAtributoConta(Scanner scan, Object objeto, Method metodo) throws InvocationTargetException, IllegalAccessException {
-        System.out.print("Digite seu nome: ");
-        while (true) {
+    public static boolean definirAtributoConta(Scanner scan, Object objeto, Method metodo, String[] parametrosNome) throws InvocationTargetException, IllegalAccessException {
 
+        while (true) {
             Class<?>[] parametrosTipos = metodo.getParameterTypes();
             Object[] argumentos = new Object[parametrosTipos.length];
-            for (int i = 0; i < parametrosTipos.length; i++) {
 
+            for (int i = 0; i < parametrosTipos.length; i++) {
+                System.out.print("Digite seu/sua " + parametrosNome[i] + ": ");
                 if (parametrosTipos[i].equals(String.class)) {
                     argumentos[i] = PedirEntrada.pedirString(scan);
                 } else if (parametrosTipos[i].equals(char.class)) {
@@ -112,17 +83,14 @@ public class Display { //TODO: Utilizar métodos como parâmetro para reutilizar
                 return PedirEntrada.pedirBoolean(scan); // retorna o boolean do scan
             }
 
-//            if (Boolean.getBoolean(metodo.invoke(null) ? "true" : "false")) {
-//                return;
-//            }
-            System.out.println(metodo.getParameters()[0].toString() +"Nome inválido.");
+            System.out.println("Entrada(s) inválida(s).");
 
             System.out.println("Quer continuar? [s/n]");
             if (!PedirEntrada.pedirBoolean(scan)) {
                 return false;
             }
 
-            System.out.print("Digite um nome válido: ");
+//            System.out.print("Digite um(a) "+ parametrosNome[i] +" válido(a): ");
         }
     }
 }

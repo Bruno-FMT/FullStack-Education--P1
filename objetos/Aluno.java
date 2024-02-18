@@ -152,7 +152,7 @@ private boolean continuar = true;
     }
 
     public boolean setNome(String nome) {
-        if (nome.isBlank()) {
+        if (nome.isBlank() || nome.length() < 5) {
             return false;
         }
         this.nome = nome;
@@ -183,14 +183,17 @@ private boolean continuar = true;
                 break;
             }
         }
-        if (usuario.length() < 20 && !jaExiste) {
+        if (usuario.length() >= 4 && usuario.length() <= 20 && !jaExiste) {
             this.usuario = usuario;
             return true;
         }
         if (jaExiste) {
             System.out.println("Usuário já existente!");
         }
-        System.out.println("Usuário muito longo!");
+        if (usuario.length() > 20) {
+            System.out.println("Usuário muito longo! (Máximo: 20)");
+        }
+        System.out.println("Usuário muito curto! (Mínimo: 4)");
         return false;
     }
 
