@@ -2,11 +2,9 @@ package util;
 
 import dados.DadosAlunos;
 import objetos.Aluno;
-import util.PedirEntrada;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Display {
@@ -43,7 +41,7 @@ public class Display {
         method.invoke(null);
     }
 
-    public static Method transformarMetodo(Object objeto, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static Method transformarMetodo(Object objeto, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException {
 //        Pega a classe do objeto, e pesquisa o método pelo nome
         return objeto.getClass().getDeclaredMethod(nomeMetodo, parametros);
     }

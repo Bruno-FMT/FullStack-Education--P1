@@ -1,10 +1,8 @@
 package objetos;
 
 import dados.DadosAlunos;
-import util.PedirEntrada;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class Aluno {
     private String nome;
