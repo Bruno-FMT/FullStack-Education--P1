@@ -36,7 +36,7 @@
 - [x] [Ex 1 - Gitflow](#-m1s06-ex-1---gitflow)
 - [x] [Ex 2 - Classes principais](#-m1s06-ex-2---classes-principais)
 - [x] [Ex 3 - Encapsulamento](#-m1s06-ex-3---encapsulamento)
-- [ ] [Ex 4 - Interface e herança](#-m1s06-ex-4---interface-e-herança)
+- [x] [Ex 4 - Interface e herança](#-m1s06-ex-4---interface-e-herança)
 - [x] [Ex 5 - Enums](#-m1s06-ex-5---enums)
 - [ ] [Ex 6 - Override](#-m1s06-ex-6---override)
 - [ ] [Ex 7 - Tratamento de erros](#-m1s06-ex-7---tratamento-de-erros)
