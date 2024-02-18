@@ -17,4 +17,12 @@ public class Diretor extends Funcionario {
         System.out.println("Diretor não encontrado.");
         return -1;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nome: " + this.getNome() +
+                ", nível: " + super.getNivelCargo() +
+                '}';
+    }
 }

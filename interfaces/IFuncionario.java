@@ -1,4 +1,4 @@
-package objetos.funcionarios;
+package interfaces;
 
 public class IFuncionario {
 }

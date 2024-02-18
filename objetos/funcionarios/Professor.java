@@ -17,4 +17,12 @@ public class Professor extends Funcionario {
         System.out.println("Professor não encontrado.");
         return -1;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nome: " + this.getNome() +
+                ", nível: " + super.getNivelCargo() +
+                '}';
+    }
 }

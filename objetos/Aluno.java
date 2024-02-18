@@ -8,12 +8,11 @@ import java.util.List;
 public class Aluno {
     private String nome;
     private int idade;
-
     private StatusMatricula statusMatricula;
 
     public Aluno(String nome, int idade) {
-        this.nome = nome;
-        this.idade = idade;
+        setNome(nome);
+        setIdade(idade);
         this.statusMatricula = StatusMatricula.ATIVO;
     }
 
@@ -29,6 +28,9 @@ public class Aluno {
     }
 
     public void setNome(String nome) {
+        if (nome.isBlank()) {
+            throw new IllegalArgumentException("Nome não pode estar em branco.");
+        }
         this.nome = nome;
     }
 
@@ -37,8 +39,9 @@ public class Aluno {
     }
 
     public void setIdade(int idade) {
-        if (idade < 0 || idade > 120)
+        if (idade < 0 || idade > 120) {
             throw new IllegalArgumentException("Idade deve estar entre 0-120");
+        }
         this.idade = idade;
     }
 
@@ -46,13 +49,11 @@ public class Aluno {
         return statusMatricula;
     }
 
-    public boolean setStatusMatricula(String statusMatricula) {
+    public void setStatusMatricula(String statusMatricula) {
         try {
             this.statusMatricula = StatusMatricula.valueOf(statusMatricula);
-            return true;
         } catch (IllegalArgumentException e) {
-            System.out.println("Status de matrícula invalido.");
-            return false;
+            throw new IllegalArgumentException("Status de matrícula invalido.", e);
         }
     }
 
@@ -73,11 +74,7 @@ public class Aluno {
     }
 
     @Override
-    public String toString(){
-        return String.format(
-                "| %40s | %6d |",
-                this.getNome(),
-                this.getIdade()
-        );
+    public String toString() {
+        return "{nome: " + nome + ", idade: " + idade + ", status: " + statusMatricula + "}";
     }
 }
