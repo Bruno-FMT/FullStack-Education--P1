@@ -1,11 +1,11 @@
 package objetos.funcionarios;
 
-public class Funcionario {
+public class Funcionario implements IFuncionario {
     private String nome;
     private int idade;
     private double salario;
     private NiveisCargoFuncionario nivelCargo;
-    private int anosCargo;
+    private int anosCargo; //Tempo de trabalho na empresa
 
     public Funcionario(String nome, int idade, double salario, int anosCargo) {
         this.nome = nome;
@@ -45,6 +45,10 @@ public class Funcionario {
 
     public void setSalario(double salario) {
         this.salario = salario;
+    }
+
+    public void promover(Funcionario funcionario,String nivelCargo) {
+        funcionario.setNivelCargo(nivelCargo);
     }
 
     public NiveisCargoFuncionario getNivelCargo() {
