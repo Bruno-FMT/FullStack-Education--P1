@@ -1,4 +1,7 @@
 package interfaces;
 
-public class IFuncionario {
+import objetos.funcionarios.Funcionario;
+
+public interface IFuncionario {
+    void promover(Funcionario funcionario, String nivelCargo);
 }

@@ -1,6 +1,5 @@
 package testes;
 
-import dados.DadosCursos;
 import dados.DadosTurmas;
 import objetos.Aluno;
 import objetos.Curso;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 
 public class TesteDadosTurmas {
     public static void main(String[] args) {
+        System.out.println("TESTE DADOS TURMAS");
         Turma turma = new Turma(curso(), 2024);
         Turma turmaComAlunos = new Turma(curso2(), 2024, alunos());
         DadosTurmas.adicionarTurma(turma);
@@ -56,6 +56,8 @@ public class TesteDadosTurmas {
             System.out.println("Exceção capturada: " + e.getMessage());
             System.out.println(DadosTurmas.getTurmasCadastradas());
         }
+
+        System.out.println("**** TESTE DADOS TURMAS CONCLUÍDO COM SUCESSO! ****");
     }
 
     public static Curso curso(){

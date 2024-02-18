@@ -5,6 +5,7 @@ import objetos.funcionarios.Diretor;
 
 public class TesteDadosDiretores {
     public static void main(String[] args) {
+        System.out.println("TESTE DADOS DIRETORES");
         Diretor diretor = new Diretor("Jane Doe", 40, 10000.00, 10);
         Diretor diretor2 = new Diretor("Jhon Doe", 50, 5000.00, 5);
         DadosDiretores.adicionarDiretor(diretor);
@@ -49,5 +50,6 @@ public class TesteDadosDiretores {
             System.out.println(DadosDiretores.getDiretoresCadastrados());
         }
 
+        System.out.println("**** TESTE DADOS DIRETORES CONCLUÍDO COM SUCESSO! ****");
     }
 }

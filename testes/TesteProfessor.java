@@ -1,6 +1,7 @@
 package testes;
 
 import dados.DadosProfessores;
+import objetos.funcionarios.Funcionario;
 import objetos.funcionarios.Professor;
 
 public class TesteProfessor {
@@ -109,6 +110,8 @@ public class TesteProfessor {
         System.out.println(professor.getId());
 
         System.out.println("\nimprimirNiveisCargo deve mostrar no console todas as opções de níveis de cargo");
-        professor.imprimirNiveisCargo();
+        Funcionario.imprimirNiveisCargo();
+
+        System.out.println("**** TESTE PROFESSOR CONCLUÍDO COM SUCESSO! ****");
     }
 }

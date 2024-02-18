@@ -100,6 +100,8 @@ public class TesteFuncionario {
         }
 
         System.out.println("\nimprimirNiveisCargo deve mostrar no console todas as opções de níveis de cargo");
-        funcionario.imprimirNiveisCargo();
+        Funcionario.imprimirNiveisCargo();
+
+        System.out.println("**** TESTE FUNCIONÁRIO CONCLUÍDO COM SUCESSO! ****");
     }
 }

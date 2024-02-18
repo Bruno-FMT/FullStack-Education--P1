@@ -70,6 +70,8 @@ public class TesteCurso {
 
         System.out.println("\ntoString deve trazer nome do curso e os dados dos professores do curso");
         System.out.println(curso.toString());
+
+        System.out.println("**** TESTE CURSO CONCLUÍDO COM SUCESSO! ****");
     }
 
     public static ArrayList<Professor> professores() {

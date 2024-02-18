@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class TesteDadosAlunos {
     public static void main(String[] args) {
+        System.out.println("TESTE DADOS ALUNOS");
         Aluno aluno = new Aluno("Jane Doe", 40);
         Aluno aluno2 = new Aluno("Jhon Doe", 50);
         DadosAlunos.adicionarAluno(aluno);
@@ -64,6 +65,8 @@ public class TesteDadosAlunos {
             System.out.println("Exceção capturada: " + e.getMessage());
             System.out.println(DadosAlunos.getAlunosCadastrados());
         }
+
+        System.out.println("**** TESTE DADOS ALUNOS CONCLUÍDO COM SUCESSO! ****");
     }
 
     public static ArrayList<Aluno> arrayAlunos() {

@@ -2,6 +2,7 @@ package testes;
 
 import dados.DadosDiretores;
 import objetos.funcionarios.Diretor;
+import objetos.funcionarios.Funcionario;
 
 public class TesteDiretor {
     public static void main(String[] args) {
@@ -109,6 +110,8 @@ public class TesteDiretor {
         System.out.println(diretor.getId());
 
         System.out.println("\nimprimirNiveisCargo deve mostrar no console todas as opções de níveis de cargo");
-        diretor.imprimirNiveisCargo();
+        Funcionario.imprimirNiveisCargo();
+
+        System.out.println("**** TESTE DIRETOR CONCLUÍDO COM SUCESSO! ****");
     }
 }

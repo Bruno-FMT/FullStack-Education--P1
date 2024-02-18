@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class TesteDadosCursos {
     public static void main(String[] args) {
+        System.out.println("TESTE DADOS CURSOS");
         Curso curso = new Curso("FullStack", professores());
         Curso curso2 = new Curso("Front-end", professores());
         DadosCursos.adicionarCurso(curso);
@@ -53,6 +54,8 @@ public class TesteDadosCursos {
             System.out.println("Exceção capturada: " + e.getMessage());
             System.out.println(DadosCursos.getCursosCadastrados());
         }
+
+        System.out.println("**** TESTE DADOS CURSOS CONCLUÍDO COM SUCESSO! ****");
     }
 
     public static ArrayList<Professor> professores() {

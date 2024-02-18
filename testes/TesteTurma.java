@@ -101,6 +101,8 @@ public class TesteTurma {
         System.out.println("\ntoString deve trazer ano de inicío, nome do curso, professores do curso e alunos da turma");
         System.out.println(turmaComAlunos.toString());
         System.out.println(turma.toString());
+
+        System.out.println("**** TESTE TURMA CONCLUÍDO COM SUCESSO! ****");
     }
 
     public static Curso curso(){

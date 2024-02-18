@@ -1,8 +1,9 @@
 package objetos.funcionarios;
 
 import enums.NiveisCargoFuncionario;
+import interfaces.IFuncionario;
 
-public class Funcionario {
+public class Funcionario implements IFuncionario {
     private String nome;
     private int idade;
     private double salario;
@@ -59,6 +60,10 @@ public class Funcionario {
             throw new IllegalArgumentException("Salário deve ser maior que zero.");
         }
         this.salario = salario;
+    }
+
+    public void promover(Funcionario funcionario,String nivelCargo) {
+        funcionario.setNivelCargo(nivelCargo);
     }
 
     public NiveisCargoFuncionario getNivelCargo() {

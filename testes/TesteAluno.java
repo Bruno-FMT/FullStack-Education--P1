@@ -86,6 +86,8 @@ public class TesteAluno {
         System.out.println(aluno.toString());
 
         System.out.println("\nimprimirOpcoesStatusMatricula deve mostrar no console todas as opções de status de matrícula");
-        aluno.imprimirOpcoesStatusMatricula();
+        Aluno.imprimirOpcoesStatusMatricula();
+
+        System.out.println("**** TESTE ALUNO CONCLUÍDO COM SUCESSO! ****");
     }
 }
