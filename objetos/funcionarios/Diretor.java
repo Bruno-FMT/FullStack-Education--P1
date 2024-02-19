@@ -8,6 +8,7 @@ public class Diretor extends Funcionario {
     public Diretor(String nome, int idade, double salario, int anosCargo) {
         super(nome, idade, salario, anosCargo);
     }
+    public Diretor() {super();}
 
     public int getId() {
         List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();

@@ -8,6 +8,7 @@ public class Professor extends Funcionario {
     public Professor(String nome, int idade, double salario, int anosCargo) {
         super(nome, idade, salario, anosCargo);
     }
+    public Professor() {super();}
 
     public int getId() {
         List<Professor> professores = DadosProfessores.getProfessoresCadastrados();

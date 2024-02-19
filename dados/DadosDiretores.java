@@ -12,12 +12,12 @@ public class DadosDiretores {
         return diretoresCadastrados;
     }
 
-    public void adicionarDiretor(Diretor diretor) {
+    public static void adicionarDiretor(Diretor diretor) {
         diretoresCadastrados.add(diretor);
         System.out.println("Aluno adicionado com sucesso.");
     }
 
-    public void removerDiretorPorId(int id) {
+    public static void removerDiretorPorId(int id) {
         if (id >= 0 && id < diretoresCadastrados.size()) {
             diretoresCadastrados.remove(id);
             System.out.println("Diretor removido com sucesso.");
@@ -26,7 +26,7 @@ public class DadosDiretores {
         }
     }
 
-    public Diretor getDiretorPorId(int id) {
+    public static Diretor getDiretorPorId(int id) {
         if (id >= 0 && id < diretoresCadastrados.size()) {
             return diretoresCadastrados.get(id);
         } else {
