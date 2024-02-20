@@ -1,13 +1,14 @@
 package objetos.funcionarios;
 
+import java.util.List;
 import dados.DadosDiretores;
 
-import java.util.List;
-
 public class Diretor extends Funcionario {
-    public Diretor(String nome, int idade, double salario, int anosCargo) {
-        super(nome, idade, salario, anosCargo);
+    public Diretor(String nome, int idade, double salario, int anosCargo, String usuario, String senha) {
+        super(nome, idade, salario, anosCargo, usuario, senha);
+        DadosDiretores.adicionarDiretor(this);
     }
+    public Diretor() {super();}
 
     public int getId() {
         List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();

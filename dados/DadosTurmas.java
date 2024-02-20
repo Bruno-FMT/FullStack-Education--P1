@@ -1,6 +1,5 @@
 package dados;
 
-import objetos.Curso;
 import objetos.Turma;
 
 import java.util.ArrayList;

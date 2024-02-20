@@ -3,20 +3,28 @@ package objetos.funcionarios;
 import enums.NiveisCargoFuncionario;
 import interfaces.IFuncionario;
 
+import dados.DadosDiretores;
+import dados.DadosProfessores;
+
 public class Funcionario implements IFuncionario {
     private String nome;
     private int idade;
+    private String usuario;
+    private String senha;
     private double salario;
     private NiveisCargoFuncionario nivelCargo;
     private int anosCargo;
 
-    public Funcionario(String nome, int idade, double salario, int anosCargo) {
+    public Funcionario(String nome, int idade, double salario, int anosCargo, String usuario, String senha) {
         setNome(nome);
         setIdade(idade);
+        setUsuario(usuario);
+        setSenha(senha);
         setSalario(salario);
         setAnosCargo(anosCargo);
         this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
     }
+    public Funcionario() {}
 
     public int getIdade() {
         return idade;
@@ -27,6 +35,47 @@ public class Funcionario implements IFuncionario {
             throw new IllegalArgumentException("Idade deve estar entre 0-120");
         }
         this.idade = idade;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        boolean jaExiste = false;
+        for (Funcionario funcionario : DadosProfessores.getProfessoresCadastrados()) {
+            if (funcionario.getUsuario().equals(usuario)) {
+                jaExiste = true;
+                break;
+            }
+        }
+        for (Funcionario funcionario : DadosDiretores.getDiretoresCadastrados()) {
+            if (funcionario.getUsuario().equals(usuario)) {
+                jaExiste = true;
+                break;
+            }
+        }
+        if (jaExiste) {
+            throw new IllegalArgumentException("Usuário já existente!");
+        }
+        if (usuario.length() > 20) {
+            throw new IllegalArgumentException("Usuário muito longo! (Máximo: 20)");
+        }
+        if (usuario.length() < 4) {
+            throw new IllegalArgumentException("Usuário muito curto! (Mínimo: 4)");
+        }
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        if (senha.length() < 8) {
+            throw new IllegalArgumentException("Senha muito curta! (Mínimo: 8)");
+        }
+        this.senha = senha;
     }
 
     public int getAnosCargo() {

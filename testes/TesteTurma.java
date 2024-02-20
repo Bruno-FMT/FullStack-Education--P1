@@ -7,18 +7,17 @@ import objetos.Turma;
 import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TesteTurma {
     public static void main(String[] args) {
         System.out.println("TESTES TURMA");
         System.out.println("Turma deve receber um curso, um ano de início em int e um ArrayLis de alunos");
         Turma turma = new Turma(curso(), 2024);
-        DadosTurmas.adicionarTurma(turma);
         System.out.println(turma);
 
         System.out.println("\nPorém o ArrayLis de alunos que é opcional");
-        Turma turmaComAlunos = new Turma(curso(), 2024, alunos());
-        DadosTurmas.adicionarTurma(turmaComAlunos);
+        Turma turmaComAlunos = new Turma(curso(), 2024, alunos);
         System.out.println(turmaComAlunos);
 
         System.out.println("\nlistarAlunos deve mostrar na tela a lista de alunos cadastrados na turma");
@@ -26,12 +25,12 @@ public class TesteTurma {
         turma.listarAlunos();
 
         System.out.println("\nadicionarAluno deve adicionar um novo aluno a turma");
-        turmaComAlunos.adicionarAluno(new Aluno("André Silva", 16));
+        turmaComAlunos.adicionarAluno(new Aluno("André Silva", 16, "andresilva", "senha1234"));
         turmaComAlunos.listarAlunos();
 
         System.out.println("\nadicionarAluno já existente deve lançar exceção: Aluno já cadastrado.");
         try {
-            turmaComAlunos.adicionarAluno(new Aluno("André Almeida", 16));
+            turmaComAlunos.adicionarAluno(new Aluno("André Almeida", 16, "andrealmeida", "senha1234"));
             turmaComAlunos.listarAlunos();
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -39,12 +38,12 @@ public class TesteTurma {
         }
 
         System.out.println("\nsetAlunos deve adicionar um Array com novos alunos a turma, sobrescrevendo a lista de alunos pela nova lista");
-        turmaComAlunos.setAlunos(alunos2());
+        turmaComAlunos.setAlunos(alunos2);
         turmaComAlunos.listarAlunos();
 
         System.out.println("\nsetAlunos já existente deve lançar exceção: Aluno já cadastrado.");
         try {
-            turmaComAlunos.setAlunos(alunos2());
+            turmaComAlunos.setAlunos(alunos2);
             turmaComAlunos.listarAlunos();
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -52,7 +51,7 @@ public class TesteTurma {
         }
 
         System.out.println("\nremoverAluno deve remover o aluno passado por parâmetro");
-        turmaComAlunos.removerAluno(new Aluno("Tiago Ferreira", 18));
+        turmaComAlunos.removerAluno(aluno4);
         turmaComAlunos.listarAlunos();
 
         System.out.println("\nremoverAluno deve remover o aluno na posição passada por parâmetro");
@@ -61,8 +60,7 @@ public class TesteTurma {
 
         System.out.println("\nremoverAluno inexistente deve lançar exceção: Aluno não está cadastrado nesta turma");
         try {
-            Aluno aluno = new Aluno("André Almeida", 16);
-            turmaComAlunos.removerAluno(aluno);
+            turmaComAlunos.removerAluno(aluno4);
             turmaComAlunos.listarAlunos();
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -78,23 +76,23 @@ public class TesteTurma {
             turmaComAlunos.listarAlunos();
         }
 
-        System.out.println("getCurso deve retornar dados do curso cadastrado a turma");
+        System.out.println("\ngetCurso deve retornar dados do curso cadastrado a turma");
         System.out.println(turmaComAlunos.getCurso());
 
-        System.out.println("setCurso deve alterar o curso cadastrado a turma");
+        System.out.println("\nsetCurso deve alterar o curso cadastrado a turma");
         turmaComAlunos.setCurso(curso2());
         System.out.println(turmaComAlunos.getCurso());
 
-        System.out.println("getAlunos deve retornar dados dos alunos cadastrados na turma");
+        System.out.println("\ngetAlunos deve retornar dados dos alunos cadastrados na turma");
         System.out.println(turmaComAlunos.getAlunos());
 
-        System.out.println("getAlunos deve retornar null se não houver alunos cadastrados a turma");
+        System.out.println("\ngetAlunos deve retornar null se não houver alunos cadastrados a turma");
         System.out.println(turma.getAlunos());
 
-        System.out.println("getAnoInicio deve retornar o ano de ínicio da turma");
+        System.out.println("\ngetAnoInicio deve retornar o ano de ínicio da turma");
         System.out.println(turma.getAnoInicio());
 
-        System.out.println("setAnoInicio deve alterar o ano de ínicio da turma");
+        System.out.println("\nsetAnoInicio deve alterar o ano de ínicio da turma");
         turma.setAnoInicio(2025);
         System.out.println(turma.getAnoInicio());
 
@@ -106,35 +104,22 @@ public class TesteTurma {
     }
 
     public static Curso curso(){
-        return new Curso("FullStack", professores());
+        return new Curso("FullStack", professores);
     }
     public static Curso curso2(){
-        return new Curso("Front-end", professores());
+        return new Curso("Front-end", professores);
     }
+    public static Professor professor1 = new Professor("João Silva", 40, 3000.50, 3, "joaosilva", "senha1234");
+    public static Professor professor2 = new Professor("Maria Oliveira", 50, 3000.00, 3, "mariaoliveira", "senha1234");
+    public static ArrayList<Professor> professores = new ArrayList<>(List.of(professor1, professor2));
 
-    public static ArrayList<Professor> professores() {
-        ArrayList<Professor> professores = new ArrayList<>();
-        professores.add(new Professor("João Silva", 40, 3000.50, 3));
-        professores.add(new Professor("Maria Oliveira", 50, 3000.00, 3));
+    public static Aluno aluno1 =new Aluno("André Almeida", 16, "andre", "senha1234");
+    public static Aluno aluno2 =new Aluno("Sofia Rodrigues", 17, "sofiarodrigues", "senha1234");
+    public static Aluno aluno3 =new Aluno("Carolina Gonçalves", 21, "carolinagoncalves", "senha1234");
+    public static ArrayList<Aluno> alunos = new ArrayList<>(List.of(aluno1, aluno2, aluno3));
 
-        return professores;
-    }
-
-    public static ArrayList<Aluno> alunos() {
-        ArrayList<Aluno> alunos = new ArrayList<>();
-        alunos.add(new Aluno("André Almeida", 16));
-        alunos.add(new Aluno("Sofia Rodrigues", 17));
-        alunos.add(new Aluno("Carolina Gonçalves", 21));
-
-        return alunos;
-    }
-
-    public static ArrayList<Aluno> alunos2() {
-        ArrayList<Aluno> alunos = new ArrayList<>();
-        alunos.add(new Aluno("Tiago Ferreira", 18));
-        alunos.add(new Aluno("Mariana Sousa", 19));
-        alunos.add(new Aluno("Daniel Martins", 20));
-
-        return alunos;
-    }
+    public static Aluno aluno4 = new Aluno("Tiago Ferreira", 18, "tiagoferreira", "senha1234");
+    public static Aluno aluno5 = new Aluno("Mariana Sousa", 19, "marinasouza", "senha1234");
+    public static Aluno aluno6 = new Aluno("Daniel Martins", 20, "danielamartins", "senha1234");
+    public static ArrayList<Aluno> alunos2 = new ArrayList<>(List.of(aluno4, aluno5, aluno6));
 }

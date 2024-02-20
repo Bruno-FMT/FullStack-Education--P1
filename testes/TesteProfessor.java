@@ -11,13 +11,12 @@ public class TesteProfessor {
                 "Professor deve receber: " +
                 "nome em String, idade entre 0 e 120, salário em double e anos de cargo em int"
         );
-        Professor professor = new Professor("Jane Doe", 40, 3000.50, 3);
-        DadosProfessores.adicionarProfessor(professor);
+        Professor professor = new Professor("Jane Doe", 40, 3000.50, 3, "janedoe", "senha1234");
         System.out.println(professor);
 
         System.out.println("\nNome em branco deve lançar exceção: Nome não pode estar em branco.");
         try {
-            Professor professorErroNome = new Professor("", 40, 3000.50, 3);
+            Professor professorErroNome = new Professor("", 40, 3000.50, 3, "professor", "senha1234");
             System.out.println(professorErroNome);
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -25,7 +24,7 @@ public class TesteProfessor {
 
         System.out.println("\nIdade maior que 120 deve lançar exceção: Idade deve estar entre 0-120");
         try {
-            Professor professorErroIdade = new Professor("Jane Doe", 150, 3000.50, 3);
+            Professor professorErroIdade = new Professor("Jane Doe", 150, 3000.50, 3, "janedoe", "senha1234");
             System.out.println(professorErroIdade);
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -109,8 +108,25 @@ public class TesteProfessor {
         DadosProfessores.removerProfessorPorId(0);
         System.out.println(professor.getId());
 
-        System.out.println("\nimprimirNiveisCargo deve mostrar no console todas as opções de níveis de cargo");
-        Funcionario.imprimirNiveisCargo();
+        System.out.println("\ngetUsuario deve retornar uma String com os dados do professor\"");
+        System.out.println(professor.getUsuario());
+
+        System.out.println("\nsetUsuario deve incluir um novo nome de usuário ao professor");
+        professor.setUsuario("novoUsuario");
+        System.out.println(professor.getUsuario());
+
+        System.out.println("\ngetSenha deve retornar uma String com a senha do professor");
+        System.out.println(professor.getSenha());
+
+        System.out.println("\nsetSenha deve incluir uma nova senha ao professor");
+        professor.setSenha("nova-senha-1234");
+        System.out.println(professor.getSenha());
+
+        System.out.println("\npromover deve incluir um novo nível de cargo ao professor");
+        professor.promover(professor, "AVANCADO");
+
+        System.out.println("\ntoString deve trazer nome e nível do diretor");
+        System.out.println(professor.toString());
 
         System.out.println("**** TESTE PROFESSOR CONCLUÍDO COM SUCESSO! ****");
     }

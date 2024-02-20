@@ -1,5 +1,6 @@
 package testes;
 
+import dados.DadosDiretores;
 import objetos.funcionarios.Funcionario;
 
 public class TesteFuncionario {
@@ -9,12 +10,12 @@ public class TesteFuncionario {
             "Funcionário deve receber: " +
             "nome em String, idade entre 0 e 120, salário em double e anos de cargo em int"
         );
-        Funcionario funcionario = new Funcionario("Jane Doe", 40, 3000.50, 3);
+        Funcionario funcionario = new Funcionario("Jane Doe", 40, 3000.50, 3, "janedoe", "senha1234");
         System.out.println(funcionario);
 
         System.out.println("\nNome em branco deve lançar exceção: Nome não pode estar em branco.");
         try {
-            Funcionario funcionarioErroNome = new Funcionario("", 40, 3000.50, 3);
+            Funcionario funcionarioErroNome = new Funcionario("", 40, 3000.50, 3, "funcionario", "senha1234");
             System.out.println(funcionarioErroNome);
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -22,7 +23,7 @@ public class TesteFuncionario {
 
         System.out.println("\nIdade maior que 120 deve lançar exceção: Idade deve estar entre 0-120");
         try {
-            Funcionario funcionarioErroIdade = new Funcionario("Jane Doe", 150, 3000.50, 3);
+            Funcionario funcionarioErroIdade = new Funcionario("Jane Doe", 150, 3000.50, 3, "janedoe", "senha1234");
             System.out.println(funcionarioErroIdade);
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -99,8 +100,28 @@ public class TesteFuncionario {
             System.out.println(funcionario.getNivelCargo());
         }
 
+        System.out.println("\ngetUsuario deve retornar uma String com os dados do funcionário\"");
+        System.out.println(funcionario.getUsuario());
+
+        System.out.println("\nsetUsuario deve incluir um novo nome de usuário ao funcionário");
+        funcionario.setUsuario("novoUsuario");
+        System.out.println(funcionario.getUsuario());
+
+        System.out.println("\ngetSenha deve retornar uma String com a senha do funcionário");
+        System.out.println(funcionario.getSenha());
+
+        System.out.println("\nsetSenha deve incluir uma nova senha ao funcionário");
+        funcionario.setSenha("nova-senha-1234");
+        System.out.println(funcionario.getSenha());
+
+        System.out.println("\ntoString deve trazer nome, idade, nível e anos no cargo do funcionário");
+        System.out.println(funcionario.toString());
+
         System.out.println("\nimprimirNiveisCargo deve mostrar no console todas as opções de níveis de cargo");
         Funcionario.imprimirNiveisCargo();
+
+        System.out.println("\npromover deve incluir um novo nível de cargo ao funcionário");
+        funcionario.promover(funcionario, "AVANCADO");
 
         System.out.println("**** TESTE FUNCIONÁRIO CONCLUÍDO COM SUCESSO! ****");
     }

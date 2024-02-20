@@ -5,9 +5,12 @@ import dados.DadosProfessores;
 import java.util.List;
 
 public class Professor extends Funcionario {
-    public Professor(String nome, int idade, double salario, int anosCargo) {
-        super(nome, idade, salario, anosCargo);
+    public Professor(String nome, int idade, double salario, int anosCargo, String usuario, String senha) {
+        super(nome, idade, salario, anosCargo, usuario, senha);
+        DadosProfessores.adicionarProfessor(this);
     }
+
+    public Professor() {super();}
 
     public int getId() {
         List<Professor> professores = DadosProfessores.getProfessoresCadastrados();

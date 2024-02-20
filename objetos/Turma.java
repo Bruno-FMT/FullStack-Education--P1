@@ -1,6 +1,6 @@
 package objetos;
 
-import objetos.funcionarios.Professor;
+import dados.DadosTurmas;
 import util.Datas;
 
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ public class Turma {
         this.curso = curso;
         this.anoInicio = anoInicio;
         this.alunos = alunos;
+        DadosTurmas.adicionarTurma(this);
     }
 
     public Turma(Curso curso, int anoInicio) {

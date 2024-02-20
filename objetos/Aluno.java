@@ -8,18 +8,31 @@ import java.util.List;
 public class Aluno {
     private String nome;
     private int idade;
+    private String usuario;
+    private String senha;
     private StatusMatricula statusMatricula;
 
-    public Aluno(String nome, int idade) {
+    public Aluno(String nome, int idade, String usuario, String senha) {
         setNome(nome);
         setIdade(idade);
-        this.statusMatricula = StatusMatricula.ATIVO;
+        setUsuario(usuario);
+        setSenha(senha);
+        setStatusMatricula("ATIVO");
+        DadosAlunos.adicionarAluno(this);
+    }
+
+    public Aluno() {
     }
 
     public void listarCurso() {
 
     }
+
     public void adicionarCurso() {
+
+    }
+
+    public void removerCurso() {
 
     }
 
@@ -28,8 +41,8 @@ public class Aluno {
     }
 
     public void setNome(String nome) {
-        if (nome.isBlank()) {
-            throw new IllegalArgumentException("Nome não pode estar em branco.");
+        if (nome.isBlank() || nome.length() < 5) {
+            throw new IllegalArgumentException("Nome deve ter conteúdo e pelo menos 5 caracteres");
         }
         this.nome = nome;
     }
@@ -45,6 +58,41 @@ public class Aluno {
         this.idade = idade;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        boolean jaExiste = false;
+        for (Aluno aluno : DadosAlunos.getAlunosCadastrados()) {
+            if (aluno.getUsuario().equals(usuario)) {
+                jaExiste = true;
+                break;
+            }
+        }
+        if (jaExiste) {
+            throw new IllegalArgumentException("Usuário já existente!");
+        }
+        if (usuario.length() > 20) {
+            throw new IllegalArgumentException("Usuário muito longo! (Máximo: 20)");
+        }
+        if (usuario.length() < 4) {
+            throw new IllegalArgumentException("Usuário muito curto! (Mínimo: 4)");
+        }
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        if (senha.length() < 8) {
+            throw new IllegalArgumentException("Senha muito curta! (Mínimo: 8)");
+        }
+        this.senha = senha;
+    }
+
     public StatusMatricula getStatusMatricula() {
         return statusMatricula;
     }
@@ -53,13 +101,13 @@ public class Aluno {
         try {
             this.statusMatricula = StatusMatricula.valueOf(statusMatricula);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Status de matrícula invalido.", e);
+            throw new IllegalArgumentException("Status de matrícula inválido");
         }
     }
 
     public int getId() {
         List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
-        if(alunos.contains(this)) {
+        if (alunos.contains(this)) {
             return alunos.indexOf(this);
         }
         System.out.println("Aluno não encontrado.");

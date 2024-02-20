@@ -26,15 +26,6 @@ public class DadosCursos {
         cursosCadastrados.add(curso);
     }
 
-    public static void adicionarCursos(List<Curso> cursos){
-        for (Curso curso : cursos) {
-            if (cursoEhCadastrado(curso)) {
-                throw new IllegalArgumentException("Curso já cadastrado.");
-            }
-        }
-        cursosCadastrados.addAll(cursos);
-    }
-
     private static boolean cursoEhCadastrado(Curso curso) {
         return cursosCadastrados.contains(curso);
     }

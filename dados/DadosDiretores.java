@@ -33,9 +33,9 @@ public class DadosDiretores {
         return diretoresCadastrados.get(id);
     }
 
-    private static boolean diretorEhCadastrado(Diretor diretor) {
+    private static boolean diretorEhCadastrado(Diretor diretor){
         for (Diretor diretorCadastrado : diretoresCadastrados) {
-            if(diretorCadastrado.getNome().equals(diretor.getNome())) {
+            if (diretorCadastrado.getUsuario().equals(diretor.getUsuario())) {
                 return true;
             }
         }

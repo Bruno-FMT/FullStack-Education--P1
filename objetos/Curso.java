@@ -1,15 +1,18 @@
 package objetos;
 
 import java.util.ArrayList;
+
+import dados.DadosCursos;
 import objetos.funcionarios.Professor;
 
 public class Curso {
     private String nome;
-    private ArrayList<Professor> professores;
+    private ArrayList<Professor> professores = new ArrayList<>();
 
     public Curso(String nome, ArrayList<Professor> professores) {
         setNome(nome);
-        this.professores = professores;
+        setProfessores(professores);
+        DadosCursos.adicionarCurso(this);
     }
 
     public String getNome() {
@@ -43,8 +46,8 @@ public class Curso {
     }
 
     private boolean professorEhCadastrado(Professor professor) {
-        for (Professor professorCadastrado : professores) {
-            if(professorCadastrado.getNome().equals(professor.getNome())) {
+        for (Professor professorCadastrado : this.professores) {
+            if(professorCadastrado.getUsuario().equals(professor.getUsuario())) {
                 return true;
             }
         }

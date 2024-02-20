@@ -19,15 +19,6 @@ public class DadosProfessores {
         professoresCadastrados.add(professor);
     }
 
-    public static void adicionarProfessores(List<Professor> professores){
-        for (Professor professor : professores) {
-            if (professorEhCadastrado(professor)) {
-                throw new IllegalArgumentException("Professor já cadastrado.");
-            }
-        }
-        professoresCadastrados.addAll(professores);
-    }
-
     public static void removerProfessorPorId(int id) {
         if(id < 0 || id > professoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
@@ -44,7 +35,7 @@ public class DadosProfessores {
 
     private static boolean professorEhCadastrado(Professor professor) {
         for (Professor professorCadastrado : professoresCadastrados) {
-            if(professorCadastrado.getNome().equals(professor.getNome())) {
+            if (professorCadastrado.getUsuario().equals(professor.getUsuario())) {
                 return true;
             }
         }

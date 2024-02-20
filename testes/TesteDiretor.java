@@ -11,13 +11,12 @@ public class TesteDiretor {
                 "Diretor deve receber: " +
                 "nome em String, idade entre 0 e 120, salário em double e anos de cargo em int"
         );
-        Diretor diretor = new Diretor("Jane Doe", 40, 3000.50, 3);
-        DadosDiretores.adicionarDiretor(diretor);
+        Diretor diretor = new Diretor("Jane Doe", 40, 3000.50, 3, "janedoe", "senha1234");
         System.out.println(diretor);
 
         System.out.println("\nNome em branco deve lançar exceção: Nome não pode estar em branco.");
         try {
-            Diretor professorErroNome = new Diretor("", 40, 3000.50, 3);
+            Diretor professorErroNome = new Diretor("", 40, 3000.50, 3, "professor", "senha1234");
             System.out.println(professorErroNome);
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -25,7 +24,7 @@ public class TesteDiretor {
 
         System.out.println("\nIdade maior que 120 deve lançar exceção: Idade deve estar entre 0-120");
         try {
-            Diretor professorErroIdade = new Diretor("Jane Doe", 150, 3000.50, 3);
+            Diretor professorErroIdade = new Diretor("Jane Doe", 150, 3000.50, 3, "janedoe", "senha1234");
             System.out.println(professorErroIdade);
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -109,8 +108,25 @@ public class TesteDiretor {
         DadosDiretores.getDiretorPorId(0);
         System.out.println(diretor.getId());
 
-        System.out.println("\nimprimirNiveisCargo deve mostrar no console todas as opções de níveis de cargo");
-        Funcionario.imprimirNiveisCargo();
+        System.out.println("\ngetUsuario deve retornar uma String com os dados do diretor\"");
+        System.out.println(diretor.getUsuario());
+
+        System.out.println("\nsetUsuario deve incluir um novo nome de usuário ao diretor");
+        diretor.setUsuario("novoUsuario");
+        System.out.println(diretor.getUsuario());
+
+        System.out.println("\ngetSenha deve retornar uma String com a senha do diretor");
+        System.out.println(diretor.getSenha());
+
+        System.out.println("\nsetSenha deve incluir uma nova senha ao diretor");
+        diretor.setSenha("nova-senha-1234");
+        System.out.println(diretor.getSenha());
+
+        System.out.println("\npromover deve incluir um novo nível de cargo ao diretor");
+        diretor.promover(diretor, "AVANCADO");
+
+        System.out.println("\ntoString deve trazer nome e nível do diretor");
+        System.out.println(diretor.toString());
 
         System.out.println("**** TESTE DIRETOR CONCLUÍDO COM SUCESSO! ****");
     }

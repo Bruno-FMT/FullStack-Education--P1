@@ -11,15 +11,21 @@ import java.util.ArrayList;
 public class TesteDadosTurmas {
     public static void main(String[] args) {
         System.out.println("TESTE DADOS TURMAS");
-        Turma turma = new Turma(curso(), 2024);
-        Turma turmaComAlunos = new Turma(curso2(), 2024, alunos());
-        DadosTurmas.adicionarTurma(turma);
+        professores.add(professor1);
+        professores.add(professor2);
+        alunos.add(aluno1);
+        alunos.add(aluno2);
+        alunos.add(aluno3);
+        arrayTurmas.add(turma1);
+        arrayTurmas.add(turma2);
+        arrayTurmas.add(turma3);
+        Turma turma = new Turma(curso, 2024, alunos);
 
         System.out.println("getTurmasCadastradas deve retornar a lista de todos as turmas cadastradas");
         System.out.println(DadosTurmas.getTurmasCadastradas());
 
-        System.out.println("\nadicionarTurma deve adicionar uma nova turma a lista de turmas cadastrados");
-        DadosTurmas.adicionarTurma(turmaComAlunos);
+        System.out.println("\nadicionarTurma deve adicionar uma nova turma a lista de turmas cadastrados, isso ocorre quando a turma é cadastrada");
+        Turma turmaComAlunos = new Turma(curso2, 2024, alunos);
         System.out.println(DadosTurmas.getTurmasCadastradas());
 
         System.out.println("\nadicionarTurma já cadastrada deve lançar exceção: Turma já cadastrada");
@@ -45,12 +51,12 @@ public class TesteDadosTurmas {
         }
 
         System.out.println("\nadicionarTurmas deve adicionar um array de novas turmas a lista de turmas cadastradas");
-        DadosTurmas.adicionarTurmas(arrayTurmas());
+        DadosTurmas.adicionarTurmas(arrayTurmas);
         System.out.println(DadosTurmas.getTurmasCadastradas());
 
         System.out.println("\nadicionarTurmas já cadastrada deve lançar exceção: Turma já cadastrada");
         try {
-            DadosTurmas.adicionarTurmas(arrayTurmas());
+            DadosTurmas.adicionarTurmas(arrayTurmas);
             System.out.println(DadosTurmas.getTurmasCadastradas());
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -60,39 +66,24 @@ public class TesteDadosTurmas {
         System.out.println("**** TESTE DADOS TURMAS CONCLUÍDO COM SUCESSO! ****");
     }
 
-    public static Curso curso(){
-        return new Curso("FullStack", professores());
-    }
-    public static Curso curso2(){
-        return new Curso("Front-end", professores());
-    }
+    public static Professor professor1 = new Professor("João Silva", 40, 3000.50, 3, "joaosilva", "senha1234");
+    public static Professor professor2 = new Professor("Maria Oliveira", 50, 3000.00, 3, "mariaoliveira", "senha1234");
+    public static ArrayList<Professor> professores = new ArrayList<>();
 
-    public static ArrayList<Professor> professores() {
-        ArrayList<Professor> professores = new ArrayList<>();
-        professores.add(new Professor("João Silva", 40, 3000.50, 3));
-        professores.add(new Professor("Maria Oliveira", 50, 3000.00, 3));
+    public static Curso curso = new Curso("FullStack", professores);
+    public static Curso curso2 = new Curso("Front-end", professores);
 
-        return professores;
-    }
+    public static ArrayList<Aluno> alunos = new ArrayList<>();
+    public static Aluno aluno1 = new Aluno("André Almeida", 16, "andrealmeida", "senha1234");
+    public static Aluno aluno2 = new Aluno("Sofia Rodrigues", 17, "sofia", "senha1234");
+    public static Aluno aluno3 = new Aluno("Carolina Gonçalves", 21, "carolinagoncalves", "senha1234");
 
-    public static ArrayList<Aluno> alunos() {
-        ArrayList<Aluno> alunos = new ArrayList<>();
-        alunos.add(new Aluno("André Almeida", 16));
-        alunos.add(new Aluno("Sofia Rodrigues", 17));
-        alunos.add(new Aluno("Carolina Gonçalves", 21));
+    public static Curso html = new Curso("HTML", professores);
+    public static Curso ts = new Curso("TS", professores);
+    public static Curso sql = new Curso("SQL", professores);
+    public static Turma turma1 = new Turma(html, 2024);
+    public static Turma turma2 = new Turma(ts, 2024);
+    public static Turma turma3 = new Turma(sql, 2024);
 
-        return alunos;
-    }
-
-    public static ArrayList<Turma> arrayTurmas() {
-        ArrayList<Turma> turmas = new ArrayList<>();
-        Curso html = new Curso("HTML", professores());
-        Curso ts = new Curso("TS", professores());
-        Curso sql = new Curso("SQL", professores());
-        turmas.add(new Turma(html, 2024));
-        turmas.add(new Turma(ts, 2024));
-        turmas.add(new Turma(sql, 2024));
-
-        return turmas;
-    }
+    public static ArrayList<Turma> arrayTurmas = new ArrayList<>();
 }

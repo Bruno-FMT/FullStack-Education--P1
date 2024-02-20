@@ -19,15 +19,6 @@ public class DadosAlunos {
         alunosCadastrados.add(aluno);
     }
 
-    public static void adicionarAlunos(List<Aluno> alunos) {
-        for (Aluno novoAluno : alunos) {
-            if (alunoEhCadastrado(novoAluno)) {
-                throw new IllegalArgumentException("Aluno já cadastrado.");
-            }
-        }
-        alunosCadastrados.addAll(alunos);
-    }
-
     public static void removerAlunoPorId(int id) {
         if (id < 0 || id > alunosCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.");
@@ -44,7 +35,7 @@ public class DadosAlunos {
 
     private static boolean alunoEhCadastrado(Aluno aluno) {
         for (Aluno alunoCadastrado : alunosCadastrados) {
-            if(alunoCadastrado.getNome().equals(aluno.getNome())) {
+            if(alunoCadastrado.getUsuario().equals(aluno.getUsuario())) {
                 return true;
             }
         }

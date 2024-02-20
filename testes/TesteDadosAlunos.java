@@ -8,33 +8,18 @@ import java.util.ArrayList;
 public class TesteDadosAlunos {
     public static void main(String[] args) {
         System.out.println("TESTE DADOS ALUNOS");
-        Aluno aluno = new Aluno("Jane Doe", 40);
-        Aluno aluno2 = new Aluno("Jhon Doe", 50);
-        DadosAlunos.adicionarAluno(aluno);
+        Aluno aluno = new Aluno("Jane Doe", 40, "janedoe", "senha1234");
 
         System.out.println("getAlunosCadastrados deve retornar a lista de todos os alunos cadastrados");
         System.out.println(DadosAlunos.getAlunosCadastrados());
 
-        System.out.println("\nadicionarAluno deve adicionar um novo aluno a lista de alunos cadastrados");
-        DadosAlunos.adicionarAluno(aluno2);
+        System.out.println("\nadicionarAluno deve adicionar um novo aluno a lista de alunos cadastrados, isso ocorre quando criamos um novo usuário");
+        Aluno aluno2 = new Aluno("Jhon Doe", 50, "jhonDoe", "senha1234");
         System.out.println(DadosAlunos.getAlunosCadastrados());
 
         System.out.println("\nadicionarAluno já cadastrado deve lançar exceção: Aluno já cadastrado");
         try {
             DadosAlunos.adicionarAluno(aluno2);
-            System.out.println(DadosAlunos.getAlunosCadastrados());
-        } catch (Exception e) {
-            System.out.println("Exceção capturada: " + e.getMessage());
-            System.out.println(DadosAlunos.getAlunosCadastrados());
-        }
-
-        System.out.println("\nadicionarAlunos deve adicionar um array de novos alunos a lista de alunos cadastrados");
-        DadosAlunos.adicionarAlunos(arrayAlunos());
-        System.out.println(DadosAlunos.getAlunosCadastrados());
-
-        System.out.println("\nadicionarAlunos já cadastrados deve lançar exceção: Aluno já cadastrado");
-        try {
-            DadosAlunos.adicionarAlunos(arrayAlunos());
             System.out.println(DadosAlunos.getAlunosCadastrados());
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -67,12 +52,5 @@ public class TesteDadosAlunos {
         }
 
         System.out.println("**** TESTE DADOS ALUNOS CONCLUÍDO COM SUCESSO! ****");
-    }
-
-    public static ArrayList<Aluno> arrayAlunos() {
-        ArrayList<Aluno> alunos = new ArrayList<>();
-        alunos.add(new Aluno("João Victor", 16));
-        alunos.add(new Aluno("Maria da Silva", 18));
-        return alunos;
     }
 }
