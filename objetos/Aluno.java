@@ -101,7 +101,7 @@ public class Aluno {
         try {
             this.statusMatricula = StatusMatricula.valueOf(statusMatricula);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Status de matrícula inválido");
+            throw new IllegalArgumentException("Status de matrícula inválido", e);
         }
     }
 
@@ -110,8 +110,17 @@ public class Aluno {
         if (alunos.contains(this)) {
             return alunos.indexOf(this);
         }
-        System.out.println("Aluno não encontrado.");
-        return -1;
+        throw new IllegalArgumentException("Aluno não encontrado.");
+    }
+
+    public static int getId(String usuario) {
+        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        for (Aluno aluno : alunos) {
+            if (aluno.getUsuario().equals(usuario)) {
+                return alunos.indexOf(aluno);
+            }
+        }
+        throw new IllegalArgumentException("Aluno não encontrado.");
     }
 
     public static void imprimirOpcoesStatusMatricula() {

@@ -38,7 +38,8 @@ public class Curso {
         }
         this.professores = professores;
     }
-    public void setProfessor(Professor professor) {
+
+    public void adicionaProfessor(Professor professor) {
         if(professorEhCadastrado(professor)) {
             throw new IllegalArgumentException("Professor já cadastrado.");
         }

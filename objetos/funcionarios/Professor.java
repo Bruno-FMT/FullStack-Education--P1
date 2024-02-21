@@ -21,6 +21,16 @@ public class Professor extends Funcionario {
         return -1;
     }
 
+    public static int getId(String usuario) {
+        List<Professor> professores = DadosProfessores.getProfessoresCadastrados();
+        for (Professor professor : professores) {
+            if (professor.getUsuario().equals(usuario)) {
+                return professores.indexOf(professor);
+            }
+        }
+        throw new IllegalArgumentException("Professor não encontrado.");
+    }
+
     @Override
     public String toString() {
         return "{" +

@@ -1,6 +1,7 @@
 package objetos.funcionarios;
 
 import java.util.List;
+
 import dados.DadosDiretores;
 
 public class Diretor extends Funcionario {
@@ -17,6 +18,16 @@ public class Diretor extends Funcionario {
         }
         System.out.println("Diretor não encontrado.");
         return -1;
+    }
+
+    public static int getId(String usuario) {
+        List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
+        for (Diretor diretor : diretores) {
+            if (diretor.getUsuario().equals(usuario)) {
+                return diretores.indexOf(diretor);
+            }
+        }
+        throw new IllegalArgumentException("Diretor não encontrado.");
     }
 
     @Override
