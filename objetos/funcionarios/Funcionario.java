@@ -6,6 +6,7 @@ public class Funcionario implements IFuncionario {
     private double salario;
     private NiveisCargoFuncionario nivelCargo;
     private int anosCargo; //Tempo de trabalho na empresa
+    private double valorAdicionalSalario; //Valor adicional pela promoção de cargo - nivel ou diretor
 
     public Funcionario(){
         this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
@@ -51,8 +52,8 @@ public class Funcionario implements IFuncionario {
         this.salario = salario;
     }
 
-    public void promover(Funcionario funcionario,String nivelCargo) {
-        funcionario.setNivelCargo(nivelCargo);
+    public double getValorAdicionalSalario() {
+        return valorAdicionalSalario;
     }
 
     public NiveisCargoFuncionario getNivelCargo() {
@@ -67,6 +68,28 @@ public class Funcionario implements IFuncionario {
             System.out.println("Nível de cargo invalido.");
             return false;
         }
+    }
+
+    //Promover - apenas salário
+    public void promover(double valorAdicionalSalario) {
+        this.valorAdicionalSalario = valorAdicionalSalario;
+        this.setSalario(this.salario + valorAdicionalSalario);
+    }
+
+    //Promover - Cargo com aumento salarial
+    public void promover(String nivelCargo, double valorAdicionalSalario) {
+        this.setNivelCargo(nivelCargo);
+        this.valorAdicionalSalario = valorAdicionalSalario;
+
+        if (nivelCargo == "AVANCADO" || nivelCargo == "EXPERIENTE") {
+            this.salario += valorAdicionalSalario;
+        } else {
+            System.out.println("Não há promoção para o cargo de nível INICIANTE.");
+        }
+    }
+
+    public void promover(Funcionario funcionario,String nivelCargo) {
+        funcionario.setNivelCargo(nivelCargo);
     }
 
     public static void imprimirNiveisCargo() {

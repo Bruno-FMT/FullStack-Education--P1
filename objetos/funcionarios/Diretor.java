@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Diretor extends Funcionario {
 
-    private double valorAdicionalCargo; //Valor adicional pela função de diretor (somar ao salário)
+    private double valorAdicionalHE; //Valor adicional por hora extra realizada
 
     public Diretor() {
     }
@@ -14,15 +14,15 @@ public class Diretor extends Funcionario {
         super(nome, idade, salario, anosCargo);
     }
 
-    public void setValorAdicionalCargo(double valorAdicionalCargo) {
-        this.valorAdicionalCargo = valorAdicionalCargo;
+    public void setValorAdicionalHE(double valorAdicionalHE) {
+        this.valorAdicionalHE = valorAdicionalHE;
     }
-    public double getValorAdicionalCargo() {
-        return valorAdicionalCargo;
+    public double getValorAdicionalHE() {
+        return valorAdicionalHE;
     }
     @Override
     public double getSalario() {
-        return this.valorAdicionalCargo + super.getSalario();
+        return this.valorAdicionalHE + super.getSalario();
     }
 
     public int getId() {
