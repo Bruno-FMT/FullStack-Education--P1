@@ -81,7 +81,7 @@ public class Funcionario implements IFuncionario {
         this.setNivelCargo(nivelCargo);
         this.valorAdicionalSalario = valorAdicionalSalario;
 
-        if (nivelCargo == "AVANCADO" || nivelCargo == "EXPERIENTE") {
+        if (nivelCargo.equals("AVANCADO") || nivelCargo.equals("EXPERIENTE")) {
             this.salario += valorAdicionalSalario;
         } else {
             System.out.println("Não há promoção para o cargo de nível INICIANTE.");
