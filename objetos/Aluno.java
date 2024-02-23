@@ -24,18 +24,6 @@ public class Aluno {
     public Aluno() {
     }
 
-    public void listarCurso() {
-
-    }
-
-    public void adicionarCurso() {
-
-    }
-
-    public void removerCurso() {
-
-    }
-
     public String getNome() {
         return nome;
     }
