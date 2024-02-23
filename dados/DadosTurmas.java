@@ -8,19 +8,25 @@ import java.util.List;
 public class DadosTurmas {
     private static List<Turma> turmasCadastradas = new ArrayList<>();
 
-    public void removerTurma(Turma turma) {
+    public static void removerTurma(Turma turma) {
         turmasCadastradas.remove(turma);
     }
 
-    public List<Turma> getTurmasCadastradas() {
+    public static List<Turma> getTurmasCadastradas() {
         return turmasCadastradas;
     }
 
-    public void adicionarTurma(Turma turma) {
+    public static void adicionarTurma(Turma turma) {
         turmasCadastradas.add(turma);
     }
 
-    public void adicionarTurmas(List<Turma> turmas) {
+    public static void adicionarTurmas(List<Turma> turmas) {
         turmasCadastradas.addAll(turmas);
+    }
+
+    public static void listarCursosCadastrados() {
+        for (int i = 0; i < turmasCadastradas.size() ; i++) {
+            System.out.println(i + "- " + turmasCadastradas.get(i).getCurso().getNome());
+        }
     }
 }

@@ -1,7 +1,11 @@
 package objetos;
 
 import dados.DadosAlunos;
+import dados.DadosCursos;
+import dados.DadosTurmas;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Aluno {
@@ -28,18 +32,6 @@ public class Aluno {
     }
 
     public Aluno() {
-    }
-
-    public void listarCurso() {
-
-    }
-
-    public void adicionarCurso() {
-
-    }
-
-    public void removerCurso() {
-
     }
 
     public String getNome() {
@@ -141,9 +133,61 @@ public class Aluno {
     @Override
     public String toString() {
         return String.format(
-                "| %40s | %6d |",
+                "| %40s | %6d | %12s |",
                 this.getNome(),
-                this.getIdade()
+                this.getIdade(),
+                this.getStatusMatricula()
         );
+    }
+
+    public void trancarAtivarCadastro () {
+        if (this.statusMatricula.equals(StatusMatricula.ATIVO)) {
+            setStatusMatricula("TRANCADO");
+            return;
+        }
+        if (this.statusMatricula.equals(StatusMatricula.TRANCADO)) {
+            setStatusMatricula("ATIVO");
+            return;
+        }
+        if (this.statusMatricula.equals(StatusMatricula.FORMADO)){
+            throw new IllegalArgumentException("Aluno formado não pode alterar seu status de matrícula.");
+        }
+    }
+
+    public ArrayList<Curso> getCursosCadastrados() {
+        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
+        ArrayList<Curso> cursos = new ArrayList<>();
+        for (Turma turma : turmas) {
+            if (turma.getAlunos().contains(this)) {
+                cursos.add(turma.getCurso());
+            }
+        }
+        return cursos;
+    }
+
+    public void listarCursosCadastrados() {
+        ArrayList<Curso> cursos = getCursosCadastrados();
+        System.out.println("Aluno(a) " + this.getNome() + " está cadastrado(a) no(s) curso(s): ");
+        for (Curso curso : cursos) {
+            System.out.println(curso.getNome());
+        }
+    }
+
+    public void sairCurso(Curso curso) {
+        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmas) {
+            if (turma.getCurso().equals(curso)) {
+                turma.removerAluno(this);
+            }
+        }
+    }
+
+    public void matricularCurso(Curso curso) {
+        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmas) {
+            if (turma.getCurso().equals(curso)) {
+                turma.adicionarAluno(this);
+            }
+        }
     }
 }
