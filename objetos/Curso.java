@@ -19,6 +19,10 @@ public class Curso {
         return this.nome;
     }
 
+    public ArrayList<Professor> getProfessores() {
+        return this.professores;
+    }
+
     @Override
     public String toString() {
         return "Curso{" +

@@ -154,6 +154,19 @@ public class Aluno {
         }
     }
 
+    public void formar() {
+        if (this.statusMatricula.equals(StatusMatricula.ATIVO)) {
+            setStatusMatricula("FORMADO");
+            return;
+        }
+        if (this.statusMatricula.equals(StatusMatricula.TRANCADO)) {
+            throw new IllegalArgumentException("Aluno com a matrícula trancada não pode se formar.");
+        }
+        if (this.statusMatricula.equals(StatusMatricula.FORMADO)){
+            throw new IllegalArgumentException("Aluno já está formado.");
+        }
+    }
+
     public ArrayList<Curso> getCursosCadastrados() {
         List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
         ArrayList<Curso> cursos = new ArrayList<>();
