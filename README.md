@@ -2,6 +2,7 @@
  <h1 align="center"> Mini Projeto 01 </h1>
 
 **FullStack [Education] - FMT**
+> 
 
 ## ✒️ Desenvolvedores
 - Bruno Corrêa;
@@ -112,15 +113,29 @@ Caso não selecione uma turma ele deve ser adicionar pelo diretor a uma turma po
 
 ## 📚 [M1S06] Ex 10 - Fluxo de Ações
 Após criação ou seleção o usuário deve ter as seguintes opções:
-- aluno pode: listar curso, adicionar curso, remover curso,
-  também pode trancar ou ativar sua conta
-- o professor pode: listar alunos, adicionar aluno, remover aluno da sua turma
-  - o professor também pode mudar aluno para formado
-- diretor pode: realizar a promoção de um professor, pode adicionar ou remover
-  um professor aos DadosProfessores e pode remover ou adicionar alunos aos DadosAlunos
-  - o diretor também pode listar todos os professores e todos os alunos, juntos dos ids deles
-  - o diretor deve poder criar uma turma e um curso, listar alunos da turma, 
-  adicionar alunos e remover alunos da turma
+- aluno pode: 
+  - [ ] listar curso, 
+  - [ ] adicionar curso, 
+  - [ ] remover curso, 
+  - [ ] também pode trancar ou ativar sua conta
+- o professor pode: 
+  - [ ] listar alunos, 
+  - [ ] adicionar aluno, 
+  - [ ] remover aluno da sua turma,
+  - [ ] o professor também pode mudar aluno para formado
+- diretor pode: 
+  - [ ] realizar a promoção de um professor, 
+  - [ ] adicionar um professor aos DadosProfessores,
+  - [ ] remover um professor aos DadosProfessores,
+  - [ ] remover alunos aos DadosAlunos,
+  - [ ] adicionar alunos aos DadosAlunos, 
+  - [ ] diretor também pode listar todos os professores juntos dos ids,
+  - [ ] listar todos os alunos juntos dos ids deles,
+  - [ ] diretor deve poder criar uma turma
+  - [ ] deve poder criar um curso, 
+  - [ ] listar alunos da turma,
+  - [ ] adicionar alunos na turma,
+  - [ ] remover alunos da turma
 
 - **Tela 3** - Após selecionar e executar uma ação o programa deve perguntar se o usuário
   deseja selecionar outra ação ou se deseja sair do sistema.
