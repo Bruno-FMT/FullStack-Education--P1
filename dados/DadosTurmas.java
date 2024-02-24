@@ -71,12 +71,13 @@ public class DadosTurmas {
     }
 
     public static void listarTurmasCadastradas() {
-        for (int i = 0; i < turmasCadastradas.size() ; i++) {
+        System.out.println("TURMAS CADASTRADAS");
+        for (Turma turma : turmasCadastradas) {
             System.out.println(
-                    i + " - " +
-                    "Curso: " + turmasCadastradas.get(i).getCurso().getNome() +
-                    ", início da turma: " + turmasCadastradas.get(i).getAnoInicio() +
-                    ", número de alunos: " + turmasCadastradas.get(i).getAlunos().size()
+                    "Id: " + turma.getID() + " - " +
+                    "Curso: " + turma.getCurso().getNome() +
+                    ", início da turma: " + turma.getAnoInicio() +
+                    ", número de alunos: " + turma.getAlunos().size()
             );
         }
     }
