@@ -61,6 +61,15 @@ public class DadosTurmas {
         return turmasCadastradas.contains(turma);
     }
 
+    public static void excluirAluno(Aluno aluno) {
+        for (Turma turma : turmasCadastradas) {
+            boolean ehAlunoTurma = turma.getAlunos().contains(aluno);
+            if (ehAlunoTurma) {
+                turma.getAlunos().remove(aluno);
+            }
+        }
+    }
+
     public static void listarTurmasCadastradas() {
         for (int i = 0; i < turmasCadastradas.size() ; i++) {
             System.out.println(

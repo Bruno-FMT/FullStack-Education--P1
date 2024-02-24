@@ -27,7 +27,16 @@ public class DadosAlunos {
         if (id < 0 || id > alunosCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.");
         }
+        DadosTurmas.excluirAluno(getAlunoPorId(id));
         alunosCadastrados.remove(id);
+    }
+
+    public static void removerAluno(Aluno aluno) {
+        if (!alunosCadastrados.contains(aluno)) {
+            throw new IllegalArgumentException("Aluno não encontrado.");
+        }
+        DadosTurmas.excluirAluno(aluno);
+        alunosCadastrados.remove(aluno);
     }
 
     public static Aluno getAlunoPorId(int id) {
