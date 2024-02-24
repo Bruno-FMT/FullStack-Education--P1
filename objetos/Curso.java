@@ -1,6 +1,7 @@
 package objetos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dados.DadosCursos;
 import objetos.funcionarios.Professor;
@@ -32,6 +33,16 @@ public class Curso {
 
     public void setProfessores(ArrayList<Professor> professores) {
         this.professores = professores;
+    }
+
+    public int getId() {
+        List<Curso> cursos = DadosCursos.getCursosCadastrados();
+        for (Curso curso : cursos) {
+            if(curso.equals(this)) {
+                return cursos.indexOf(curso);
+            }
+        }
+        throw new IllegalArgumentException("Curso não encontrado.");
     }
 
     public void adicionaProfessor(Professor professor) {
