@@ -55,7 +55,8 @@ public class DadosTurmas {
             System.out.println(
                     i + "- " +
                     "Curso: " + turmasCadastradas.get(i).getCurso().getNome() +
-                    ", início da turma: " + turmasCadastradas.get(i).getAnoInicio()
+                    ", início da turma: " + turmasCadastradas.get(i).getAnoInicio() +
+                    ", número de alunos: " + turmasCadastradas.get(i).getAlunos().size()
             );
         }
     }
