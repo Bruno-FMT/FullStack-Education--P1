@@ -139,22 +139,11 @@ public class Aluno {
         }
     }
 
-    public ArrayList<Curso> getCursosCadastrados() {
-        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
-        ArrayList<Curso> cursos = new ArrayList<>();
-        for (Turma turma : turmas) {
-            if (turma.getAlunos().contains(this)) {
-                cursos.add(turma.getCurso());
-            }
-        }
-        return cursos;
-    }
-
-    public void listarCursosCadastrados() {
-        ArrayList<Curso> cursos = getCursosCadastrados();
+    public void listarTurmasCadastradas() {
+        List<Turma> turmas = DadosTurmas.getTurmasPorAluno(this);
         System.out.println("Aluno(a) " + this.getNome() + " está cadastrado(a) no(s) curso(s): ");
-        for (Curso curso : cursos) {
-            System.out.println(curso.getNome());
+        for (Turma turma : turmas) {
+            System.out.println("Curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());
         }
     }
 }
