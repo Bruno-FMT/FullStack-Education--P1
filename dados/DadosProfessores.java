@@ -1,5 +1,6 @@
 package dados;
 
+import objetos.funcionarios.Diretor;
 import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
@@ -13,29 +14,41 @@ public class DadosProfessores {
     }
 
     public static void adicionarProfessor(Professor professor) {
+        if (professorEhCadastrado(professor)) {
+            throw new IllegalArgumentException("Professor já cadastrado.");
+        }
         professoresCadastrados.add(professor);
-        System.out.println("Professor adicionado com sucesso.");
-    }
-
-    public static void adicionarProfessores(List<Professor> professores){
-        professoresCadastrados.addAll(professores);
     }
 
     public static void removerProfessorPorId(int id) {
-        if (id >= 0 && id < professoresCadastrados.size()) {
-            professoresCadastrados.remove(id);
-            System.out.println("Professor removido com sucesso.");
-        } else {
-            System.out.println("Nenhum Professor encontrado com o id informado.");
+        if(id < 0 || id > professoresCadastrados.size()) {
+            throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
         }
+        professoresCadastrados.remove(id);
     }
 
     public static Professor getProfessorPorId(int id) {
-        if (id >= 0 && id < professoresCadastrados.size()) {
-            return professoresCadastrados.get(id);
-        } else {
-            System.out.println("Nenhum Professor encontrado com o id informado.");
-            return null;
+        if(id < 0 || id > professoresCadastrados.size()) {
+            throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
         }
+        return professoresCadastrados.get(id);
+    }
+
+    private static boolean professorEhCadastrado(Professor professor) {
+        for (Professor professorCadastrado : professoresCadastrados) {
+            if (professorCadastrado.getUsuario().equals(professor.getUsuario())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Professor getProfessorPorUsuario(String usuario) {
+        for (Professor professor : professoresCadastrados) {
+            if (professor.getUsuario().equals(usuario)) {
+                return professor;
+            }
+        }
+        return null;
     }
 }
