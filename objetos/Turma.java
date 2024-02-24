@@ -20,6 +20,7 @@ public class Turma {
     public Turma(Curso curso, int anoInicio) {
         this.curso = curso;
         this.anoInicio = anoInicio;
+        DadosTurmas.adicionarTurma(this);
     }
 
     public void listarAlunos() {
@@ -84,11 +85,6 @@ public class Turma {
     }
 
     private boolean alunoEhCadastrado(Aluno aluno) {
-        for (Aluno alunoCadastrado : alunos) {
-            if(alunoCadastrado.getNome().equals(aluno.getNome())) {
-                return true;
-            }
-        }
         return alunos.contains(aluno);
     }
 

@@ -15,7 +15,6 @@ import java.util.Scanner;
 public class Display {
 
     public static void criarAluno(Scanner scan, Aluno aluno) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-
         boolean continuar = true;
         if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setNome", String.class), new String[]{"nome completo"})) {
             continuar = false;
@@ -39,7 +38,6 @@ public class Display {
     }
 
     public static void criarProfessor(Scanner scan, Professor professor) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-
         boolean continuar = true;
         Class<Funcionario> classe = Funcionario.class;
         if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setNome", String.class), new String[]{"nome completo"})) {
@@ -64,7 +62,6 @@ public class Display {
     }
 
     public static void criarDiretor(Scanner scan, Diretor diretor) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-
         boolean continuar = true;
         Class<Funcionario> classe = Funcionario.class;
         if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setNome", String.class), new String[]{"nome completo"})) {
@@ -89,24 +86,19 @@ public class Display {
     }
 
     public static Method transformarMetodo(Class<?> classe, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException {
-//        Pega a classe, e pesquisa o método pelo nome
         return classe.getDeclaredMethod(nomeMetodo, parametros);
     }
 
     public static Method transformarMetodo(Object objeto, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException {
-//        Pega a classe do objeto, e pesquisa o método pelo nome
             return objeto.getClass().getDeclaredMethod(nomeMetodo, parametros);
     }
 
     public static boolean definirAtributoConta(Scanner scan, Object objeto, Method metodo, String[] parametrosNome) throws InvocationTargetException, IllegalAccessException {
-
         while (true) {
             Class<?>[] parametrosTipos = metodo.getParameterTypes();
             Object[] argumentos = new Object[parametrosTipos.length];
 
             for (int i = 0; i < parametrosTipos.length; i++) {
-//                Verifica cada parâmetro, e pede a entrada do tipo daquele parâmetro
-//                Armazena as entradas em argumentos[]
                 System.out.print("Digite seu/sua " + parametrosNome[i] + ": ");
                 if (parametrosTipos[i].equals(String.class)) {
                     argumentos[i] = PedirEntrada.pedirString(scan);
@@ -129,9 +121,8 @@ public class Display {
                 }
             }
             try {
-                metodo.invoke(objeto, argumentos); // Chama o método
+                metodo.invoke(objeto, argumentos);
             } catch (Exception e) {
-//                Tratamento de erro, caso a entrada não satisfaça as condições
                 System.out.println(e.getCause().getMessage()); // Exibe mensagem
                 System.out.println("Entrada(s) inválida(s).");
 
@@ -142,9 +133,8 @@ public class Display {
                 continue;
             }
 
-//            Se der certo, pergunta se quer continuar
             System.out.println("Quer continuar? [s/n]");
-            return PedirEntrada.pedirBoolean(scan); // retorna o boolean do scan
+            return PedirEntrada.pedirBoolean(scan);
         }
     }
 }

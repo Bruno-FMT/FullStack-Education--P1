@@ -2,6 +2,7 @@ package objetos;
 
 import dados.DadosAlunos;
 import enums.StatusMatricula;
+import dados.DadosTurmas;
 
 import java.util.List;
 
@@ -121,5 +122,27 @@ public class Aluno {
     @Override
     public String toString() {
         return "{nome: " + nome + ", idade: " + idade + ", status: " + statusMatricula + "}";
+    }
+
+    public void trancarAtivarCadastro () {
+        if (this.statusMatricula.equals(StatusMatricula.ATIVO)) {
+            setStatusMatricula("TRANCADO");
+            return;
+        }
+        if (this.statusMatricula.equals(StatusMatricula.TRANCADO)) {
+            setStatusMatricula("ATIVO");
+            return;
+        }
+        if (this.statusMatricula.equals(StatusMatricula.FORMADO)){
+            throw new IllegalArgumentException("Aluno formado não pode alterar seu status de matrícula.");
+        }
+    }
+
+    public void listarTurmasMatriculadas() {
+        List<Turma> turmas = DadosTurmas.getTurmasPorAluno(this);
+        System.out.println("Aluno(a) " + this.getNome() + " está matriculado(a) na(s) turma(s): ");
+        for (Turma turma : turmas) {
+            System.out.println("Curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());
+        }
     }
 }
