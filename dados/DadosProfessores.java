@@ -1,5 +1,6 @@
 package dados;
 
+import objetos.Aluno;
 import objetos.funcionarios.Diretor;
 import objetos.funcionarios.Professor;
 
@@ -21,14 +22,14 @@ public class DadosProfessores {
     }
 
     public static void removerProfessorPorId(int id) {
-        if(id < 0 || id > professoresCadastrados.size()) {
+        if (id < 0 || id > professoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
         }
         professoresCadastrados.remove(id);
     }
 
     public static Professor getProfessorPorId(int id) {
-        if(id < 0 || id > professoresCadastrados.size()) {
+        if (id < 0 || id > professoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
         }
         return professoresCadastrados.get(id);
@@ -49,6 +50,6 @@ public class DadosProfessores {
                 return professor;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Nenhum professor encontrado com o usuário informado.");
     }
 }

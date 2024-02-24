@@ -14,9 +14,10 @@ public class Main {
     public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         Scanner entrada = new Scanner(System.in);
 
-        new Aluno("André Santana Nunes", 32, "andre", "senha123");
+        new Diretor("César Abascal", 29, 3900, 8, "cesar", "diretor123");
+        new Professor("André Santana Nunes", 32, 2600, 6, "andre", "senha123");
         new Aluno("Oswald Hitler", 81, "oswald", "senha123");
-        new Aluno("Gabriel Agustin", 28, "gabriel", "senha123");
+        new Professor("Gabriel Agustin", 28, 2600, 4, "gabriel", "senha123");
 
         imprimirBoasVindas();
 
@@ -25,44 +26,49 @@ public class Main {
             int itemSelecionadoMenu = PedirEntrada.pedirInt(entrada);
             switch (itemSelecionadoMenu) {
                 case 1: // Sou Funcionário
+                    int opcao = Display.menuOpcoes(entrada, "Qual seu cargo?", new String[]{"Diretor", "Professor"});
                     String nomeFuncionario = login(entrada);
-                    if (nomeFuncionario.equals("s")) {
-                        continue;
-                    }
-
-                    Diretor diretor = DadosDiretores.getDiretorPorUsuario(nomeFuncionario);
-                    Professor professor = DadosProfessores.getProfessorPorUsuario(nomeFuncionario);
-
-                    if (diretor == null) {
-                        if (professor == null) {
-                            System.out.println("Conta não cadastrada!");
-                            continue;
-                        }
-//                        pagina(professor);
-                    } else if (professor != null) {
-                        System.out.println("Qual seu cargo?");
-                        System.out.println("[1] Sou Diretor");
-                        System.out.println("[2] Sou Professor");
-                        System.out.println("[0] SAIR");
-                        switch(PedirEntrada.pedirByte(entrada)) {
-                            case 1:
-//                                pagina(diretor);
-                                break;
-                            case 2:
-//                                pagina(professor);
-                                break;
-                            default:
+                    switch (opcao) {
+                        case 1:
+                            Diretor diretor;
+                            try {
+                                Diretor diretorEncontrado = DadosDiretores.getDiretorPorUsuario(nomeFuncionario);
+                                System.out.print("Digite a senha: ");
+                                String senha = PedirEntrada.pedirString(entrada);
+                                if (diretorEncontrado.getSenha().equals(senha)) {
+                                    diretor = diretorEncontrado;
+                                } else {
+                                    throw new IllegalArgumentException("Senha inválida!");
+                                }
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(e.getMessage());
                                 continue;
-                        }
-                    } else {
-                        //pagina(diretor) TODO: Método para fluxo de ações
+                            }
+                            Display.pagina(diretor);
+                            break;
+                        case 2:
+                            Professor professor;
+                            try {
+                                Professor professorEncontrado = DadosProfessores.getProfessorPorUsuario(nomeFuncionario);
+                                System.out.print("Digite a senha: ");
+                                String senha = PedirEntrada.pedirString(entrada);
+                                if (professorEncontrado.getSenha().equals(senha)) {
+                                    professor = professorEncontrado;
+                                } else {
+                                    throw new IllegalArgumentException("Senha inválida!");
+                                }
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(e.getMessage());
+                                continue;
+                            }
+                            Display.pagina(professor);
+                            break;
                     }
-                    //TODO: adicionar login / menu de funcionários
                     break;
                 case 2: // Sou Aluno
                     Aluno aluno;
                     switch (loginCadastro(entrada)) {
-                        case 1:
+                        case 1: // Entrar
                             String nomeAluno = login(entrada);
                             try {
                                 Aluno alunoEncontrado = DadosAlunos.getAlunoPorUsuario(nomeAluno);
@@ -78,15 +84,14 @@ public class Main {
                                 continue;
                             }
                             break;
-                        case 2:
+                        case 2: // Cadastrar
                             aluno = new Aluno();
                             Display.criarAluno(entrada, aluno);
                             break;
                         default:
                             continue;
                     }
-                    pagina(aluno); // TODO: Método para fluxo de ações
-                    //TODO: adicionar login / menu de alunos
+                    Display.pagina(aluno);
                     break;
                 case 0:
                     System.out.println("Finalizando programa...");
@@ -100,8 +105,8 @@ public class Main {
 
     public static void imprimirBoasVindas() {
         System.out.println(
-            "BEM-VINDO! \n" +
-            "Estamos animados para embarcar nessa jornada educacional juntos!"
+                "BEM-VINDO! \n" +
+                        "Estamos animados para embarcar nessa jornada educacional juntos!"
         );
     }
 
@@ -126,16 +131,5 @@ public class Main {
         System.out.println("████████████████████████████████████████████");
         System.out.print("Para fazer login, informe seu usuário: ");
         return entrada.nextLine();
-    }
-
-    public static void pagina(Object usuario) {
-        Class<?> classe = usuario.getClass();
-        if (classe == Diretor.class) {
-            Display.pagina((Diretor) usuario);
-        } else if (classe == Professor.class) {
-            Display.pagina((Professor) usuario);
-        } else if (classe == Aluno.class) {
-            Display.pagina((Aluno) usuario);
-        }
     }
 }

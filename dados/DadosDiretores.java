@@ -21,14 +21,14 @@ public class DadosDiretores {
     }
 
     public static void removerDiretorPorId(int id) {
-        if(id < 0 || id > diretoresCadastrados.size()) {
+        if (id < 0 || id > diretoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
         }
         diretoresCadastrados.remove(id);
     }
 
     public static Diretor getDiretorPorId(int id) {
-        if(id < 0 || id > diretoresCadastrados.size()) {
+        if (id < 0 || id > diretoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
         }
         return diretoresCadastrados.get(id);
@@ -49,6 +49,6 @@ public class DadosDiretores {
                 return diretor;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Nenhum diretor encontrado com o usuário informado.");
     }
 }
