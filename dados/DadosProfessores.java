@@ -35,15 +35,6 @@ public class DadosProfessores {
         return professoresCadastrados.get(id);
     }
 
-    private static boolean professorEhCadastrado(Professor professor) {
-        for (Professor professorCadastrado : professoresCadastrados) {
-            if (professorCadastrado.getUsuario().equals(professor.getUsuario())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static Professor getProfessorPorUsuario(String usuario) {
         for (Professor professor : professoresCadastrados) {
             if (professor.getUsuario().equals(usuario)) {
@@ -51,5 +42,14 @@ public class DadosProfessores {
             }
         }
         throw new IllegalArgumentException("Nenhum professor encontrado com o usuário informado.");
+    }
+
+    private static boolean professorEhCadastrado(Professor professor) {
+        for (Professor professorCadastrado : professoresCadastrados) {
+            if (professorCadastrado.getUsuario().equals(professor.getUsuario())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

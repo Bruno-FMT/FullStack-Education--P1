@@ -34,15 +34,6 @@ public class DadosDiretores {
         return diretoresCadastrados.get(id);
     }
 
-    private static boolean diretorEhCadastrado(Diretor diretor) {
-        for (Diretor diretorCadastrado : diretoresCadastrados) {
-            if (diretorCadastrado.getUsuario().equals(diretor.getUsuario())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static Diretor getDiretorPorUsuario(String usuario) {
         for (Diretor diretor : diretoresCadastrados) {
             if (diretor.getUsuario().equals(usuario)) {
@@ -50,5 +41,14 @@ public class DadosDiretores {
             }
         }
         throw new IllegalArgumentException("Nenhum diretor encontrado com o usuário informado.");
+    }
+
+    private static boolean diretorEhCadastrado(Diretor diretor) {
+        for (Diretor diretorCadastrado : diretoresCadastrados) {
+            if (diretorCadastrado.getUsuario().equals(diretor.getUsuario())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

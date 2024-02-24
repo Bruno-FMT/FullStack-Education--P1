@@ -2,12 +2,15 @@ import dados.DadosAlunos;
 import dados.DadosDiretores;
 import dados.DadosProfessores;
 import objetos.Aluno;
+import objetos.Curso;
+import objetos.Turma;
 import objetos.funcionarios.Diretor;
 import objetos.funcionarios.Professor;
 import util.Display;
 import util.PedirEntrada;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -18,6 +21,9 @@ public class Main {
         new Professor("André Santana Nunes", 32, 2600, 6, "andre", "senha123");
         new Aluno("Oswald Hitler", 81, "oswald", "senha123");
         new Professor("Gabriel Agustin", 28, 2600, 4, "gabriel", "senha123");
+
+        Turma turma = new Turma(new Curso("JavaScript", (ArrayList<Professor>) DadosProfessores.getProfessoresCadastrados()), 2024);
+        System.out.println(turma.getNome());
 
         imprimirBoasVindas();
 
@@ -86,7 +92,11 @@ public class Main {
                             break;
                         case 2: // Cadastrar
                             aluno = new Aluno();
-                            Display.criarAluno(entrada, aluno);
+                            try {
+                                Display.criarAluno(entrada, aluno);
+                            } catch (RuntimeException e) {
+                                continue;
+                            }
                             break;
                         default:
                             continue;

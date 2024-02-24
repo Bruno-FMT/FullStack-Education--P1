@@ -24,7 +24,9 @@ public class Funcionario implements IFuncionario {
         setAnosCargo(anosCargo);
         this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
     }
-    public Funcionario() {}
+    public Funcionario() {
+        this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
+    }
 
     public int getIdade() {
         return idade;
@@ -111,10 +113,6 @@ public class Funcionario implements IFuncionario {
         this.salario = salario;
     }
 
-    public void promover(Funcionario funcionario,String nivelCargo) {
-        funcionario.setNivelCargo(nivelCargo);
-    }
-
     public NiveisCargoFuncionario getNivelCargo() {
         return nivelCargo;
     }
@@ -124,6 +122,28 @@ public class Funcionario implements IFuncionario {
             this.nivelCargo = NiveisCargoFuncionario.valueOf(nivelCargo);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Nível de cargo invalido.", e);
+        }
+    }
+
+    public void promover() {
+        if (this.nivelCargo.name().equals("INICIANTE")) {
+            setNivelCargo("EXPERIENTE");
+        } else if (this.nivelCargo.name().equals("EXPERIENTE")) {
+            setNivelCargo("AVANCADO");
+        } else {
+            throw new IllegalArgumentException("Funcionário já está no último nível de promoção: " + this.nivelCargo);
+        }
+    }
+
+    public void promover(double valorAdicionalSalario) {
+        if (this.nivelCargo.name().equals("INICIANTE")) {
+            setNivelCargo("EXPERIENTE");
+            this.setSalario(this.salario + valorAdicionalSalario);
+        } else if (this.nivelCargo.name().equals("EXPERIENTE")) {
+            setNivelCargo("AVANCADO");
+            this.setSalario(this.salario + valorAdicionalSalario);
+        } else {
+            throw new IllegalArgumentException("Funcionário já está no último nível de promoção: " + this.nivelCargo);
         }
     }
 

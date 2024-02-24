@@ -20,6 +20,7 @@ public class Turma {
     public Turma(Curso curso, int anoInicio) {
         this.curso = curso;
         this.anoInicio = anoInicio;
+        DadosTurmas.adicionarTurma(this);
     }
 
     public void listarAlunos() {
@@ -49,6 +50,10 @@ public class Turma {
             throw new IllegalArgumentException("Não há um aluno na posição informada.");
         }
         alunos.remove(posicao);
+    }
+
+    public String getNome() {
+        return DadosTurmas.getTurmasCadastradas().indexOf(this) + "_" + this.getCurso().getNome();
     }
 
     public Curso getCurso() {
@@ -84,11 +89,6 @@ public class Turma {
     }
 
     private boolean alunoEhCadastrado(Aluno aluno) {
-        for (Aluno alunoCadastrado : alunos) {
-            if(alunoCadastrado.getNome().equals(aluno.getNome())) {
-                return true;
-            }
-        }
         return alunos.contains(aluno);
     }
 

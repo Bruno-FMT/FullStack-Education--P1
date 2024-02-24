@@ -1,9 +1,9 @@
 package util;
 
-import dados.DadosAlunos;
-import dados.DadosDiretores;
-import dados.DadosProfessores;
+import dados.*;
 import objetos.Aluno;
+import objetos.Curso;
+import objetos.Turma;
 import objetos.funcionarios.Diretor;
 import objetos.funcionarios.Funcionario;
 import objetos.funcionarios.Professor;
@@ -18,22 +18,18 @@ import java.util.Scanner;
 public class Display {
 
     public static void criarAluno(Scanner scan, Aluno aluno) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-
-        boolean continuar = true;
         if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setNome", String.class), new String[]{"nome completo"})) {
-            continuar = false;
+            throw new RuntimeException("Criação de usuário cancelada");
         } else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setIdade", int.class), new String[]{"idade"})) {
-            continuar = false;
+            throw new RuntimeException("Criação de usuário cancelada");
         } else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setUsuario", String.class), new String[]{"usuário"})) {
-            continuar = false;
+            throw new RuntimeException("Criação de usuário cancelada");
         } else if (!definirAtributoConta(scan, aluno, transformarMetodo(aluno, "setSenha", String.class), new String[]{"senha"})) {
-            continuar = false;
+            throw new RuntimeException("Criação de usuário cancelada");
         }
-        if (continuar) {
-            aluno.setStatusMatricula("ATIVO");
-            DadosAlunos.adicionarAluno(aluno);
-        }
-        System.out.println("Continuar: " + continuar);
+        aluno.setStatusMatricula("ATIVO");
+        DadosAlunos.adicionarAluno(aluno);
+
         System.out.println("Nome: " + aluno.getNome());
         System.out.println("Idade: " + aluno.getIdade());
         System.out.println("Usuario: " + aluno.getUsuario());
@@ -42,7 +38,6 @@ public class Display {
     }
 
     public static void criarProfessor(Scanner scan, Professor professor) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-
         boolean continuar = true;
         Class<Funcionario> classe = Funcionario.class;
         if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setNome", String.class), new String[]{"nome completo"})) {
@@ -67,7 +62,6 @@ public class Display {
     }
 
     public static void criarDiretor(Scanner scan, Diretor diretor) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
-
         boolean continuar = true;
         Class<Funcionario> classe = Funcionario.class;
         if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setNome", String.class), new String[]{"nome completo"})) {
@@ -92,24 +86,19 @@ public class Display {
     }
 
     public static Method transformarMetodo(Class<?> classe, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException {
-//        Pega a classe, e pesquisa o método pelo nome
         return classe.getDeclaredMethod(nomeMetodo, parametros);
     }
 
     public static Method transformarMetodo(Object objeto, String nomeMetodo, Class<?>... parametros) throws NoSuchMethodException {
-//        Pega a classe do objeto, e pesquisa o método pelo nome
         return objeto.getClass().getDeclaredMethod(nomeMetodo, parametros);
     }
 
     public static boolean definirAtributoConta(Scanner scan, Object objeto, Method metodo, String[] parametrosNome) throws InvocationTargetException, IllegalAccessException {
-
         while (true) {
             Class<?>[] parametrosTipos = metodo.getParameterTypes();
             Object[] argumentos = new Object[parametrosTipos.length];
 
             for (int i = 0; i < parametrosTipos.length; i++) {
-//                Verifica cada parâmetro, e pede a entrada do tipo daquele parâmetro
-//                Armazena as entradas em argumentos[]
                 System.out.print("Digite seu/sua " + parametrosNome[i] + ": ");
                 if (parametrosTipos[i].equals(String.class)) {
                     argumentos[i] = PedirEntrada.pedirString(scan);
@@ -132,9 +121,8 @@ public class Display {
                 }
             }
             try {
-                metodo.invoke(objeto, argumentos); // Chama o método
+                metodo.invoke(objeto, argumentos);
             } catch (Exception e) {
-//                Tratamento de erro, caso a entrada não satisfaça as condições
                 System.out.println(e.getCause().getMessage()); // Exibe mensagem
                 System.out.println("Entrada(s) inválida(s).");
 
@@ -145,9 +133,8 @@ public class Display {
                 continue;
             }
 
-//            Se der certo, pergunta se quer continuar
             System.out.println("Quer continuar? [s]im / [n]ão");
-            return PedirEntrada.pedirBoolean(scan); // retorna o boolean do scan
+            return PedirEntrada.pedirBoolean(scan);
         }
     }
 
@@ -190,33 +177,42 @@ public class Display {
             switch (menuOpcoes(
                     scan,
                     "PÁGINA",
-                    new String[]{"Listar curso(s)", "Adicionar curso", "Remover curso", "Trancar/Ativar conta"}
+                    new String[]{"Listar turma(s)", "Adicionar curso", "Remover curso", "Trancar/Ativar conta"}
             )) {
                 case 1:
-                    // TODO: Esperar PR da Pâmela para listar cursos do aluno
+                    aluno.listarTurmasMatriculadas();
                     break;
                 case 2:
+                    List<Curso> cursos = DadosCursos.getCursosCadastrados();
+                    List<String> cursosNome = new ArrayList<>();
+                    for (Curso curso : cursos) {
+                        cursosNome.add(curso.getNome());
+                    }
+                    menuOpcoes(
+                            scan,
+                            "Escolha o Curso que deseja entrar",
+                            (String[]) cursosNome.toArray()
+                    );
                     break;
                 case 3:
                     break;
                 case 4:
                     System.out.println("O Status da sua matricula é " + aluno.getStatusMatricula());
                     String trancarOuAtivar;
-                    if (aluno.getStatusMatricula().toString().equals("TRANCADO")) {
-                        trancarOuAtivar = "ATIVAR";
-                    } else {
+                    if (aluno.getStatusMatricula().toString().equals("ATIVO")) {
                         trancarOuAtivar = "TRANCAR";
+                    } else {
+                        trancarOuAtivar = "ATIVAR";
                     }
                     System.out.println("Tem certeza que deseja " + trancarOuAtivar + " a sua matrícula? [s]im / [n]ão");
                     if (!PedirEntrada.pedirBoolean(scan)) {
                         break;
                     }
-                    if (trancarOuAtivar.equals("TRANCAR")) {
-                        aluno.setStatusMatricula("TRANCADO");
-                        System.out.println("Conta TRANCADA com sucesso!");
-                    } else {
-                        aluno.setStatusMatricula("ATIVO");
-                        System.out.println("Conta ATIVADA com sucesso!");
+                    try {
+                        aluno.trancarAtivarCadastro();
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Tente criar uma nova conta ou entre em contato com o suporte para ativar sua conta.");
                     }
                     break;
                 case 0:
