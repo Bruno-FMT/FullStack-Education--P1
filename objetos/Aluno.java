@@ -138,9 +138,9 @@ public class Aluno {
         }
     }
 
-    public void listarTurmasCadastradas() {
+    public void listarTurmasMatriculadas() {
         List<Turma> turmas = DadosTurmas.getTurmasPorAluno(this);
-        System.out.println("Aluno(a) " + this.getNome() + " está cadastrado(a) no(s) curso(s): ");
+        System.out.println("Aluno(a) " + this.getNome() + " está matriculado(a) na(s) turma(s): ");
         for (Turma turma : turmas) {
             System.out.println("Curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());
         }
