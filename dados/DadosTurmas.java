@@ -40,6 +40,12 @@ public class DadosTurmas {
         return turmasCadastradas.contains(turma);
     }
 
+    public static void listarCursosCadastrados() {
+        for (int i = 0; i < turmasCadastradas.size() ; i++) {
+            System.out.println(i + "- " + turmasCadastradas.get(i).getCurso().getNome());
+        }
+    }
+
     public static void listarTurmasCadastradas() {
         System.out.println("Turmas cadastradas");
         for (Turma turma : turmasCadastradas) {

@@ -93,11 +93,6 @@ public class Turma {
     }
 
     private boolean alunoEhCadastrado(Aluno aluno) {
-        for (Aluno alunoCadastrado : alunos) {
-            if(alunoCadastrado.getNome().equals(aluno.getNome())) {
-                return true;
-            }
-        }
         return alunos.contains(aluno);
     }
 

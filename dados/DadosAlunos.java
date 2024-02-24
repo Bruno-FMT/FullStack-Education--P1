@@ -68,6 +68,15 @@ public class DadosAlunos {
         return alunosCadastrados.get(id);
     }
 
+    public static Aluno getAlunoPorUsuario(String usuario) {
+        for (Aluno aluno : alunosCadastrados) {
+            if (aluno.getUsuario().equals(usuario)) {
+                return aluno;
+            }
+        }
+        throw new IllegalArgumentException("Nenhum aluno encontrado com o usuário informado.");
+    }
+
     private static boolean alunoEhCadastrado(Aluno aluno) {
         for (Aluno alunoCadastrado : alunosCadastrados) {
             if(alunoCadastrado.getUsuario().equals(aluno.getUsuario())) {
