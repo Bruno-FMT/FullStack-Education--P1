@@ -2,6 +2,7 @@
  <h1 align="center"> Mini Projeto 01 </h1>
 
 **FullStack [Education] - FMT**
+> 
 
 ## ✒️ Desenvolvedores
 - Bruno Corrêa;
@@ -36,9 +37,9 @@
 - [x] [Ex 1 - Gitflow](#-m1s06-ex-1---gitflow)
 - [x] [Ex 2 - Classes principais](#-m1s06-ex-2---classes-principais)
 - [x] [Ex 3 - Encapsulamento](#-m1s06-ex-3---encapsulamento)
-- [ ] [Ex 4 - Interface e herança](#-m1s06-ex-4---interface-e-herança)
+- [x] [Ex 4 - Interface e herança](#-m1s06-ex-4---interface-e-herança)
 - [x] [Ex 5 - Enums](#-m1s06-ex-5---enums)
-- [ ] [Ex 6 - Override](#-m1s06-ex-6---override)
+- [x] [Ex 6 - Override](#-m1s06-ex-6---override)
 - [ ] [Ex 7 - Tratamento de erros](#-m1s06-ex-7---tratamento-de-erros)
 - [x] [Ex 8 - Listas de Dados](#-m1s06-ex-8---listas-de-dados)
 - [ ] [Ex 9 - Fluxo de Login](#-m1s06-ex-9---fluxo-de-login)
@@ -54,8 +55,7 @@ Todo o sistema deve ser criado usando o gitflow: <br/>
 
 ## 📚 [M1S06] Ex 2 - Classes principais
 Criar as classes para entidades principais: <br/>
-- **Aluno** - atributos: Nome, Lista de cursos
-  - métodos: listar curso, adicionar curso, remover curso
+- **Aluno** - atributos: Nome, idade
 - **Professor** - atributos: Nome, idade, tempo de trabalho
 - **Curso** - atributos: Nome do Curso, Professor do Curso
 - **Turma** - atributos: Lista de alunos, Ano, Curso
@@ -77,7 +77,8 @@ encapsulamento e sobrecarga de métodos.
 - Crie um enum para representar Status de Matricula e adicione ele como
   atributo a Aluno
   - Valores: ATIVO, TRANCADO, FORMADO
-- Crie um enum para representar o Cargo do Funcionário.
+- Crie um enum para representar o Cargo do Funcionário. 
+Adicione um campo cargo em Funcionário que receba esse Enum como tipo.
   - Valores: Iniciante, Experiente, Avançado
 - Demonstrar o uso de values() e valueOf().
 
@@ -105,16 +106,36 @@ descrita anteriormente.
 - **Tela 2** - Ao selecionar uma opção, você deve se identificar ou criar um novo usuário.
 - O usuário criado deve receber os dados necessários para criar um objeto da
   classe escolhida (professor, diretor ou aluno).
-- Adicione esse usuário a lista correspondente.
+- Adicione esse usuário a lista correspondente. <br/><br/>
+
+O aluno deve poder selecionar uma turma ao iniciar o programa. <br/>
+Caso não selecione uma turma ele deve ser adicionar pelo diretor a uma turma posteriormente.
 
 ## 📚 [M1S06] Ex 10 - Fluxo de Ações
-Após criação ou seleção o usuário deve ter as seguinte opções:
-- aluno pode: listar curso, adicionar curso, remover curso,
-  também pode trancar ou ativar sua conta
-- o professor pode: listar alunos, adicionar aluno, remover aluno da sua turma
-- diretor pode: realizar a promoção de um professor, pode adicionar ou remover
-  um professor aos DadosProfessores e pode remover ou adicionar alunos aos DadosAlunos
-  - o diretor também pode listar todos os professores e todos os alunos, juntos dos ids deles
+Após criação ou seleção o usuário deve ter as seguintes opções:
+- aluno pode: 
+  - [ ] listar curso, 
+  - [ ] adicionar curso, 
+  - [ ] remover curso, 
+  - [ ] também pode trancar ou ativar sua conta
+- o professor pode: 
+  - [ ] listar alunos, 
+  - [ ] adicionar aluno, 
+  - [ ] remover aluno da sua turma,
+  - [ ] o professor também pode mudar aluno para formado
+- diretor pode: 
+  - [ ] realizar a promoção de um professor, 
+  - [ ] adicionar um professor aos DadosProfessores,
+  - [ ] remover um professor aos DadosProfessores,
+  - [ ] remover alunos aos DadosAlunos,
+  - [ ] adicionar alunos aos DadosAlunos, 
+  - [ ] diretor também pode listar todos os professores juntos dos ids,
+  - [ ] listar todos os alunos juntos dos ids deles,
+  - [ ] diretor deve poder criar uma turma
+  - [ ] deve poder criar um curso, 
+  - [ ] listar alunos da turma,
+  - [ ] adicionar alunos na turma,
+  - [ ] remover alunos da turma
 
 - **Tela 3** - Após selecionar e executar uma ação o programa deve perguntar se o usuário
   deseja selecionar outra ação ou se deseja sair do sistema.

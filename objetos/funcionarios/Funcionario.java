@@ -1,5 +1,8 @@
 package objetos.funcionarios;
 
+import enums.NiveisCargoFuncionario;
+import interfaces.IFuncionario;
+
 import dados.DadosDiretores;
 import dados.DadosProfessores;
 
@@ -10,30 +13,27 @@ public class Funcionario implements IFuncionario {
     private String senha;
     private double salario;
     private NiveisCargoFuncionario nivelCargo;
-    private int anosCargo; //Tempo de trabalho na empresa
+    private int anosCargo;
 
-    public Funcionario(String nome, int idade, double salario, int anosCargo) {
-        this.nome = nome;
-        this.idade = idade;
-        this.salario = salario;
-        this.anosCargo = anosCargo;
+    public Funcionario(String nome, int idade, double salario, int anosCargo, String usuario, String senha) {
+        setNome(nome);
+        setIdade(idade);
+        setUsuario(usuario);
+        setSenha(senha);
+        setSalario(salario);
+        setAnosCargo(anosCargo);
         this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
     }
     public Funcionario() {}
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public int getIdade() {
         return idade;
     }
 
     public void setIdade(int idade) {
+        if (idade < 0 || idade > 120) {
+            throw new IllegalArgumentException("Idade deve estar entre 0-120");
+        }
         this.idade = idade;
     }
 
@@ -83,7 +83,21 @@ public class Funcionario implements IFuncionario {
     }
 
     public void setAnosCargo(int anosCargo) {
+        if (anosCargo < 0) {
+            throw new IllegalArgumentException("Anos de cargo não pode ser negativo.");
+        }
         this.anosCargo = anosCargo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        if (nome.isBlank()) {
+            throw new IllegalArgumentException("Nome não pode estar em branco.");
+        }
+        this.nome = nome;
     }
 
     public double getSalario() {
@@ -91,6 +105,9 @@ public class Funcionario implements IFuncionario {
     }
 
     public void setSalario(double salario) {
+        if (salario <= 0) {
+            throw new IllegalArgumentException("Salário deve ser maior que zero.");
+        }
         this.salario = salario;
     }
 
@@ -102,13 +119,11 @@ public class Funcionario implements IFuncionario {
         return nivelCargo;
     }
 
-    public boolean setNivelCargo(String nivelCargo) {
+    public void setNivelCargo(String nivelCargo) {
         try {
             this.nivelCargo = NiveisCargoFuncionario.valueOf(nivelCargo);
-            return true;
         } catch (IllegalArgumentException e) {
-            System.out.println("Nível de cargo invalido.");
-            return false;
+            throw new IllegalArgumentException("Nível de cargo invalido.", e);
         }
     }
 
@@ -117,5 +132,15 @@ public class Funcionario implements IFuncionario {
         for (int i = 0; i < niveisCargo.length; i++) {
             System.out.println((i + 1) + "- " + niveisCargo[i]);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionário{" +
+                "nome: " + nome +
+                ", idade: " + idade +
+                ", nível: " + nivelCargo +
+                ", anos no cargo: " + anosCargo +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package objetos;
 
 import dados.DadosAlunos;
+import enums.StatusMatricula;
 
 import java.util.List;
 
@@ -9,7 +10,6 @@ public class Aluno {
     private int idade;
     private String usuario;
     private String senha;
-
     private StatusMatricula statusMatricula;
 
     public Aluno(String nome, int idade, String usuario, String senha) {
@@ -21,25 +21,7 @@ public class Aluno {
         DadosAlunos.adicionarAluno(this);
     }
 
-    public Aluno(String nome, int idade) {
-        setNome(nome);
-        setIdade(idade);
-        setStatusMatricula("ATIVO");
-    }
-
     public Aluno() {
-    }
-
-    public void listarCurso() {
-
-    }
-
-    public void adicionarCurso() {
-
-    }
-
-    public void removerCurso() {
-
     }
 
     public String getNome() {
@@ -107,8 +89,16 @@ public class Aluno {
         try {
             this.statusMatricula = StatusMatricula.valueOf(statusMatricula);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Status de matrícula inválido ("+ statusMatricula +")", e);
+            throw new IllegalArgumentException("Status de matrícula inválido", e);
         }
+    }
+
+    public int getId() {
+        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        if (alunos.contains(this)) {
+            return alunos.indexOf(this);
+        }
+        throw new IllegalArgumentException("Aluno não encontrado.");
     }
 
     public static int getId(String usuario) {
@@ -118,17 +108,7 @@ public class Aluno {
                 return alunos.indexOf(aluno);
             }
         }
-        System.out.println("Aluno não encontrado.");
-        return -1;
-    }
-
-    public int getId() {
-        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
-        if (alunos.contains(this)) {
-            return alunos.indexOf(this);
-        }
-        System.out.println("Aluno não encontrado.");
-        return -1;
+        throw new IllegalArgumentException("Aluno não encontrado.");
     }
 
     public static void imprimirOpcoesStatusMatricula() {
@@ -140,10 +120,6 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return String.format(
-                "| %40s | %6d |",
-                this.getNome(),
-                this.getIdade()
-        );
+        return "{nome: " + nome + ", idade: " + idade + ", status: " + statusMatricula + "}";
     }
 }
