@@ -31,11 +31,6 @@ public class Curso {
     }
 
     public void setProfessores(ArrayList<Professor> professores) {
-        for (Professor novoProfessor : professores) {
-            if (professorEhCadastrado(novoProfessor)) {
-                throw new IllegalArgumentException("Professor já cadastrado.");
-            }
-        }
         this.professores = professores;
     }
 
