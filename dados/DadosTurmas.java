@@ -50,9 +50,13 @@ public class DadosTurmas {
         return turmasCadastradas.contains(turma);
     }
 
-    public static void listarCursosCadastrados() {
+    public static void listarTurmasCadastradas() {
         for (int i = 0; i < turmasCadastradas.size() ; i++) {
-            System.out.println(i + "- " + turmasCadastradas.get(i).getCurso().getNome());
+            System.out.println(
+                    i + "- " +
+                    "Curso: " + turmasCadastradas.get(i).getCurso().getNome() +
+                    ", início da turma: " + turmasCadastradas.get(i).getAnoInicio()
+            );
         }
     }
 }
