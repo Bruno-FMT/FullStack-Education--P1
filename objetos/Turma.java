@@ -56,6 +56,14 @@ public class Turma {
 
     public void setAnoInicio(int anoInicio) {
         this.anoInicio = anoInicio;
+    };
+
+    public int getId() {
+        try {
+            return DadosTurmas.getTurmasCadastradas().indexOf(this);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Turma não encontrada.");
+        }
     }
 
     @Override

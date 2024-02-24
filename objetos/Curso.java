@@ -14,6 +14,19 @@ public class Curso {
         this.professores = professores;
         DadosCursos.adicionarCurso(this);
     }
+    public void adicionarProfessor(Professor professor) {
+        if (professores.contains(professor)) {
+            throw new IllegalArgumentException("Professor já está neste curso.");
+        }
+        this.professores.add(professor);
+    }
+
+    public void removerProfessor(Professor professor) {
+        if (!professores.contains(professor)) {
+            throw new IllegalArgumentException("Professor não está neste curso.");
+        }
+        this.professores.remove(professor);
+    }
 
     public String getNome() {
         return this.nome;
@@ -21,6 +34,14 @@ public class Curso {
 
     public ArrayList<Professor> getProfessores() {
         return this.professores;
+    }
+
+    public int getId() {
+        try {
+            return DadosCursos.getCursosCadastrados().indexOf(this);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Curso não encontrado.");
+        }
     }
 
     @Override

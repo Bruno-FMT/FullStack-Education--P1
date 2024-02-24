@@ -12,10 +12,14 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Professor extends Funcionario {
-    public Professor(String nome, int idade, double salario, int anosCargo) {
-        super(nome, idade, salario, anosCargo);
+    public Professor(String nome, int idade, String usuario, String senha, double salario, int anosCargo) {
+        super(nome, idade, usuario, senha, salario, anosCargo);
+        DadosProfessores.adicionarProfessor(this);
     }
-    public Professor() {super();}
+    public Professor() {
+        super();
+        DadosProfessores.adicionarProfessor(this);
+    }
 
     public int getId() {
         List<Professor> professores = DadosProfessores.getProfessoresCadastrados();

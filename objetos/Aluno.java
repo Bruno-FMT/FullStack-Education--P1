@@ -1,11 +1,9 @@
 package objetos;
 
 import dados.DadosAlunos;
-import dados.DadosCursos;
 import dados.DadosTurmas;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Aluno {
