@@ -12,6 +12,13 @@ public class DadosProfessores {
         return professoresCadastrados;
     }
 
+    public static Professor getProfessorPorId(int id) {
+        if(id < 0 || id > professoresCadastrados.size()) {
+            throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
+        }
+        return professoresCadastrados.get(id);
+    }
+
     public static void adicionarProfessor(Professor professor) {
         if (professorEhCadastrado(professor)) {
             throw new IllegalArgumentException("Professor já cadastrado.");
@@ -35,13 +42,6 @@ public class DadosProfessores {
         professoresCadastrados.remove(professor);
     }
 
-    public static Professor getProfessorPorId(int id) {
-        if(id < 0 || id > professoresCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
-        }
-        return professoresCadastrados.get(id);
-    }
-
     private static boolean professorEhCadastrado(Professor professor) {
         for (Professor professorCadastrado : professoresCadastrados) {
             if (professorCadastrado.getUsuario().equals(professor.getUsuario())) {
@@ -49,5 +49,12 @@ public class DadosProfessores {
             }
         }
         return false;
+    }
+
+    public static void imprimirListaTodosProfessores() {
+        System.out.println("PROFESSORES CADASTRADOS");
+        for (Professor professor : professoresCadastrados) {
+            System.out.println("ID: " + professor.getId() + ", Professor:" + professor.toString());
+        }
     }
 }
