@@ -39,6 +39,22 @@ public class DadosAlunos {
         alunosCadastrados.remove(aluno);
     }
 
+    private static boolean alunoEhCadastrado(Aluno aluno) {
+        for (Aluno alunoCadastrado : alunosCadastrados) {
+            if(alunoCadastrado.getUsuario().equals(aluno.getUsuario())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void imprimirListaTodosAlunos() {
+        System.out.println("ALUNOS CADASTRADOS");
+        for (Aluno aluno : alunosCadastrados) {
+            System.out.println("ID: " + aluno.getId() + ", Aluno:" + aluno.toString());
+        }
+    }
+
     public static Aluno getAlunoPorId(int id) {
         if (id < 0 || id > alunosCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.");
@@ -53,15 +69,6 @@ public class DadosAlunos {
             }
         }
         throw new IllegalArgumentException("Nenhum aluno encontrado com o usuário informado.");
-    }
-
-    private static boolean alunoEhCadastrado(Aluno aluno) {
-        for (Aluno alunoCadastrado : alunosCadastrados) {
-            if(alunoCadastrado.getUsuario().equals(aluno.getUsuario())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public static List<Aluno> getAlunosPorProfessor(Professor professor) {
