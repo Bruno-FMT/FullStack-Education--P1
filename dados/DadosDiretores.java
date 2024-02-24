@@ -26,6 +26,13 @@ public class DadosDiretores {
         diretoresCadastrados.remove(id);
     }
 
+    public static void removerDiretor(Diretor diretor) {
+        if(!diretoresCadastrados.contains(diretor)) {
+            throw new IllegalArgumentException("Diretor não encontrado");
+        }
+        diretoresCadastrados.remove(diretor);
+    }
+
     public static Diretor getDiretorPorId(int id) {
         if(id < 0 || id > diretoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
