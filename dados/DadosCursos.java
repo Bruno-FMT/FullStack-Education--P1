@@ -8,19 +8,25 @@ import java.util.List;
 public class DadosCursos {
     private static List<Curso> cursosCadastrados = new ArrayList<>();
 
-    public void removerCurso(Curso curso) {
+    public static void removerCurso(Curso curso) {
+        if (!cursoEhCadastrado(curso)) {
+            throw new IllegalArgumentException("Curso não encontrado.");
+        }
         cursosCadastrados.remove(curso);
     }
 
-    public List<Curso> getCursosCadastrados() {
+    public static List<Curso> getCursosCadastrados() {
         return cursosCadastrados;
     }
 
-    public void adicionarCurso(Curso curso) {
+    public static void adicionarCurso(Curso curso) {
+        if (cursoEhCadastrado(curso)) {
+            throw new IllegalArgumentException("Curso já cadastrado.");
+        }
         cursosCadastrados.add(curso);
     }
 
-    public void adicionarCursos(List<Curso> cursos){
-        cursosCadastrados.addAll(cursos);
+    private static boolean cursoEhCadastrado(Curso curso) {
+        return cursosCadastrados.contains(curso);
     }
 }

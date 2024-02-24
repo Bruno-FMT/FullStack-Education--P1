@@ -1,26 +1,27 @@
 package objetos;
 
 import dados.DadosAlunos;
+import enums.StatusMatricula;
 
 import java.util.List;
 
 public class Aluno {
     private String nome;
     private int idade;
-
+    private String usuario;
+    private String senha;
     private StatusMatricula statusMatricula;
 
-    public Aluno(String nome, int idade) {
-        this.nome = nome;
-        this.idade = idade;
-        this.statusMatricula = StatusMatricula.ATIVO;
+    public Aluno(String nome, int idade, String usuario, String senha) {
+        setNome(nome);
+        setIdade(idade);
+        setUsuario(usuario);
+        setSenha(senha);
+        setStatusMatricula("ATIVO");
+        DadosAlunos.adicionarAluno(this);
     }
 
-    public void listarCurso() {
-
-    }
-    public void adicionarCurso() {
-
+    public Aluno() {
     }
 
     public String getNome() {
@@ -28,6 +29,9 @@ public class Aluno {
     }
 
     public void setNome(String nome) {
+        if (nome.isBlank() || nome.length() < 5) {
+            throw new IllegalArgumentException("Nome deve ter conteúdo e pelo menos 5 caracteres");
+        }
         this.nome = nome;
     }
 
@@ -36,32 +40,75 @@ public class Aluno {
     }
 
     public void setIdade(int idade) {
-        if (idade < 0 || idade > 120)
+        if (idade < 0 || idade > 120) {
             throw new IllegalArgumentException("Idade deve estar entre 0-120");
+        }
         this.idade = idade;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        boolean jaExiste = false;
+        for (Aluno aluno : DadosAlunos.getAlunosCadastrados()) {
+            if (aluno.getUsuario().equals(usuario)) {
+                jaExiste = true;
+                break;
+            }
+        }
+        if (jaExiste) {
+            throw new IllegalArgumentException("Usuário já existente!");
+        }
+        if (usuario.length() > 20) {
+            throw new IllegalArgumentException("Usuário muito longo! (Máximo: 20)");
+        }
+        if (usuario.length() < 4) {
+            throw new IllegalArgumentException("Usuário muito curto! (Mínimo: 4)");
+        }
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        if (senha.length() < 8) {
+            throw new IllegalArgumentException("Senha muito curta! (Mínimo: 8)");
+        }
+        this.senha = senha;
     }
 
     public StatusMatricula getStatusMatricula() {
         return statusMatricula;
     }
 
-    public boolean setStatusMatricula(String statusMatricula) {
+    public void setStatusMatricula(String statusMatricula) {
         try {
             this.statusMatricula = StatusMatricula.valueOf(statusMatricula);
-            return true;
         } catch (IllegalArgumentException e) {
-            System.out.println("Status de matrícula invalido.");
-            return false;
+            throw new IllegalArgumentException("Status de matrícula inválido", e);
         }
     }
 
     public int getId() {
         List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
-        if(alunos.contains(this)) {
+        if (alunos.contains(this)) {
             return alunos.indexOf(this);
         }
-        System.out.println("Aluno não encontrado.");
-        return -1;
+        throw new IllegalArgumentException("Aluno não encontrado.");
+    }
+
+    public static int getId(String usuario) {
+        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        for (Aluno aluno : alunos) {
+            if (aluno.getUsuario().equals(usuario)) {
+                return alunos.indexOf(aluno);
+            }
+        }
+        throw new IllegalArgumentException("Aluno não encontrado.");
     }
 
     public static void imprimirOpcoesStatusMatricula() {
@@ -72,11 +119,7 @@ public class Aluno {
     }
 
     @Override
-    public String toString(){
-        return String.format(
-                "| %40s | %6d |",
-                this.getNome(),
-                this.getIdade()
-        );
+    public String toString() {
+        return "{nome: " + nome + ", idade: " + idade + ", status: " + statusMatricula + "}";
     }
 }

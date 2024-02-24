@@ -14,8 +14,11 @@ public class PedirEntrada {
 
     public static boolean pedirBoolean(Scanner scan) {
         String entrada = scan.nextLine();
-        return switch (entrada.toLowerCase()) {
-            case "false", "falso", "f", "não", "nao", "n", "" -> false;
+        if (entrada.isEmpty()) {
+            return true;
+        }
+        return switch (entrada.toLowerCase().charAt(0)) {
+            case 'f', 'n', '0' -> false;
             default -> true;
         };
     }

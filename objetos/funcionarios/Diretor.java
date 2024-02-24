@@ -1,16 +1,15 @@
 package objetos.funcionarios;
 
-import dados.DadosDiretores;
-
 import java.util.List;
 
-public class Diretor extends Funcionario {
+import dados.DadosDiretores;
 
-    public Diretor() {
+public class Diretor extends Funcionario {
+    public Diretor(String nome, int idade, double salario, int anosCargo, String usuario, String senha) {
+        super(nome, idade, salario, anosCargo, usuario, senha);
+        DadosDiretores.adicionarDiretor(this);
     }
-    public Diretor(String nome, int idade, double salario, int anosCargo) {
-        super(nome, idade, salario, anosCargo);
-    }
+    public Diretor() {super();}
 
     public int getId() {
         List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
@@ -19,5 +18,23 @@ public class Diretor extends Funcionario {
         }
         System.out.println("Diretor não encontrado.");
         return -1;
+    }
+
+    public static int getId(String usuario) {
+        List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
+        for (Diretor diretor : diretores) {
+            if (diretor.getUsuario().equals(usuario)) {
+                return diretores.indexOf(diretor);
+            }
+        }
+        throw new IllegalArgumentException("Diretor não encontrado.");
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nome: " + this.getNome() +
+                ", nível: " + super.getNivelCargo() +
+                '}';
     }
 }
