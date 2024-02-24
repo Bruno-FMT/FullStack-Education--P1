@@ -157,22 +157,4 @@ public class Aluno {
             System.out.println(curso.getNome());
         }
     }
-
-    public void sairCurso(Curso curso) {
-        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
-        for (Turma turma : turmas) {
-            if (turma.getCurso().equals(curso)) {
-                turma.removerAluno(this);
-            }
-        }
-    }
-
-    public void matricularCurso(Curso curso) {
-        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
-        for (Turma turma : turmas) {
-            if (turma.getCurso().equals(curso)) {
-                turma.adicionarAluno(this);
-            }
-        }
-    }
 }
