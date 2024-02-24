@@ -34,26 +34,11 @@ public class Curso {
         this.professores = professores;
     }
 
-    public int getId() {
-        try {
-            return DadosCursos.getCursosCadastrados().indexOf(this);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Curso não encontrado.");
-        }
-    }
-
     public void adicionaProfessor(Professor professor) {
         if(professorEhCadastrado(professor)) {
             throw new IllegalArgumentException("Professor já cadastrado.");
         }
         this.professores.add(professor);
-    }
-
-    public void removerProfessor(Professor professor) {
-        if (!professores.contains(professor)) {
-            throw new IllegalArgumentException("Professor não está neste curso.");
-        }
-        this.professores.remove(professor);
     }
 
     private boolean professorEhCadastrado(Professor professor) {

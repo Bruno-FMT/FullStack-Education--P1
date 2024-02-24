@@ -84,14 +84,6 @@ public class Turma {
         this.anoInicio = anoInicio;
     }
 
-    public int getId() {
-        try {
-            return DadosTurmas.getTurmasCadastradas().indexOf(this);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Turma não encontrada.");
-        }
-    }
-
     private boolean alunoEhCadastrado(Aluno aluno) {
         return alunos.contains(aluno);
     }
