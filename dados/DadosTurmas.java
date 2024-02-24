@@ -60,13 +60,4 @@ public class DadosTurmas {
             );
         }
     }
-
-    public static void excluirAluno(Aluno aluno) {
-        for (Turma turma : turmasCadastradas) {
-            boolean ehAlunoTurma = turma.getAlunos().contains(aluno);
-            if (ehAlunoTurma) {
-                turma.getAlunos().remove(aluno);
-            }
-        }
-    }
 }

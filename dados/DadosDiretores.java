@@ -1,6 +1,5 @@
 package dados;
 
-import enums.NiveisCargoFuncionario;
 import objetos.funcionarios.Diretor;
 
 import java.util.ArrayList;
@@ -25,15 +24,6 @@ public class DadosDiretores {
             throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
         }
         diretoresCadastrados.remove(id);
-    }
-
-    public static void removerDiretor(Diretor diretor) {
-        if (diretoresCadastrados.contains(diretor)) {
-            diretoresCadastrados.remove(diretor);
-            System.out.println("Diretor removido com sucesso.");
-        } else {
-            throw new IllegalArgumentException("Diretor não encontrado.");
-        }
     }
 
     public static Diretor getDiretorPorId(int id) {

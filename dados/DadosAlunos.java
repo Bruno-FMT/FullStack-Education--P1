@@ -26,28 +26,6 @@ public class DadosAlunos {
         alunosCadastrados.remove(id);
     }
 
-    public static void removerAluno(Aluno aluno) {
-        if (alunosCadastrados.contains(aluno)) {
-            DadosTurmas.excluirAluno(aluno);
-            alunosCadastrados.remove(aluno);
-            System.out.println("Aluno removido com sucesso.");
-            return;
-        }
-        throw new IllegalArgumentException("Aluno não encontrado.");
-    }
-
-    public static void listarTodosAlunosComId() {
-        System.out.println("Todos os alunos cadastrados");
-        for (Aluno aluno : alunosCadastrados) {
-            System.out.println(
-                    "Id: " + aluno.getId() +
-                    " - Nome: " + aluno.getNome() +
-                    ", Idade: " + aluno.getIdade() +
-                    ", Status: " + aluno.getStatusMatricula()
-            );
-        }
-    }
-
     public static Aluno getAlunoPorId(int id) {
         if (id < 0 || id > alunosCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.");
