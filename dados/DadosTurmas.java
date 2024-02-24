@@ -61,17 +61,6 @@ public class DadosTurmas {
         }
     }
 
-    public static void listarTurmasCadastradas() {
-        System.out.println("Turmas cadastradas");
-        for (Turma turma : turmasCadastradas) {
-            System.out.println(
-                    "Id: " + turma.getId() +
-                    "- Nome curso: " + turma.getCurso().getNome() +
-                    " Início: " + turma.getAnoInicio()
-            );
-        }
-    }
-
     public static void excluirAluno(Aluno aluno) {
         for (Turma turma : turmasCadastradas) {
             boolean ehAlunoTurma = turma.getAlunos().contains(aluno);

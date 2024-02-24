@@ -145,4 +145,13 @@ public class Aluno {
             System.out.println("Curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());
         }
     }
+
+    public void formar() {
+        if (statusMatricula.equals(StatusMatricula.TRANCADO) || this.statusMatricula.equals(StatusMatricula.FORMADO)) {
+            throw new IllegalArgumentException(
+                    "Este aluno não pode se formar pois seu status de matrícula é: " + statusMatricula
+            );
+        }
+        setStatusMatricula("FORMADO");
+    }
 }
