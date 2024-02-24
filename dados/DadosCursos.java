@@ -40,4 +40,13 @@ public class DadosCursos {
     private static boolean cursoEhCadastrado(Curso curso) {
         return cursosCadastrados.contains(curso);
     }
+
+    public static void excluirProfessor(Professor professor) {
+        for (Curso curso : cursosCadastrados) {
+            boolean ehProfessorCurso = curso.getProfessores().contains(professor);
+            if (ehProfessorCurso) {
+                curso.getProfessores().remove(professor);
+            }
+        }
+    }
 }

@@ -23,7 +23,16 @@ public class DadosProfessores {
         if(id < 0 || id > professoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
         }
+        DadosCursos.excluirProfessor(getProfessorPorId(id));
         professoresCadastrados.remove(id);
+    }
+
+    public static void removerProfessor(Professor professor) {
+        if(!professoresCadastrados.contains(professor)) {
+            throw new IllegalArgumentException("Professor não encontrado.");
+        }
+        DadosCursos.excluirProfessor(professor);
+        professoresCadastrados.remove(professor);
     }
 
     public static Professor getProfessorPorId(int id) {
