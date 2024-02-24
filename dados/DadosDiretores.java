@@ -13,25 +13,32 @@ public class DadosDiretores {
     }
 
     public static void adicionarDiretor(Diretor diretor) {
+        if (diretorEhCadastrado(diretor)) {
+            throw new IllegalArgumentException("Diretor já cadastrado.");
+        }
         diretoresCadastrados.add(diretor);
-        System.out.println("Aluno adicionado com sucesso.");
     }
 
     public static void removerDiretorPorId(int id) {
-        if (id >= 0 && id < diretoresCadastrados.size()) {
-            diretoresCadastrados.remove(id);
-            System.out.println("Diretor removido com sucesso.");
-        } else {
-            System.out.println("Nenhum diretor encontrado com o id informado.");
+        if(id < 0 || id > diretoresCadastrados.size()) {
+            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
         }
+        diretoresCadastrados.remove(id);
     }
 
     public static Diretor getDiretorPorId(int id) {
-        if (id >= 0 && id < diretoresCadastrados.size()) {
-            return diretoresCadastrados.get(id);
-        } else {
-            System.out.println("Nenhum Diretor encontrado com o id informado.");
-            return null;
+        if(id < 0 || id > diretoresCadastrados.size()) {
+            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
         }
+        return diretoresCadastrados.get(id);
+    }
+
+    private static boolean diretorEhCadastrado(Diretor diretor){
+        for (Diretor diretorCadastrado : diretoresCadastrados) {
+            if (diretorCadastrado.getUsuario().equals(diretor.getUsuario())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
