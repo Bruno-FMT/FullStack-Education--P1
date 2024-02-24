@@ -4,7 +4,6 @@ import dados.DadosAlunos;
 import enums.StatusMatricula;
 import dados.DadosTurmas;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno {
