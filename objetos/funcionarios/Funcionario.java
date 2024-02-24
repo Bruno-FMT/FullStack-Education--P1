@@ -126,24 +126,24 @@ public class Funcionario implements IFuncionario {
     }
 
     public void promover() {
-        if (this.nivelCargo.name() == "INICIANTE") {
+        if (this.nivelCargo.name().equals("INICIANTE")) {
             setNivelCargo("EXPERIENTE");
-        } else if (this.nivelCargo.name() == "EXPERIENTE") {
+        } else if (this.nivelCargo.name().equals("EXPERIENTE")) {
             setNivelCargo("AVANCADO");
         } else {
-            throw new IllegalArgumentException("Funcionário já está no último nivel de promoção: AVANCADO." + this.nivelCargo);
+            throw new IllegalArgumentException("Funcionário já está no último nível de promoção: " + this.nivelCargo);
         }
     }
 
     public void promover(double valorAdicionalSalario) {
-        if (this.nivelCargo.name() == "INICIANTE") {
+        if (this.nivelCargo.name().equals("INICIANTE")) {
             setNivelCargo("EXPERIENTE");
             this.setSalario(this.salario + valorAdicionalSalario);
-        } else if (this.nivelCargo.name() == "EXPERIENTE") {
+        } else if (this.nivelCargo.name().equals("EXPERIENTE")) {
             setNivelCargo("AVANCADO");
             this.setSalario(this.salario + valorAdicionalSalario);
         } else {
-            throw new IllegalArgumentException("Funcionário já está no último nivel de promoção: AVANCADO." + this.nivelCargo);
+            throw new IllegalArgumentException("Funcionário já está no último nível de promoção: " + this.nivelCargo);
         }
     }
 
