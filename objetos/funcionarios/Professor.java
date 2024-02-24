@@ -38,15 +38,7 @@ public class Professor extends Funcionario {
         throw new IllegalArgumentException("Professor não encontrado.");
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "nome: " + this.getNome() +
-                ", nível: " + super.getNivelCargo() +
-                '}';
-    }
-
-    public ArrayList<Curso> getCursos() {
+    private ArrayList<Curso> getCursos() {
         List<Curso> cursosCadastrados = DadosCursos.getCursosCadastrados();
         ArrayList<Curso> cursos = new ArrayList<>();
         for (Curso curso : cursosCadastrados) {
@@ -57,7 +49,7 @@ public class Professor extends Funcionario {
         return cursos;
     }
 
-    public ArrayList<Turma> getTurmas() {
+    private ArrayList<Turma> getTurmas() {
         List<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
         ArrayList<Curso> cursos = getCursos();
         ArrayList<Turma> turmas = new ArrayList<>();
@@ -81,6 +73,14 @@ public class Professor extends Funcionario {
         alunos.clear();
         alunos.addAll(alunosFormatado);
         return alunos;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "nome: " + this.getNome() +
+                ", nível: " + super.getNivelCargo() +
+                '}';
     }
 
     public void listarTodosAlunos() {
