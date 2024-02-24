@@ -37,10 +37,10 @@
 - [x] [Ex 2 - Classes principais](#-m1s06-ex-2---classes-principais)
 - [x] [Ex 3 - Encapsulamento](#-m1s06-ex-3---encapsulamento)
 - [ ] [Ex 4 - Interface e herança](#-m1s06-ex-4---interface-e-herança)
-- [ ] [Ex 5 - Enums](#-m1s06-ex-5---enums)
+- [x] [Ex 5 - Enums](#-m1s06-ex-5---enums)
 - [ ] [Ex 6 - Override](#-m1s06-ex-6---override)
 - [ ] [Ex 7 - Tratamento de erros](#-m1s06-ex-7---tratamento-de-erros)
-- [ ] [Ex 8 - Listas de Dados](#-m1s06-ex-8---listas-de-dados)
+- [x] [Ex 8 - Listas de Dados](#-m1s06-ex-8---listas-de-dados)
 - [ ] [Ex 9 - Fluxo de Login](#-m1s06-ex-9---fluxo-de-login)
 - [ ] [Ex 10 - Fluxo de Ações](#-m1s06-ex-10---fluxo-de-ações)
 - [ ] [Alterações passadas pelo professor via Discord](#-alterações-enviadas-pelo-professor-via-discord)
@@ -101,8 +101,8 @@ descrita anteriormente.
 ## 📚 [M1S06] Ex 9 - Fluxo de login
 - **Tela 1** - Ao entrar no sistema ele deve perguntar se você é funcionário ou
   aluno.
+- **Tela 1** - Essa tela também deve dar a opção de Encerrar o programa.
 - **Tela 2** - Ao selecionar uma opção, você deve se identificar ou criar um novo usuário.
-- **Tela 2** - Essa tela também deve dar a opção de Encerrar o programa.
 - O usuário criado deve receber os dados necessários para criar um objeto da
   classe escolhida (professor, diretor ou aluno).
 - Adicione esse usuário a lista correspondente.
