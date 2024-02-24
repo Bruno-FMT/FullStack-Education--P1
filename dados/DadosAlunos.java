@@ -1,6 +1,5 @@
 package dados;
 
-import enums.StatusMatricula;
 import objetos.Aluno;
 
 import java.util.ArrayList;
@@ -32,9 +31,9 @@ public class DadosAlunos {
             DadosTurmas.excluirAluno(aluno);
             alunosCadastrados.remove(aluno);
             System.out.println("Aluno removido com sucesso.");
-        } else {
-            System.out.println("Nenhum aluno encontrado com o id informado.");
+            return;
         }
+        throw new IllegalArgumentException("Aluno não encontrado.");
     }
 
     public static void listarTodosAlunosComId() {
@@ -45,18 +44,6 @@ public class DadosAlunos {
                     " - Nome: " + aluno.getNome() +
                     ", Idade: " + aluno.getIdade() +
                     ", Status: " + aluno.getStatusMatricula()
-            );
-        }
-    }
-
-    public static void listarAlunosPorStatus(StatusMatricula status) {
-        System.out.println("Lista de alunos " + status.toString());
-        for (Aluno aluno : getAlunosPorStatus(status)) {
-            System.out.println(
-                    "Id: " + aluno.getId() +
-                            " - Nome: " + aluno.getNome() +
-                            ", Idade: " + aluno.getIdade() +
-                            ", Status: " + aluno.getStatusMatricula()
             );
         }
     }
@@ -84,15 +71,5 @@ public class DadosAlunos {
             }
         }
         return false;
-    }
-
-    public static ArrayList<Aluno> getAlunosPorStatus(StatusMatricula status) {
-        ArrayList<Aluno> alunosFormados = new ArrayList<>();
-        for (Aluno aluno : alunosCadastrados) {
-            if (aluno.getStatusMatricula().equals(status)) {
-                alunosFormados.add(aluno);
-            }
-        }
-        return alunosFormados;
     }
 }
