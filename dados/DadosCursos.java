@@ -1,6 +1,7 @@
 package dados;
 
 import objetos.Curso;
+import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,16 @@ public class DadosCursos {
 
     public static List<Curso> getCursosCadastrados() {
         return cursosCadastrados;
+    }
+
+    public static List<Curso> getCursosPorProfessor(Professor professor) {
+        List<Curso> cursos = new ArrayList<>();
+        for (Curso curso : cursosCadastrados) {
+            if(curso.getProfessores().contains(professor)) {
+                cursos.add(curso);
+            }
+        }
+        return cursos;
     }
 
     public static void adicionarCurso(Curso curso) {

@@ -1,5 +1,6 @@
 package objetos.funcionarios;
 
+import dados.DadosAlunos;
 import dados.DadosCursos;
 import dados.DadosProfessores;
 import dados.DadosTurmas;
@@ -38,43 +39,6 @@ public class Professor extends Funcionario {
         throw new IllegalArgumentException("Professor não encontrado.");
     }
 
-    private ArrayList<Curso> getCursos() {
-        List<Curso> cursosCadastrados = DadosCursos.getCursosCadastrados();
-        ArrayList<Curso> cursos = new ArrayList<>();
-        for (Curso curso : cursosCadastrados) {
-            if (curso.getProfessores().contains(this)) {
-                cursos.add(curso);
-            }
-        }
-        return cursos;
-    }
-
-    private ArrayList<Turma> getTurmas() {
-        List<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
-        ArrayList<Curso> cursos = getCursos();
-        ArrayList<Turma> turmas = new ArrayList<>();
-        for (Turma turma : turmasCadastradas) {
-            for (Curso curso : cursos){
-                if (turma.getCurso().equals(curso)) {
-                    turmas.add(turma);
-                }
-            }
-        }
-        return turmas;
-    }
-
-    public ArrayList<Aluno> getTodosAlunos() {
-        ArrayList<Aluno> alunos = new ArrayList<>();
-        List<Turma> turmas = getTurmas();
-        for (Turma turma : turmas){
-            alunos.addAll(turma.getAlunos());
-        }
-        HashSet<Aluno> alunosFormatado = new HashSet<>(alunos);
-        alunos.clear();
-        alunos.addAll(alunosFormatado);
-        return alunos;
-    }
-
     @Override
     public String toString() {
         return "{" +
@@ -84,21 +48,25 @@ public class Professor extends Funcionario {
     }
 
     public void listarTodosAlunos() {
-        ArrayList<Aluno> alunos = getTodosAlunos();
-        System.out.println("Alunos");
-        for (int i = 0; i < alunos.size(); i++) {
-            System.out.println(i + "- " + alunos.get(i).toString());
+        List<Aluno> alunos = DadosAlunos.getAlunosPorProfessor(this);
+        System.out.println("Alunos do(a) professor(a): " + getNome());
+        for (Aluno aluno : alunos) {
+            System.out.println("ID: " + aluno.getId() + ", Aluno: " + aluno.toString());
         }
     }
 
-    public void listarAlunoPorCurso() {
-        List<Turma> turmasCadastradas = getTurmas();
-        for (Turma turma : turmasCadastradas) {
-            System.out.println("Curso: " + turma.getCurso().getNome());
-            ArrayList<Aluno> alunos = turma.getAlunos();
-            System.out.println("Alunos");
-            for (int i = 0; i < alunos.size(); i++) {
-                System.out.println(i + "- " + alunos.get(i).getNome());
+    public void listarAlunoCursoTurma() {
+        List<Curso> cursos = DadosCursos.getCursosPorProfessor(this);
+        for (Curso curso : cursos) {
+            System.out.println("Curso: " + curso.getNome());
+            List<Turma> turmas = DadosTurmas.getTurmasPorCurso(curso);
+            for (int i = 0; i < turmas.size(); i++) {
+                System.out.println("Turma: " + i + ", Início: " + turmas.get(i).getAnoInicio());
+                ArrayList<Aluno> alunos = turmas.get(i).getAlunos();
+                System.out.println("Alunos");
+                for (Aluno aluno : alunos) {
+                    System.out.println("ID: " + aluno.getId() + ", Nome: " + aluno.getNome());
+                }
             }
             System.out.println();
         }
