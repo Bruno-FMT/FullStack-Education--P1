@@ -5,8 +5,7 @@ public class Funcionario implements IFuncionario {
     private int idade;
     private double salario;
     private NiveisCargoFuncionario nivelCargo;
-    private int anosCargo; //Tempo de trabalho na empresa
-    private double valorAdicionalSalario; //Valor adicional pela promoção de cargo - nivel ou diretor
+    private int anosCargo;
 
     public Funcionario(){
         this.nivelCargo = NiveisCargoFuncionario.INICIANTE;
@@ -52,10 +51,6 @@ public class Funcionario implements IFuncionario {
         this.salario = salario;
     }
 
-    public double getValorAdicionalSalario() {
-        return valorAdicionalSalario;
-    }
-
     public NiveisCargoFuncionario getNivelCargo() {
         return nivelCargo;
     }
@@ -70,26 +65,26 @@ public class Funcionario implements IFuncionario {
         }
     }
 
-    //Promover - apenas salário
-    public void promover(double valorAdicionalSalario) {
-        this.valorAdicionalSalario = valorAdicionalSalario;
-        this.setSalario(this.salario + valorAdicionalSalario);
-    }
-
-    //Promover - Cargo com aumento salarial
-    public void promover(String nivelCargo, double valorAdicionalSalario) {
-        this.setNivelCargo(nivelCargo);
-        this.valorAdicionalSalario = valorAdicionalSalario;
-
-        if (nivelCargo.equals("AVANCADO") || nivelCargo.equals("EXPERIENTE")) {
-            this.salario += valorAdicionalSalario;
+    public void promover() {
+        if (this.nivelCargo.name() == "INICIANTE") {
+            setNivelCargo("EXPERIENTE");
+        } else if (this.nivelCargo.name() == "EXPERIENTE") {
+            setNivelCargo("AVANCADO");
         } else {
-            System.out.println("Não há promoção para o cargo de nível INICIANTE.");
+            System.out.println("Funcionário já está no último nivel de promoção: AVANCADO." + this.nivelCargo);
         }
     }
 
-    public void promover(Funcionario funcionario,String nivelCargo) {
-        funcionario.setNivelCargo(nivelCargo);
+    public void promover(double valorAdicionalSalario) {
+        if (this.nivelCargo.name() == "INICIANTE") {
+            setNivelCargo("EXPERIENTE");
+            this.setSalario(this.salario + valorAdicionalSalario);    
+        } else if (this.nivelCargo.name() == "EXPERIENTE") {
+            setNivelCargo("AVANCADO");
+            this.setSalario(this.salario + valorAdicionalSalario);
+        } else {
+            System.out.println("Funcionário já está no último nivel de promoção: AVANCADO." + this.nivelCargo);
+        }
     }
 
     public static void imprimirNiveisCargo() {
