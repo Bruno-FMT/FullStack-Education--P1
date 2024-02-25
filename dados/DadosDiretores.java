@@ -13,10 +13,11 @@ public class DadosDiretores {
     }
 
     public static Diretor getDiretorPorId(int id) {
-        if(id < 0 || id > diretoresCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
+        try {
+            return diretoresCadastrados.get(id);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.", e);
         }
-        return diretoresCadastrados.get(id);
     }
 
     public static void adicionarDiretor(Diretor diretor) {

@@ -56,10 +56,11 @@ public class DadosAlunos {
     }
 
     public static Aluno getAlunoPorId(int id) {
-        if (id < 0 || id > alunosCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.");
+        try {
+            return alunosCadastrados.get(id);
+        } catch (Exception e ) {
+            throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.", e);
         }
-        return alunosCadastrados.get(id);
     }
 
     public static Aluno getAlunoPorUsuario(String usuario) {

@@ -14,16 +14,6 @@ public class DadosCursos {
         return cursosCadastrados;
     }
 
-    public static List<Curso> getCursosPorProfessor(Professor professor) {
-        List<Curso> cursos = new ArrayList<>();
-        for (Curso curso : cursosCadastrados) {
-            if(curso.getProfessores().contains(professor)) {
-                cursos.add(curso);
-            }
-        }
-        return cursos;
-    }
-
     public static void removerCurso(Curso curso) {
         if (!cursoEhCadastrado(curso)) {
             throw new IllegalArgumentException("Curso não encontrado.");

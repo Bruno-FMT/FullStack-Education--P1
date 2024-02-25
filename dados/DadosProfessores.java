@@ -13,10 +13,11 @@ public class DadosProfessores {
     }
 
     public static Professor getProfessorPorId(int id) {
-        if(id < 0 || id > professoresCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
+        try {
+            return professoresCadastrados.get(id);
+        } catch (Exception e){
+            throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.", e);
         }
-        return professoresCadastrados.get(id);
     }
 
     public static void adicionarProfessor(Professor professor) {
