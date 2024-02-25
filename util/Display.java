@@ -184,15 +184,22 @@ public class Display {
                     break;
                 case 2:
                     List<Curso> cursos = DadosCursos.getCursosCadastrados();
-                    List<String> cursosNome = new ArrayList<>();
-                    for (Curso curso : cursos) {
-                        cursosNome.add(curso.getNome());
+                    String[] cursosNome = new String[cursos.size()];
+                    for (int i = 0; i < cursosNome.length; i++) {
+                        cursosNome[i] = cursos.get(i).getNome();
                     }
-                    menuOpcoes(
+                    int opcao = menuOpcoes(
                             scan,
                             "Escolha o Curso que deseja entrar",
-                            (String[]) cursosNome.toArray()
+                            cursosNome
                     );
+                    switch(opcao) {
+                        case 0:
+                            continue;
+                        default:
+                            System.out.println(cursos.get(opcao-1));
+                            break;
+                    }
                     break;
                 case 3:
                     break;
