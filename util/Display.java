@@ -44,6 +44,8 @@ public class Display {
             continuar = false;
         } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setIdade", int.class), new String[]{"idade"})) {
             continuar = false;
+        } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setSalario", double.class), new String[]{"salario"})) {
+            continuar = false;
         } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setUsuario", String.class), new String[]{"usuário"})) {
             continuar = false;
         } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setSenha", String.class), new String[]{"senha"})) {
@@ -56,6 +58,7 @@ public class Display {
         System.out.println("Continuar: " + continuar);
         System.out.println("Nome: " + professor.getNome());
         System.out.println("Idade: " + professor.getIdade());
+        System.out.println("Salário: " + professor.getSalario());
         System.out.println("Usuario: " + professor.getUsuario());
         System.out.println("Senha: " + professor.getSenha());
         System.out.println();
@@ -67,6 +70,8 @@ public class Display {
         if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setNome", String.class), new String[]{"nome completo"})) {
             continuar = false;
         } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setIdade", int.class), new String[]{"idade"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setSalario", double.class), new String[]{"salario"})) {
             continuar = false;
         } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setUsuario", String.class), new String[]{"usuário"})) {
             continuar = false;
@@ -80,6 +85,7 @@ public class Display {
         System.out.println("Continuar: " + continuar);
         System.out.println("Nome: " + diretor.getNome());
         System.out.println("Idade: " + diretor.getIdade());
+        System.out.println("Salário: " + diretor.getSalario());
         System.out.println("Usuario: " + diretor.getUsuario());
         System.out.println("Senha: " + diretor.getSenha());
         System.out.println();
@@ -163,7 +169,135 @@ public class Display {
 
     public static void pagina(Diretor diretor) {
         Scanner scan = new Scanner(System.in);
-        menuOpcoes(scan, "Listar", null);
+        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        List<Professor> professores = DadosProfessores.getProfessoresCadastrados();
+        List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
+
+        LOOP:
+        while (true) {
+            switch (menuOpcoes(
+                    scan,
+                    "PÁGINA",
+                    new String[]{"Cadastrar um novo professor", "Cadastrar um novo diretor", "Cadastrar um novo aluno",
+                            "Promover um professor", "Promover um diretor",
+                            "Excluir um professor", "Excluir um diretor", "Excluir um aluno",
+                            "Listar todos os alunos com ID", "Listar todos os professores com ID", "Listar todos os diretores com ID",
+                            "Adicionar aluno a turma", "Remover aluno da turma", "Adicionar professor a turma",
+                            "Remover professor da turma", "listar todos os alunos da turma",
+                            "Cadastrar turma", "Excluir turma", "Cadastrar curso", "Excluir curso",
+                            "Listar todas as turmas", "Litar todos os crusos"}
+            )) {
+                case 1:
+                    try {
+                        System.out.println("Iniciando a criação de um Professor.");
+                        Display.criarProfessor(scan, new Professor());
+                    } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case 2:
+                    try {
+                        System.out.println("Iniciando a criação de um Diretor.");
+                        Display.criarDiretor(scan, new Diretor());
+                    } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case 3:
+                    try {
+                        System.out.println("Iniciando a criação de um Aluno.");
+                        Display.criarAluno(scan, new Aluno());
+                    } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case 4:
+                    System.out.println("A lista de professores disponíveis para promoção são:");
+                    for (Professor professor : professores) {
+                        System.out.println(professor.getId() + " - " + professor.getNome() + " - " + professor.getNivelCargo());
+                    }
+
+                    System.out.println("Escolha o ID do Professor que deseja promover:");
+                    int professorID = PedirEntrada.pedirInt(scan);
+                    Professor professor1 = professores.get(professorID);
+
+                    System.out.println("Escolha o tipo de promoção:");
+                    switch (menuOpcoes(
+                            scan,
+                            "PROMOÇÃO",
+                            new String[]{"Promoção apenas de cargo", "Promoção de cargo e salário"}
+                    )) {
+                        case 1:
+                            professor1.promover();
+                            System.out.println("O Professor " + professor1.getNome() + " foi promovido para o cargo " +
+                                    professor1.getNivelCargo() + " com salário de " + professor1.getSalario());
+                            break;
+                        case 2:
+                            System.out.println("Defina o valor adicional ao salário de " + professor1.getSalario());
+                            professor1.promover(scan.nextDouble());
+                            System.out.println("O Professor " + professor1.getNome() + " foi promovido para o cargo " +
+                                    professor1.getNivelCargo() + " e o seu novo salário é " + professor1.getSalario());
+                            break;
+                        case 0:
+                            break;
+                    }
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+
+                    break;
+                case 8:
+
+                    break;
+                case 9:
+                    System.out.println("LISTA DE ALUNOS CADASTRADOS, COM ID.");
+                    for (Aluno aluno : alunos) {
+                        System.out.println(aluno.getId() + " - " + aluno.getNome());
+                    }
+                    break;
+                case 10:
+                    System.out.println("LISTA DE PROFESSORES CADASTRADOS, COM ID.");
+                    for (Professor professor : professores) {
+                        System.out.println(professor.getId() + " - " + professor.getNome());
+                    }
+                    break;
+                case 11:
+                    System.out.println("LISTA DE DIRETORES CADASTRADOS, COM ID.");
+                    for (Diretor cadaDiretor : diretores) {
+                        System.out.println(cadaDiretor.getId() + " - " + cadaDiretor.getNome());
+                    }
+                    break;
+                case 12:
+                    break;
+                case 13:
+                    break;
+                case 14:
+                    break;
+                case 15:
+                    break;
+                case 16:
+                    break;
+                case 17:
+                    break;
+                case 18:
+                    break;
+                case 19:
+                    break;
+                case 20:
+                    break;
+                case 21:
+                    break;
+                case 22:
+                    break;
+                case 0:
+                    break LOOP;
+            }
+        }
     }
 
     public static void pagina(Professor professor) {
