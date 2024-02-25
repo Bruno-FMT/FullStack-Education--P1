@@ -1,16 +1,13 @@
 package dados;
 
-import objetos.Aluno;
-import objetos.funcionarios.Diretor;
 import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosProfessores {
-    private static List<Professor> professoresCadastrados = new ArrayList<>();
+    private static ArrayList<Professor> professoresCadastrados = new ArrayList<>();
 
-    public static List<Professor> getProfessoresCadastrados() {
+    public static ArrayList<Professor> getProfessoresCadastrados() {
         return professoresCadastrados;
     }
 

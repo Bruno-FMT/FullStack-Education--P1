@@ -1,13 +1,11 @@
 package dados;
 
 import objetos.Curso;
-import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosCursos {
-    private static List<Curso> cursosCadastrados = new ArrayList<>();
+    private static ArrayList<Curso> cursosCadastrados = new ArrayList<>();
 
     public static void removerCurso(Curso curso) {
         if (!cursoEhCadastrado(curso)) {
@@ -16,7 +14,7 @@ public class DadosCursos {
         cursosCadastrados.remove(curso);
     }
 
-    public static List<Curso> getCursosCadastrados() {
+    public static ArrayList<Curso> getCursosCadastrados() {
         return cursosCadastrados;
     }
 

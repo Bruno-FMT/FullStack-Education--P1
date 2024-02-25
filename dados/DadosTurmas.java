@@ -4,17 +4,16 @@ import objetos.Aluno;
 import objetos.Turma;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosTurmas {
-    private static List<Turma> turmasCadastradas = new ArrayList<>();
+    private static ArrayList<Turma> turmasCadastradas = new ArrayList<>();
 
-    public static List<Turma> getTurmasCadastradas() {
+    public static ArrayList<Turma> getTurmasCadastradas() {
         return turmasCadastradas;
     }
 
-    public static List<Turma> getTurmasPorAluno(Aluno aluno) {
-        List<Turma> turmas = new ArrayList<>();
+    public static ArrayList<Turma> getTurmasPorAluno(Aluno aluno) {
+        ArrayList<Turma> turmas = new ArrayList<>();
         for (Turma turma : turmasCadastradas) {
             if (turma.getAlunos() != null && turma.getAlunos().contains(aluno)) {
                 turmas.add(turma);
@@ -37,7 +36,7 @@ public class DadosTurmas {
         turmasCadastradas.add(turma);
     }
 
-    public static void adicionarTurmas(List<Turma> turmas) {
+    public static void adicionarTurmas(ArrayList<Turma> turmas) {
         for (Turma novaTurma : turmas) {
             if (turmaEhCadastrada(novaTurma)) {
                 throw new IllegalArgumentException("Turma já cadastrada.");
@@ -53,7 +52,7 @@ public class DadosTurmas {
     public static void listarTurmasCadastradas() {
         for (int i = 0; i < turmasCadastradas.size() ; i++) {
             System.out.println(
-                    i + " - " +
+                    "Id: " + i + " - " +
                     "Curso: " + turmasCadastradas.get(i).getCurso().getNome() +
                     ", início da turma: " + turmasCadastradas.get(i).getAnoInicio() +
                     ", número de alunos: " + turmasCadastradas.get(i).getAlunos().size()

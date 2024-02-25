@@ -1,15 +1,13 @@
 package dados;
 
-import objetos.Aluno;
 import objetos.funcionarios.Diretor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosDiretores {
-    private static List<Diretor> diretoresCadastrados = new ArrayList<>();
+    private static ArrayList<Diretor> diretoresCadastrados = new ArrayList<>();
 
-    public static List<Diretor> getDiretoresCadastrados() {
+    public static ArrayList<Diretor> getDiretoresCadastrados() {
         return diretoresCadastrados;
     }
 

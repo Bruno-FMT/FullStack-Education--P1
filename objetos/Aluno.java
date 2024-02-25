@@ -5,7 +5,6 @@ import enums.StatusMatricula;
 import dados.DadosTurmas;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Aluno {
     private String nome;
@@ -96,7 +95,7 @@ public class Aluno {
     }
 
     public int getId() {
-        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        ArrayList<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
         if (alunos.contains(this)) {
             return alunos.indexOf(this);
         }
@@ -104,7 +103,7 @@ public class Aluno {
     }
 
     public static int getId(String usuario) {
-        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        ArrayList<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
         for (Aluno aluno : alunos) {
             if (aluno.getUsuario().equals(usuario)) {
                 return alunos.indexOf(aluno);
@@ -113,10 +112,13 @@ public class Aluno {
         throw new IllegalArgumentException("Aluno não encontrado.");
     }
 
-    public List<Turma> getTurmas() {
-        List<Turma> turmas = new ArrayList<>();
-        List<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
+    public ArrayList<Turma> getTurmas() {
+        ArrayList<Turma> turmas = new ArrayList<>();
+        ArrayList<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
         for (Turma turma : turmasCadastradas) {
+            if (turma.getAlunos() == null) {
+                continue;
+            }
             if (turma.getAlunos().contains(this)) {
                 turmas.add(turma);
             }
@@ -151,7 +153,7 @@ public class Aluno {
     }
 
     public void listarTurmasMatriculadas() {
-        List<Turma> turmas =getTurmas();
+        ArrayList<Turma> turmas =getTurmas();
         System.out.println("Aluno(a) " + this.getNome() + " está matriculado(a) na(s) turma(s): ");
         for (Turma turma : turmas) {
             System.out.println("Nome da turma: "+ turma.getNome() +", curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());

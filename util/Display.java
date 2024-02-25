@@ -12,7 +12,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Display {
@@ -138,7 +137,7 @@ public class Display {
         }
     }
 
-    public static void exibirLista(List<?> lista, Method... metodos) throws InvocationTargetException, IllegalAccessException {
+    public static void exibirLista(ArrayList<?> lista, Method... metodos) throws InvocationTargetException, IllegalAccessException {
         for (int i = 0; i < lista.size(); i++) {
             System.out.print(i + " - ");
             for (Method metodo : metodos) {
@@ -167,7 +166,88 @@ public class Display {
     }
 
     public static void pagina(Professor professor) {
-
+        Scanner scan = new Scanner(System.in);
+        Aluno aluno;
+        String usuarioAluno;
+        int turmaId;
+        LOOP:
+        while (true) {
+            switch (menuOpcoes(
+                    scan,
+                    "PÁGINA",
+                    new String[]{
+                            "Listar alunos",
+                            "Adicionar aluno a uma turma",
+                            "Remover aluno de uma turma",
+                            "Formar aluno"
+                    }
+            )){
+                case 1:
+                    try {
+                        System.out.println();
+                        professor.listarAlunoCursoTurma();
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Não foi possível listar alunos.");
+                    }
+                    break;
+                case 2:
+                    System.out.println();
+                    System.out.println("Segue turmas disponíveis");
+                    DadosTurmas.listarTurmasCadastradas();
+                    System.out.println();
+                    System.out.print("Informe o ID da turma que deseja incluir o aluno: ");
+                    turmaId = PedirEntrada.pedirInt(scan);
+                    try {
+                        Turma turma = DadosTurmas.getTurmasCadastradas().get(turmaId);
+                        System.out.print("Informe o usuário do aluno que incluir na turma: ");
+                        usuarioAluno = PedirEntrada.pedirString(scan);
+                        aluno = DadosAlunos.getAlunoPorUsuario(usuarioAluno);
+                        turma.adicionarAluno(aluno);
+                        System.out.println("Aluno adicionado com sucesso.");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Não foi possível adicionar aluno a turma.");
+                    }
+                    break;
+                case 3:
+                    System.out.println();
+                    System.out.println("Segue turmas disponíveis");
+                    DadosTurmas.listarTurmasCadastradas();
+                    System.out.println();
+                    System.out.print("Informe o ID da turma que deseja remover o aluno: ");
+                    turmaId = PedirEntrada.pedirInt(scan);
+                    try {
+                        Turma turma = DadosTurmas.getTurmasCadastradas().get(turmaId);
+                        System.out.print("Informe o usuário do aluno que remover da turma: ");
+                        usuarioAluno = PedirEntrada.pedirString(scan);
+                        aluno = DadosAlunos.getAlunoPorUsuario(usuarioAluno);
+                        turma.removerAluno(aluno);
+                        System.out.println("Aluno removido com sucesso.");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Não foi possível adicionar aluno a turma.");
+                    }
+                    break;
+                case 4:
+                    System.out.print("Informe o usuário do aluno que deseja formar: ");
+                    usuarioAluno = PedirEntrada.pedirString(scan);
+                    try {
+                        aluno = DadosAlunos.getAlunoPorUsuario(usuarioAluno);
+                        aluno.formar();
+                        System.out.println(aluno);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Não foi possível formar o aluno.");
+                    }
+                    break;
+                case 0:
+                    System.out.println("Saindo de sua conta....");
+                    break LOOP;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }
     }
 
     public static void pagina(Aluno aluno) {
@@ -183,8 +263,8 @@ public class Display {
                     aluno.listarTurmasMatriculadas();
                     break;
                 case 2:
-                    List<Curso> cursos = DadosCursos.getCursosCadastrados();
-                    List<String> cursosNome = new ArrayList<>();
+                    ArrayList<Curso> cursos = DadosCursos.getCursosCadastrados();
+                    ArrayList<String> cursosNome = new ArrayList<>();
                     for (Curso curso : cursos) {
                         cursosNome.add(curso.getNome());
                     }
