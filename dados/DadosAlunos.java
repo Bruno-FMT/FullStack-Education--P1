@@ -17,7 +17,7 @@ public class DadosAlunos {
     }
 
     public static void adicionarAluno(Aluno aluno) {
-        if (!alunoEhCadastrado(aluno)) {
+        if (alunoEhCadastrado(aluno)) {
             throw new IllegalArgumentException("Aluno já cadastrado.");
         }
         alunosCadastrados.add(aluno);
