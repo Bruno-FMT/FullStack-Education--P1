@@ -14,26 +14,6 @@ public class DadosTurmas {
         return turmasCadastradas;
     }
 
-    public static List<Turma> getTurmasPorAluno(Aluno aluno) {
-        List<Turma> turmas = new ArrayList<>();
-        for (Turma turma : turmas) {
-            if (turma.getAlunos().contains(aluno)) {
-                turmas.add(turma);
-            }
-        }
-        return turmas;
-    }
-
-    public static List<Turma> getTurmasPorCurso(Curso curso) {
-        List<Turma> turmas = new ArrayList<>();
-        for (Turma turma : turmasCadastradas) {
-            if (turma.getCurso().equals(curso)) {
-                turmas.add(turma);
-            }
-        }
-        return turmas;
-    }
-
     public static void removerTurma(Turma turma) {
         if (!turmaEhCadastrada(turma)) {
             throw new IllegalArgumentException("Turma não encontrada.");
