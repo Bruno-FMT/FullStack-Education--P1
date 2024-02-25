@@ -13,6 +13,14 @@ public class DadosDiretores {
         return diretoresCadastrados;
     }
 
+    public static Diretor getDiretorPorId(int id) {
+        try {
+            return diretoresCadastrados.get(id);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.", e);
+        }
+    }
+
     public static void adicionarDiretor(Diretor diretor) {
         if (diretorEhCadastrado(diretor)) {
             throw new IllegalArgumentException("Diretor já cadastrado.");
@@ -27,11 +35,11 @@ public class DadosDiretores {
         diretoresCadastrados.remove(id);
     }
 
-    public static Diretor getDiretorPorId(int id) {
-        if (id < 0 || id > diretoresCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
+    public static void removerDiretor(Diretor diretor) {
+        if(!diretoresCadastrados.contains(diretor)) {
+            throw new IllegalArgumentException("Diretor não encontrado");
         }
-        return diretoresCadastrados.get(id);
+        diretoresCadastrados.remove(diretor);
     }
 
     public static Diretor getDiretorPorUsuario(String usuario) {
@@ -50,5 +58,12 @@ public class DadosDiretores {
             }
         }
         return false;
+    }
+
+    public static void imprimirListaTodosDiretores() {
+        System.out.println("DIRETORES CADASTRADOS");
+        for (Diretor diretor : diretoresCadastrados) {
+            System.out.println("ID: " + diretor.getId() + ", Diretor:" + diretor.toString());
+        }
     }
 }

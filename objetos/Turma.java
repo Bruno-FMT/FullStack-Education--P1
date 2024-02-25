@@ -4,6 +4,7 @@ import dados.DadosTurmas;
 import util.Datas;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Turma {
     private Curso curso;
@@ -56,6 +57,26 @@ public class Turma {
         return DadosTurmas.getTurmasCadastradas().indexOf(this) + "_" + this.getCurso().getNome();
     }
 
+    private boolean alunoEhCadastrado(Aluno aluno) {
+        return alunos.contains(aluno);
+    }
+
+    public void imprimirListaAlunos() {
+        System.out.println("ALUNOS DA TURMA: " + this.getID() + " DO CURSO: " + curso.getNome());
+        for (Aluno aluno : alunos) {
+            System.out.println(aluno);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Turma{" +
+                "anoInicio: " + anoInicio +
+                ", curso: " + curso +
+                ", alunos: " + alunos +
+                '}';
+    }
+
     public Curso getCurso() {
         return curso;
     }
@@ -88,16 +109,13 @@ public class Turma {
         this.anoInicio = anoInicio;
     }
 
-    private boolean alunoEhCadastrado(Aluno aluno) {
-        return alunos.contains(aluno);
-    }
-
-    @Override
-    public String toString() {
-        return "Turma{" +
-                "anoInicio: " + anoInicio +
-                ", curso: " + curso +
-                ", alunos: " + alunos +
-                '}';
+    public int getID() {
+        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmas) {
+            if (turma.equals(this)){
+               return turmas.indexOf(turma);
+            }
+        }
+        throw new IllegalArgumentException("Turma não encontrada.");
     }
 }

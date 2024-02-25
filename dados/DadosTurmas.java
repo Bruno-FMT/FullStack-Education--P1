@@ -1,6 +1,7 @@
 package dados;
 
 import objetos.Aluno;
+import objetos.Curso;
 import objetos.Turma;
 
 import java.util.ArrayList;
@@ -11,16 +12,6 @@ public class DadosTurmas {
 
     public static List<Turma> getTurmasCadastradas() {
         return turmasCadastradas;
-    }
-
-    public static List<Turma> getTurmasPorAluno(Aluno aluno) {
-        List<Turma> turmas = new ArrayList<>();
-        for (Turma turma : turmasCadastradas) {
-            if (turma.getAlunos() != null && turma.getAlunos().contains(aluno)) {
-                turmas.add(turma);
-            }
-        }
-        return turmas;
     }
 
     public static void removerTurma(Turma turma) {
@@ -50,13 +41,24 @@ public class DadosTurmas {
         return turmasCadastradas.contains(turma);
     }
 
+    public static void excluirAluno(Aluno aluno) {
+        for (Turma turma : turmasCadastradas) {
+            boolean ehAlunoTurma = turma.getAlunos().contains(aluno);
+            if (ehAlunoTurma) {
+                turma.getAlunos().remove(aluno);
+            }
+        }
+    }
+
     public static void listarTurmasCadastradas() {
-        for (int i = 0; i < turmasCadastradas.size() ; i++) {
+        System.out.println("TURMAS CADASTRADAS");
+        for (Turma turma : turmasCadastradas) {
             System.out.println(
-                    i + " - " +
-                    "Nome: " + turmasCadastradas.get(i).getNome() +
-                    ", início da turma: " + turmasCadastradas.get(i).getAnoInicio() +
-                    ", número de alunos: " + turmasCadastradas.get(i).getAlunos().size()
+                    "Id: " + turma.getID() + " - " +
+                    "Nome: " + turma.getNome() +
+                    ", Curso: " + turma.getCurso().getNome() +
+                    ", início da turma: " + turma.getAnoInicio() +
+                    ", número de alunos: " + turma.getAlunos().size()
             );
         }
     }
