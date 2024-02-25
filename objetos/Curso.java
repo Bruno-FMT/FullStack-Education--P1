@@ -1,8 +1,10 @@
 package objetos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dados.DadosCursos;
+import dados.DadosTurmas;
 import objetos.funcionarios.Professor;
 
 public class Curso {
@@ -32,6 +34,17 @@ public class Curso {
 
     public void setProfessores(ArrayList<Professor> professores) {
         this.professores = professores;
+    }
+
+    public List<Turma> getTurmas() {
+        List<Turma> turmas = new ArrayList<>();
+        List<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmasCadastradas) {
+            if (turma.getCurso().equals(this)) {
+                turmas.add(turma);
+            }
+        }
+        return turmas;
     }
 
     public void adicionaProfessor(Professor professor) {

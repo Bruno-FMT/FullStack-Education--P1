@@ -1,6 +1,7 @@
 import dados.DadosAlunos;
 import dados.DadosDiretores;
 import dados.DadosProfessores;
+import dados.DadosTurmas;
 import objetos.Aluno;
 import objetos.Curso;
 import objetos.Turma;
@@ -16,15 +17,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         Scanner entrada = new Scanner(System.in);
-
-        new Diretor("César Abascal", 29, 3900, 8, "cesar", "diretor123");
-        new Professor("André Santana Nunes", 32, 2600, 6, "andre", "senha123");
-        new Aluno("Oswald Hitler", 81, "oswald", "senha123");
-        new Professor("Gabriel Agustin", 28, 2600, 4, "gabriel", "senha123");
-
-        Turma turma = new Turma(new Curso("JavaScript", (ArrayList<Professor>) DadosProfessores.getProfessoresCadastrados()), 2024);
-        System.out.println(turma.getNome());
-
+        pupularBanco();
         imprimirBoasVindas();
 
         while (true) {
@@ -52,7 +45,7 @@ public class Main {
                             }
                             Display.pagina(diretor);
                             break;
-                        case 2:
+                        case 2: // Professor
                             Professor professor;
                             try {
                                 Professor professorEncontrado = DadosProfessores.getProfessorPorUsuario(nomeFuncionario);
@@ -113,10 +106,18 @@ public class Main {
         }
     }
 
+    public static void pupularBanco() {
+        new Diretor("César Abascal", 29, 3900, 8, "cesar", "diretor123");
+        new Professor("André Santana Nunes", 32, 2600, 6, "andre", "senha123");
+        new Aluno("Oswald Hitler", 81, "oswald", "senha123");
+        new Professor("Gabriel Agustin", 28, 2600, 4, "gabriel", "senha123");
+        new Turma(new Curso("JavaScript", (ArrayList<Professor>) DadosProfessores.getProfessoresCadastrados()), 2024);
+    }
+
     public static void imprimirBoasVindas() {
         System.out.println(
                 "BEM-VINDO! \n" +
-                        "Estamos animados para embarcar nessa jornada educacional juntos!"
+                "Estamos animados para embarcar nessa jornada educacional juntos!"
         );
     }
 

@@ -54,7 +54,7 @@ public class DadosTurmas {
         for (int i = 0; i < turmasCadastradas.size() ; i++) {
             System.out.println(
                     i + " - " +
-                    "Nome: " + turmasCadastradas.get(i).getNome() +
+                    "Curso: " + turmasCadastradas.get(i).getCurso().getNome() +
                     ", início da turma: " + turmasCadastradas.get(i).getAnoInicio() +
                     ", número de alunos: " + turmasCadastradas.get(i).getAlunos().size()
             );

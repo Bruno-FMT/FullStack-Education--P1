@@ -1,8 +1,12 @@
 package dados;
 
 import objetos.Aluno;
+import objetos.Curso;
+import objetos.Turma;
+import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class DadosAlunos {
