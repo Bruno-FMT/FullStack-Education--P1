@@ -1,6 +1,4 @@
-import dados.DadosTurmas;
 import objetos.Aluno;
-import objetos.Turma;
 import objetos.funcionarios.Professor;
 import util.Display;
 

@@ -1,6 +1,7 @@
 package dados;
 
 import objetos.Curso;
+import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
 import java.util.List;

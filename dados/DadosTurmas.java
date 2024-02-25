@@ -1,6 +1,7 @@
 package dados;
 
 import objetos.Aluno;
+import objetos.Curso;
 import objetos.Turma;
 
 import java.util.ArrayList;
@@ -11,16 +12,6 @@ public class DadosTurmas {
 
     public static List<Turma> getTurmasCadastradas() {
         return turmasCadastradas;
-    }
-
-    public static List<Turma> getTurmasPorAluno(Aluno aluno) {
-        List<Turma> turmas = new ArrayList<>();
-        for (Turma turma : turmas) {
-            if (turma.getAlunos().contains(aluno)) {
-                turmas.add(turma);
-            }
-        }
-        return turmas;
     }
 
     public static void removerTurma(Turma turma) {

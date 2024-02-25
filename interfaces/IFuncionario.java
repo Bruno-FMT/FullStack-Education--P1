@@ -1,7 +1,6 @@
 package interfaces;
 
-import objetos.funcionarios.Funcionario;
-
 public interface IFuncionario {
+    void promover();
     void promover(double valorAdicionalSalario);
 }
