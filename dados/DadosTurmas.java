@@ -49,13 +49,24 @@ public class DadosTurmas {
         return turmasCadastradas.contains(turma);
     }
 
+    public static void excluirAluno(Aluno aluno) {
+        for (Turma turma : turmasCadastradas) {
+            boolean ehAlunoTurma = turma.getAlunos().contains(aluno);
+            if (ehAlunoTurma) {
+                turma.getAlunos().remove(aluno);
+            }
+        }
+    }
+
     public static void listarTurmasCadastradas() {
-        for (int i = 0; i < turmasCadastradas.size() ; i++) {
+        System.out.println("TURMAS CADASTRADAS");
+        for (Turma turma : turmasCadastradas) {
             System.out.println(
-                    "Id: " + i + " - " +
-                    "Curso: " + turmasCadastradas.get(i).getCurso().getNome() +
-                    ", início da turma: " + turmasCadastradas.get(i).getAnoInicio() +
-                    ", número de alunos: " + turmasCadastradas.get(i).getAlunos().size()
+                    "Id: " + turma.getID() + " - " +
+                    "Nome: " + turma.getNome() +
+                    ", Curso: " + turma.getCurso().getNome() +
+                    ", início da turma: " + turma.getAnoInicio() +
+                    ", número de alunos: " + turma.getAlunos().size()
             );
         }
     }

@@ -147,7 +147,7 @@ public class Aluno {
             setStatusMatricula("ATIVO");
             return;
         }
-        if (this.statusMatricula.equals(StatusMatricula.FORMADO)){
+        if (this.statusMatricula.equals(StatusMatricula.FORMADO)) {
             throw new IllegalArgumentException("Aluno formado não pode alterar seu status de matrícula.");
         }
     }
@@ -156,7 +156,7 @@ public class Aluno {
         ArrayList<Turma> turmas =getTurmas();
         System.out.println("Aluno(a) " + this.getNome() + " está matriculado(a) na(s) turma(s): ");
         for (Turma turma : turmas) {
-            System.out.println("Nome da turma: "+ turma.getNome() +", curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());
+            System.out.println("Nome da turma: " + turma.getNome() + ", curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());
         }
     }
 
