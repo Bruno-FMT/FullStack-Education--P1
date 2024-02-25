@@ -44,7 +44,7 @@ public class Professor extends Funcionario {
         List<Curso> cursos = getCursos();
         List<Turma> turmas = new ArrayList<>();
         for (Curso curso : cursos) {
-            turmas.addAll(DadosTurmas.getTurmasPorCurso(curso));
+            turmas.addAll(curso.getTurmas());
         }
         for (Turma turma : turmas) {
             alunos.addAll(turma.getAlunos());
