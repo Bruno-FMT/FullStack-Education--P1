@@ -17,7 +17,7 @@ public class DadosAlunos {
     }
 
     public static void adicionarAluno(Aluno aluno) {
-        if (alunoEhCadastrado(aluno)) {
+        if (!alunoEhCadastrado(aluno)) {
             throw new IllegalArgumentException("Aluno já cadastrado.");
         }
         alunosCadastrados.add(aluno);
@@ -69,21 +69,5 @@ public class DadosAlunos {
             }
         }
         throw new IllegalArgumentException("Nenhum aluno encontrado com o usuário informado.");
-    }
-
-    public static List<Aluno> getAlunosPorProfessor(Professor professor) {
-        List<Curso> cursos = DadosCursos.getCursosPorProfessor(professor);
-        List<Turma> turmas = new ArrayList<>();
-        List<Aluno> alunos = new ArrayList<>();
-        for (Curso curso : cursos) {
-            turmas.addAll(DadosTurmas.getTurmasPorCurso(curso));
-        }
-        for (Turma turma : turmas) {
-            alunos.addAll(turma.getAlunos());
-        }
-        HashSet<Aluno> listaSemDuplicatas = new HashSet<>(alunos);
-        alunos.clear();
-        alunos.addAll(listaSemDuplicatas);
-        return alunos;
     }
 }

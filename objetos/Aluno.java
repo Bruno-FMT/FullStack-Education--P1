@@ -4,6 +4,7 @@ import dados.DadosAlunos;
 import enums.StatusMatricula;
 import dados.DadosTurmas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno {
@@ -112,6 +113,17 @@ public class Aluno {
         throw new IllegalArgumentException("Aluno não encontrado.");
     }
 
+    public List<Turma> getTurmas() {
+        List<Turma> turmas = new ArrayList<>();
+        List<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmasCadastradas) {
+            if (turma.getAlunos().contains(this)) {
+                turmas.add(turma);
+            }
+        }
+        return turmas;
+    }
+
     public static void imprimirOpcoesStatusMatricula() {
         StatusMatricula[] opcoesStatus = StatusMatricula.values();
         for (int i = 0; i < opcoesStatus.length; i++) {
@@ -139,7 +151,7 @@ public class Aluno {
     }
 
     public void listarTurmasMatriculadas() {
-        List<Turma> turmas = DadosTurmas.getTurmasPorAluno(this);
+        List<Turma> turmas =getTurmas();
         System.out.println("Aluno(a) " + this.getNome() + " está matriculado(a) na(s) turma(s): ");
         for (Turma turma : turmas) {
             System.out.println("Curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());

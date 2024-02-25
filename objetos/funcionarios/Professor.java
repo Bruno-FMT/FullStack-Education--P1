@@ -39,6 +39,33 @@ public class Professor extends Funcionario {
         throw new IllegalArgumentException("Professor não encontrado.");
     }
 
+    public List<Aluno> getAlunos() {
+        List<Aluno> alunos = new ArrayList<>();
+        List<Curso> cursos = getCursos();
+        List<Turma> turmas = new ArrayList<>();
+        for (Curso curso : cursos) {
+            turmas.addAll(curso.getTurmas());
+        }
+        for (Turma turma : turmas) {
+            alunos.addAll(turma.getAlunos());
+        }
+        HashSet<Aluno> listaSemDuplicatas = new HashSet<>(alunos);
+        alunos.clear();
+        alunos.addAll(listaSemDuplicatas);
+        return alunos;
+    }
+
+    public List<Curso> getCursos() {
+        List<Curso> cursos = new ArrayList<>();
+        List<Curso> cursosCadastrados = DadosCursos.getCursosCadastrados();
+        for (Curso curso : cursosCadastrados) {
+            if(curso.getProfessores().contains(this)) {
+                cursos.add(curso);
+            }
+        }
+        return cursos;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -48,7 +75,7 @@ public class Professor extends Funcionario {
     }
 
     public void listarTodosAlunos() {
-        List<Aluno> alunos = DadosAlunos.getAlunosPorProfessor(this);
+        List<Aluno> alunos = getAlunos();
         System.out.println("Alunos do(a) professor(a): " + getNome());
         for (Aluno aluno : alunos) {
             System.out.println("ID: " + aluno.getId() + ", Aluno: " + aluno.toString());
@@ -56,10 +83,10 @@ public class Professor extends Funcionario {
     }
 
     public void listarAlunoCursoTurma() {
-        List<Curso> cursos = DadosCursos.getCursosPorProfessor(this);
+        List<Curso> cursos = getCursos();
         for (Curso curso : cursos) {
             System.out.println("Curso: " + curso.getNome());
-            List<Turma> turmas = DadosTurmas.getTurmasPorCurso(curso);
+            List<Turma> turmas = curso.getTurmas();
             for (int i = 0; i < turmas.size(); i++) {
                 System.out.println("Turma: " + i + ", Início: " + turmas.get(i).getAnoInicio());
                 ArrayList<Aluno> alunos = turmas.get(i).getAlunos();
