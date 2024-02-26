@@ -185,6 +185,7 @@ public class Display {
         List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
         List<Professor> professores = DadosProfessores.getProfessoresCadastrados();
         List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
+        List<Curso> cursos = DadosCursos.getCursosCadastrados();
 
         LOOP:
         while (true) {
@@ -453,13 +454,58 @@ public class Display {
                     System.out.println("\nIniciando a criação de turma.");
                     break;
                 case 18:
-                    //Excluir turma
+                    DadosTurmas.listarTurmasCadastradas();
+                    System.out.println("Escolha o ID da Turma a ser removido:");
+                    try {
+                        DadosTurmas.removerTurma(DadosTurmas.getTurmaPorId(PedirEntrada.pedirInt(scan)));
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Não é possível excluir turma inexistente.");
+                    }
                     break;
                 case 19:
-                    System.out.println("\nIniciando a criação de curso.");
+                    Curso curso = new Curso();
+
+                    try {
+                        System.out.println("\nIniciando a criação de curso.");
+                        System.out.println("Digite o nome do novo curso:");
+                        String nomeCurso = PedirEntrada.pedirString(scan);
+                        if (!DadosCursos.getCursosCadastrados().contains(nomeCurso)) {
+                            curso.setNome(nomeCurso);
+
+                            DadosProfessores.imprimirListaTodosProfessores();
+
+                            LOOPCurso:
+                            while (true) {
+                                System.out.println("Para adicionar o professor ao curso, digite o seu ID");
+                                curso.adicionaProfessor(DadosProfessores.getProfessorPorId(PedirEntrada.pedirInt(scan)));
+
+                                System.out.println("Deseja adicionar mais professores?");
+                                System.out.println("[s]im / [n]ão.");
+                                if (!PedirEntrada.pedirBoolean(scan)) {
+                                    break LOOPCurso;
+                                }
+                            }
+
+                            DadosCursos.adicionarCurso(curso);
+
+                        } else {
+                            System.out.println("Curso existente.");
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Não foi possível criar o curso.");
+                    }
                     break;
                 case 20:
-                    // Excluir curso
+                    DadosCursos.listarCursosCadastrados();
+                    System.out.println("Escolha o ID do Curso a ser removido:");
+                    try {
+                        DadosCursos.removerCurso(DadosCursos.getCursoPorId(PedirEntrada.pedirInt(scan)));
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Não é possível excluir curso inexistente.");
+                    }
                     break;
                 case 21:
                     DadosTurmas.listarTurmasCadastradas();
