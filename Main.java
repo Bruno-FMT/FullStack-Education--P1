@@ -21,8 +21,7 @@ public class Main {
         imprimirBoasVindas();
 
         while (true) {
-            imprimirMenu();
-            int itemSelecionadoMenu = PedirEntrada.pedirInt(entrada);
+            int itemSelecionadoMenu = Display.menuOpcoes(entrada, "MENU", new String[]{"Sou funcionário", "Sou aluno"});
             switch (itemSelecionadoMenu) {
                 case 1: // Sou Funcionário
                     int opcao = Display.menuOpcoes(entrada, "Qual seu cargo?", new String[]{"Diretor", "Professor"});
@@ -91,17 +90,6 @@ public class Main {
                 "BEM-VINDO! \n" +
                 "Estamos animados para embarcar nessa jornada educacional juntos!"
         );
-    }
-
-    public static void imprimirMenu() {
-        System.out.println("\n████████████████████████████████████████████");
-        System.out.println("                    MENU                    ");
-        System.out.println("████████████████████████████████████████████");
-        System.out.println("[1] Sou funcionário");
-        System.out.println("[2] Sou aluno");
-        System.out.println("[0] SAIR");
-        System.out.println("████████████████████████████████████████████");
-        System.out.print("Por favor, informe qual opção você deseja interagir: ");
     }
 
     public static int loginCadastro(Scanner entrada) {
