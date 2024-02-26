@@ -5,7 +5,6 @@ import objetos.Turma;
 import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosCursos {
     private static ArrayList<Curso> cursosCadastrados = new ArrayList<>();
@@ -36,7 +35,7 @@ public class DadosCursos {
     }
 
     private static boolean cursoTemTurma(Curso curso) {
-        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
+        ArrayList<Turma> turmas = DadosTurmas.getTurmasCadastradas();
         for (Turma turma : turmas) {
             if(turma.getCurso().equals(curso)) {
                 return true;

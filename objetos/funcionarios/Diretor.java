@@ -1,8 +1,8 @@
 package objetos.funcionarios;
 
-import java.util.List;
-
 import dados.DadosDiretores;
+
+import java.util.ArrayList;
 
 public class Diretor extends Funcionario {
     public Diretor(String nome, int idade, double salario, int anosCargo, String usuario, String senha) {
@@ -12,7 +12,7 @@ public class Diretor extends Funcionario {
     public Diretor() {super();}
 
     public int getId() {
-        List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
+        ArrayList<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
         if(diretores.contains(this)) {
             return diretores.indexOf(this);
         }
@@ -21,7 +21,7 @@ public class Diretor extends Funcionario {
     }
 
     public static int getId(String usuario) {
-        List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
+        ArrayList<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
         for (Diretor diretor : diretores) {
             if (diretor.getUsuario().equals(usuario)) {
                 return diretores.indexOf(diretor);
