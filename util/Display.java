@@ -52,11 +52,11 @@ public class Display {
             continuar = false;
         } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setIdade", int.class), new String[]{"idade"})) {
             continuar = false;
-        } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setSalario", double.class), new String[]{"salario"})) {
-            continuar = false;
         } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setUsuario", String.class), new String[]{"usuário"})) {
             continuar = false;
         } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setSenha", String.class), new String[]{"senha"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, professor, transformarMetodo(classe, "setSalario", double.class), new String[]{"salario"})) {
             continuar = false;
         }
         if (continuar) {
@@ -79,11 +79,11 @@ public class Display {
             continuar = false;
         } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setIdade", int.class), new String[]{"idade"})) {
             continuar = false;
-        } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setSalario", double.class), new String[]{"salario"})) {
-            continuar = false;
         } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setUsuario", String.class), new String[]{"usuário"})) {
             continuar = false;
         } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setSenha", String.class), new String[]{"senha"})) {
+            continuar = false;
+        } else if (!definirAtributoConta(scan, diretor, transformarMetodo(classe, "setSalario", double.class), new String[]{"salario"})) {
             continuar = false;
         }
         if (continuar) {
@@ -180,7 +180,7 @@ public class Display {
         return PedirEntrada.pedirInt(scan);
     }
 
-    public static void pagina(Diretor usuario) {
+    public static void pagina(Diretor usuario) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         Scanner scan = new Scanner(System.in);
         List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
         List<Professor> professores = DadosProfessores.getProfessoresCadastrados();
@@ -198,9 +198,9 @@ public class Display {
                             "Listar todos os alunos", "Listar todos os professores", "Listar todos os diretores",
                             "Adicionar aluno a turma", "Remover aluno da turma",
                             "Adicionar professor ao curso", "Remover professor do curso",
-                            "listar todos os alunos da turma",
+                            "Listar todos os alunos da turma",
                             "Cadastrar turma", "Excluir turma", "Cadastrar curso", "Excluir curso",
-                            "Listar todas as turmas", "Litar todos os cursos"
+                            "Listar todas as turmas", "Listar todos os cursos", "Visualizar dados"
                     }
             )) {
                 case 1:
@@ -467,6 +467,24 @@ public class Display {
                 case 22:
                     DadosCursos.listarCursosCadastrados();
                     break;
+                case 23:
+                    System.out.println();
+                    System.out.println("Nome: "+ usuario.getNome());
+                    System.out.println("Idade: "+ usuario.getIdade());
+                    System.out.println("Usuário: "+ usuario.getUsuario());
+                    System.out.println("Senha: "+ usuario.getSenha());
+                    System.out.println("Salário: "+ usuario.getSalario());
+                    System.out.println("Nível do Cargo: "+ usuario.getNivelCargo());
+                    System.out.println("Anos nesse Cargo: "+ usuario.getAnosCargo());
+                    System.out.println("Quer editar seus dados? [s]im / [n]ão");
+                    if (PedirEntrada.pedirBoolean(scan)) {
+                        try {
+                            criarDiretor(scan, usuario);
+                        } catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                    break;
                 case 0:
                     System.out.println("Saindo de sua conta....");
                     break LOOP;
@@ -476,7 +494,7 @@ public class Display {
         }
     }
 
-    public static void pagina(Professor professor) {
+    public static void pagina(Professor professor) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         Scanner scan = new Scanner(System.in);
         Aluno aluno;
         String usuarioAluno;
@@ -490,7 +508,8 @@ public class Display {
                             "Listar alunos",
                             "Adicionar aluno a uma turma",
                             "Remover aluno de uma turma",
-                            "Formar aluno"
+                            "Formar aluno",
+                            "Visualizar dados"
                     }
             )) {
                 case 1:
@@ -581,6 +600,24 @@ public class Display {
                     }
                     break;
                 }
+                case 5:
+                    System.out.println();
+                    System.out.println("Nome: "+ professor.getNome());
+                    System.out.println("Idade: "+ professor.getIdade());
+                    System.out.println("Usuário: "+ professor.getUsuario());
+                    System.out.println("Senha: "+ professor.getSenha());
+                    System.out.println("Salário: "+ professor.getSalario());
+                    System.out.println("Nível do Cargo: "+ professor.getNivelCargo());
+                    System.out.println("Anos nesse Cargo: "+ professor.getAnosCargo());
+                    System.out.println("Quer editar seus dados? [s]im / [n]ão");
+                    if (PedirEntrada.pedirBoolean(scan)) {
+                        try {
+                            criarProfessor(scan, professor);
+                        } catch (RuntimeException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                    break;
                 case 0:
                     System.out.println("Saindo de sua conta....");
                     break LOOP;

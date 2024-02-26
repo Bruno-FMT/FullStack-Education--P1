@@ -167,7 +167,7 @@ public class Main {
         return professor;
     }
 
-    public static void menuFuncionario(Scanner entrada) {
+    public static void menuFuncionario(Scanner entrada) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         int opcao = Display.menuOpcoes(entrada, "Qual seu cargo?", new String[]{"Diretor", "Professor"});
         String opcaoSelecionada = tratarOpcoesFuncionarios(opcao);
         switch (opcaoSelecionada) {

@@ -46,7 +46,7 @@ public class DadosAlunos {
     public static void imprimirListaTodosAlunos() {
         System.out.println("ALUNOS CADASTRADOS");
         for (Aluno aluno : alunosCadastrados) {
-            System.out.println("ID: " + aluno.getId() + ", Aluno:" + aluno.toString());
+            System.out.println("ID: " + aluno.getId() + ", Aluno: " + aluno.toString());
         }
     }
 
