@@ -96,6 +96,16 @@ public class Turma {
         this.alunos = alunos;
     }
 
+    public int getId() {
+        List<Turma> turmas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmas) {
+            if (turma.equals(this)) {
+                return turmas.indexOf(turma);
+            }
+        }
+        throw new IllegalArgumentException("Turma não encontrada.");
+    }
+
     public int getAnoInicio() {
         return anoInicio;
     }

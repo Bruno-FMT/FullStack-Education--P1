@@ -16,6 +16,9 @@ public class Curso {
         DadosCursos.adicionarCurso(this);
     }
 
+    public Curso() {
+    }
+
     public String getNome() {
         return nome;
     }
@@ -64,8 +67,8 @@ public class Curso {
     }
 
     public void removerProfessor(Professor professor) {
-        if (!professores.contains(professor)) {
-            throw new IllegalArgumentException("Professor não está neste curso.");
+        if(!professorEhCadastrado(professor)) {
+            throw new IllegalArgumentException("Professor não está no curso.");
         }
         this.professores.remove(professor);
     }

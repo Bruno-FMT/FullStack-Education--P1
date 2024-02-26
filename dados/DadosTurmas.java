@@ -22,6 +22,13 @@ public class DadosTurmas {
         return turmas;
     }
 
+    public static Turma getTurmaPorId(int id) {
+        if (id < 0 || id > turmasCadastradas.size()) {
+            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
+        }
+        return turmasCadastradas.get(id);
+    }
+
     public static void removerTurma(Turma turma) {
         if (!turmaEhCadastrada(turma)) {
             throw new IllegalArgumentException("Turma não encontrada.");
