@@ -1,6 +1,7 @@
 import dados.DadosAlunos;
 import dados.DadosDiretores;
 import dados.DadosProfessores;
+import dados.DadosTurmas;
 import objetos.Aluno;
 import objetos.Curso;
 import objetos.Turma;
@@ -122,9 +123,13 @@ public class Main {
     public static void popularBanco() {
         new Diretor("César Abascal", 29, 3900, 8, "cesar", "diretor123");
         new Professor("André Santana Nunes", 32, 2600, 6, "andre", "senha123");
-        new Aluno("Oswald Hitler", 81, "oswald", "senha123");
         new Professor("Gabriel Agustin", 28, 2600, 4, "gabriel", "senha123");
+        new Aluno("Oswald Williams", 81, "oswald", "senha123");
+        new Aluno("Willy Wonka", 54, "wonka", "senha123");
+        new Aluno("John Cena", 46, "johncena", "senha123");
         new Turma(new Curso("JavaScript", (ArrayList<Professor>) DadosProfessores.getProfessoresCadastrados()), 2024);
+        DadosTurmas.getTurmasCadastradas().get(0).adicionarAluno(DadosAlunos.getAlunoPorUsuario("johncena"));
+        DadosTurmas.getTurmasCadastradas().get(0).adicionarAluno(DadosAlunos.getAlunoPorUsuario("wonka"));
     }
 
     public static Aluno menuAluno(Scanner entrada) {
@@ -155,11 +160,11 @@ public class Main {
                 }
                 break;
             case 2:
-                aluno = new Aluno();
                 try {
                     Display.criarAluno(entrada, aluno);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
+                    aluno = null;
                 }
                 break;
             case 0:
