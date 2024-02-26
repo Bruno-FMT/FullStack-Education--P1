@@ -149,14 +149,19 @@ public class Display {
     }
 
     public static int menuOpcoes(Scanner scan, String titulo, String[] opcoes) {
-        System.out.println("\n████████████████████████████████████████████");
+        System.out.println("\n" + textoCharRepetido(titulo.length()));
+
         System.out.println(formatarCentroString(titulo, 44));
-        System.out.println("████████████████████████████████████████████");
+
+        System.out.println(textoCharRepetido(titulo.length()));
+
         for (int i = 0; i < opcoes.length; i++) {
             System.out.println("[" + (i + 1) + "] " + opcoes[i]);
         }
         System.out.println("[0] SAIR");
-        System.out.println("████████████████████████████████████████████");
+
+        System.out.println(textoCharRepetido(titulo.length()));
+
         System.out.print("Por favor, informe qual opção você deseja interagir: ");
         return PedirEntrada.pedirInt(scan);
     }
@@ -182,7 +187,7 @@ public class Display {
                             "Remover aluno de uma turma",
                             "Formar aluno"
                     }
-            )){
+            )) {
                 case 1:
                     try {
                         System.out.println();
@@ -192,51 +197,73 @@ public class Display {
                         System.out.println("Não foi possível listar alunos.");
                     }
                     break;
-                case 2:
+                case 2: {
                     System.out.println();
                     System.out.println("Segue turmas disponíveis");
-                    DadosTurmas.listarTurmasCadastradas();
-                    System.out.println();
-                    System.out.print("Informe o ID da turma que deseja incluir o aluno: ");
-                    turmaId = PedirEntrada.pedirInt(scan);
+                    ArrayList<Turma> turmas = professor.getTurmas();
+                    String[] turmasNome = new String[turmas.size()];
+                    for (int i = 0; i < turmas.size(); i++) {
+                        turmasNome[i] = turmas.get(i).toString();
+                    }
+                    int opcao = menuOpcoes(scan, "Selecione a turma em que deseja adicionar o aluno", turmasNome);
+                    if (opcao <= 0) {
+                        continue;
+                    }
+                    if (opcao > turmas.size()) {
+                        break;
+                    }
+                    turmaId = turmas.get(opcao - 1).getID();
+//                    DadosTurmas.listarTurmasCadastradas();
+//                    System.out.println();
+//                    System.out.print("Informe o ID da turma que deseja incluir o aluno: ");
+//                    turmaId = PedirEntrada.pedirInt(scan);
                     try {
                         Turma turma = DadosTurmas.getTurmasCadastradas().get(turmaId);
-                        System.out.print("Informe o usuário do aluno que incluir na turma: ");
+                        System.out.print("Informe o usuário do aluno para incluir à turma: ");
                         usuarioAluno = PedirEntrada.pedirString(scan);
                         aluno = DadosAlunos.getAlunoPorUsuario(usuarioAluno);
                         turma.adicionarAluno(aluno);
                         System.out.println("Aluno adicionado com sucesso.");
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
-                        System.out.println("Não foi possível adicionar aluno a turma.");
+                        System.out.println("Não foi possível adicionar aluno à turma.");
                     }
                     break;
-                case 3:
+                }
+                case 3: {
                     System.out.println();
                     System.out.println("Segue turmas disponíveis");
                     ArrayList<Turma> turmas = professor.getTurmas();
                     String[] turmasNome = new String[turmas.size()];
                     for (int i = 0; i < turmas.size(); i++) {
-                        turmasNome[i] = turmas.get(i).getNome();
+                        turmasNome[i] = turmas.get(i).toString();
                     }
-                    menuOpcoes(scan, "Selecione a turma em que deseja remover o aluno", )
-                    DadosTurmas.listarTurmasCadastradas();
-                    System.out.println();
-                    System.out.print("Informe o ID da turma que deseja remover o aluno: ");
-                    turmaId = PedirEntrada.pedirInt(scan);
+                    int opcao = menuOpcoes(scan, "Selecione a turma em que deseja remover o aluno", turmasNome);
+                    if (opcao <= 0) {
+                        continue;
+                    }
+                    if (opcao > turmas.size()) {
+                        break;
+                    }
+                    turmaId = turmas.get(opcao - 1).getID();
+//                    DadosTurmas.listarTurmasCadastradas();
+//                    System.out.println();
+//                    System.out.print("Informe o ID da turma que deseja remover o aluno: ");
+//                    turmaId = PedirEntrada.pedirInt(scan);
                     try {
                         Turma turma = DadosTurmas.getTurmasCadastradas().get(turmaId);
-                        System.out.print("Informe o usuário do aluno que remover da turma: ");
+                        System.out.print("Informe o usuário do aluno para remover da turma: ");
                         usuarioAluno = PedirEntrada.pedirString(scan);
                         aluno = DadosAlunos.getAlunoPorUsuario(usuarioAluno);
                         turma.removerAluno(aluno);
                         System.out.println("Aluno removido com sucesso.");
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
-                        System.out.println("Não foi possível adicionar aluno a turma.");
+                        System.out.println("Não foi possível remover aluno da turma.");
                     }
                     break;
-                case 4:
+                }
+                case 4: {
                     System.out.print("Informe o usuário do aluno que deseja formar: ");
                     usuarioAluno = PedirEntrada.pedirString(scan);
                     try {
@@ -248,6 +275,7 @@ public class Display {
                         System.out.println("Não foi possível formar o aluno.");
                     }
                     break;
+                }
                 case 0:
                     System.out.println("Saindo de sua conta....");
                     break LOOP;
@@ -280,11 +308,11 @@ public class Display {
                             "Escolha o Curso que deseja entrar",
                             cursosNome
                     );
-                    switch(opcao) {
+                    switch (opcao) {
                         case 0:
                             continue;
                         default:
-                            System.out.println(cursos.get(opcao-1));
+                            System.out.println(cursos.get(opcao - 1));
                             break;
                     }
                     break;
@@ -316,10 +344,22 @@ public class Display {
     }
 
     public static String formatarCentroString(String texto, int tamanho) {
+        if (texto.length() > tamanho) {
+            tamanho = texto.length();
+        }
         StringBuilder sb = new StringBuilder(tamanho);
         sb.setLength((tamanho - texto.length()) / 2);
         sb.append(texto);
         sb.setLength(tamanho);
         return sb.toString().replace('\0', ' ');
+    }
+
+    public static String textoCharRepetido(int tamanho) {
+        if (tamanho < 44) {
+            tamanho = 44;
+        }
+        StringBuilder sb = new StringBuilder(tamanho);
+        sb.setLength(tamanho);
+        return sb.toString().replace('\0', '█');
     }
 }

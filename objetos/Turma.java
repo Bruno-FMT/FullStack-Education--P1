@@ -70,11 +70,11 @@ public class Turma {
 
     @Override
     public String toString() {
-        return "Turma{" +
-                "anoInicio: " + anoInicio +
-                ", curso: " + curso +
-                ", alunos: " + alunos +
-                '}';
+        return "Id: " + this.getID() + " - " +
+                "Nome: " + this.getNome() +
+                ", Curso: " + this.getCurso().getNome() +
+                ", início da turma: " + this.getAnoInicio() +
+                ", número de alunos: " + this.getAlunos().size();
     }
 
     public Curso getCurso() {
