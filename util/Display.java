@@ -180,7 +180,6 @@ public class Display {
         return PedirEntrada.pedirInt(scan);
     }
 
-    // TODO: Verificar cada opção de diretor e formatar a estilização utilizando menuOpcoes()
     public static void pagina(Diretor usuario) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         Scanner scan = new Scanner(System.in);
         List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
