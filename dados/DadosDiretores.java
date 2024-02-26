@@ -1,16 +1,22 @@
 package dados;
 
-import objetos.Aluno;
 import objetos.funcionarios.Diretor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosDiretores {
-    private static List<Diretor> diretoresCadastrados = new ArrayList<>();
+    private static ArrayList<Diretor> diretoresCadastrados = new ArrayList<>();
 
-    public static List<Diretor> getDiretoresCadastrados() {
+    public static ArrayList<Diretor> getDiretoresCadastrados() {
         return diretoresCadastrados;
+    }
+
+    public static Diretor getDiretorPorId(int id) {
+        try {
+            return diretoresCadastrados.get(id);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.", e);
+        }
     }
 
     public static void adicionarDiretor(Diretor diretor) {
@@ -27,11 +33,11 @@ public class DadosDiretores {
         diretoresCadastrados.remove(id);
     }
 
-    public static Diretor getDiretorPorId(int id) {
-        if (id < 0 || id > diretoresCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
+    public static void removerDiretor(Diretor diretor) {
+        if(!diretoresCadastrados.contains(diretor)) {
+            throw new IllegalArgumentException("Diretor não encontrado");
         }
-        return diretoresCadastrados.get(id);
+        diretoresCadastrados.remove(diretor);
     }
 
     public static Diretor getDiretorPorUsuario(String usuario) {
@@ -50,5 +56,12 @@ public class DadosDiretores {
             }
         }
         return false;
+    }
+
+    public static void imprimirListaTodosDiretores() {
+        System.out.println("DIRETORES CADASTRADOS");
+        for (Diretor diretor : diretoresCadastrados) {
+            System.out.println("ID: " + diretor.getId() + ", Diretor:" + diretor.toString());
+        }
     }
 }

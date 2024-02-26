@@ -11,7 +11,6 @@ import objetos.funcionarios.Professor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -129,7 +128,7 @@ public class Display {
             try {
                 metodo.invoke(objeto, argumentos);
             } catch (Exception e) {
-                System.out.println(e.getCause().getMessage()); // Exibe mensagem
+                System.out.println(e.getCause().getMessage());
                 System.out.println("Entrada(s) inválida(s).");
 
                 System.out.println("Quer continuar? [s]im / [n]ão");

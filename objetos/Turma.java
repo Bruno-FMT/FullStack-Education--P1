@@ -23,12 +23,13 @@ public class Turma {
         DadosTurmas.adicionarTurma(this);
     }
 
-    public void listarAlunos() {
+    public void imprimirListaAlunos() {
         if (alunos == null){
             System.out.println("Sem alunos cadastrados a turma.");
         } else {
+            System.out.println("ALUNOS");
             for (Aluno aluno : alunos) {
-                System.out.println("Aluno: " + aluno);
+                System.out.println(aluno.toString());
             }
         }
     }

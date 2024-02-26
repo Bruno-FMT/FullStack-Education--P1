@@ -1,17 +1,22 @@
 package dados;
 
-import objetos.Aluno;
-import objetos.funcionarios.Diretor;
 import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosProfessores {
-    private static List<Professor> professoresCadastrados = new ArrayList<>();
+    private static ArrayList<Professor> professoresCadastrados = new ArrayList<>();
 
-    public static List<Professor> getProfessoresCadastrados() {
+    public static ArrayList<Professor> getProfessoresCadastrados() {
         return professoresCadastrados;
+    }
+
+    public static Professor getProfessorPorId(int id) {
+        try {
+            return professoresCadastrados.get(id);
+        } catch (Exception e){
+            throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.", e);
+        }
     }
 
     public static void adicionarProfessor(Professor professor) {
@@ -25,14 +30,16 @@ public class DadosProfessores {
         if (id < 0 || id > professoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
         }
+        DadosCursos.excluirProfessor(getProfessorPorId(id));
         professoresCadastrados.remove(id);
     }
 
-    public static Professor getProfessorPorId(int id) {
-        if (id < 0 || id > professoresCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
+    public static void removerProfessor(Professor professor) {
+        if(!professoresCadastrados.contains(professor)) {
+            throw new IllegalArgumentException("Professor não encontrado.");
         }
-        return professoresCadastrados.get(id);
+        DadosCursos.excluirProfessor(professor);
+        professoresCadastrados.remove(professor);
     }
 
     public static Professor getProfessorPorUsuario(String usuario) {
@@ -51,5 +58,12 @@ public class DadosProfessores {
             }
         }
         return false;
+    }
+
+    public static void imprimirListaTodosProfessores() {
+        System.out.println("PROFESSORES CADASTRADOS");
+        for (Professor professor : professoresCadastrados) {
+            System.out.println("ID: " + professor.getId() + ", Professor:" + professor.toString());
+        }
     }
 }

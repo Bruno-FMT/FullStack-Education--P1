@@ -1,32 +1,16 @@
 package dados;
 
 import objetos.Curso;
-import objetos.funcionarios.Diretor;
+import objetos.Turma;
+import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosCursos {
-    private static List<Curso> cursosCadastrados = new ArrayList<>();
+    private static ArrayList<Curso> cursosCadastrados = new ArrayList<>();
 
-    public static void removerCurso(Curso curso) {
-        if (!cursoEhCadastrado(curso)) {
-            throw new IllegalArgumentException("Curso não encontrado.");
-        }
-        cursosCadastrados.remove(curso);
-    }
-
-    public static List<Curso> getCursosCadastrados() {
+    public static ArrayList<Curso> getCursosCadastrados() {
         return cursosCadastrados;
-    }
-
-    public static Curso getCursoPorNome(String nomeCurso) {
-        for (Curso curso : cursosCadastrados) {
-            if (curso.getNome().equals(nomeCurso)) {
-                return curso;
-            }
-        }
-        throw new IllegalArgumentException("Nenhum diretor encontrado com o usuário informado.");
     }
 
     public static Curso getCursoPorId(int id) {
@@ -34,6 +18,16 @@ public class DadosCursos {
             throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
         }
         return cursosCadastrados.get(id);
+    }
+
+    public static void removerCurso(Curso curso) {
+        if (!cursoEhCadastrado(curso)) {
+            throw new IllegalArgumentException("Curso não encontrado.");
+        }
+        if (cursoTemTurma(curso)){
+            throw new IllegalArgumentException("Não podemos remover um curso com turma em andamento.");
+        }
+        cursosCadastrados.remove(curso);
     }
 
     public static void adicionarCurso(Curso curso) {
@@ -47,12 +41,32 @@ public class DadosCursos {
         return cursosCadastrados.contains(curso);
     }
 
+    private static boolean cursoTemTurma(Curso curso) {
+        ArrayList<Turma> turmas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmas) {
+            if(turma.getCurso().equals(curso)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void excluirProfessor(Professor professor) {
+        for (Curso curso : cursosCadastrados) {
+            boolean ehProfessorCurso = curso.getProfessores().contains(professor);
+            if (ehProfessorCurso) {
+                curso.getProfessores().remove(professor);
+            }
+        }
+    }
+
     public static void listarCursosCadastrados() {
-        for (int i = 0; i < cursosCadastrados.size() ; i++) {
+        System.out.println("CURSOS CADASTRADOS");
+        for (Curso curso : cursosCadastrados){
             System.out.println(
-                    "ID: " + i + " - " +
-                            ", Nome: " + cursosCadastrados.get(i).getNome() +
-                            ", Número de professores: " + cursosCadastrados.get(i).getProfessores().size()
+                    "Id: " + curso.getId() +
+                    ", nome: " + curso.getNome() +
+                    ", professores: " + curso.getProfessores().toString()
             );
         }
     }

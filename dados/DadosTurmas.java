@@ -1,23 +1,21 @@
 package dados;
 
 import objetos.Aluno;
-import objetos.Curso;
 import objetos.Turma;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosTurmas {
-    private static List<Turma> turmasCadastradas = new ArrayList<>();
+    private static ArrayList<Turma> turmasCadastradas = new ArrayList<>();
 
-    public static List<Turma> getTurmasCadastradas() {
+    public static ArrayList<Turma> getTurmasCadastradas() {
         return turmasCadastradas;
     }
 
-    public static List<Turma> getTurmasPorAluno(Aluno aluno) {
-        List<Turma> turmas = new ArrayList<>();
+    public static ArrayList<Turma> getTurmasPorAluno(Aluno aluno) {
+        ArrayList<Turma> turmas = new ArrayList<>();
         for (Turma turma : turmasCadastradas) {
-            if (turma.getAlunos() != null && turma.getAlunos().contains(aluno)) {
+            if (turma.getAlunos().contains(aluno)) {
                 turmas.add(turma);
             }
         }
@@ -45,7 +43,7 @@ public class DadosTurmas {
         turmasCadastradas.add(turma);
     }
 
-    public static void adicionarTurmas(List<Turma> turmas) {
+    public static void adicionarTurmas(ArrayList<Turma> turmas) {
         for (Turma novaTurma : turmas) {
             if (turmaEhCadastrada(novaTurma)) {
                 throw new IllegalArgumentException("Turma já cadastrada.");
@@ -58,14 +56,19 @@ public class DadosTurmas {
         return turmasCadastradas.contains(turma);
     }
 
+    public static void excluirAluno(Aluno aluno) {
+        for (Turma turma : turmasCadastradas) {
+            boolean ehAlunoTurma = turma.getAlunos().contains(aluno);
+            if (ehAlunoTurma) {
+                turma.getAlunos().remove(aluno);
+            }
+        }
+    }
+
     public static void listarTurmasCadastradas() {
-        for (int i = 0; i < turmasCadastradas.size() ; i++) {
-            System.out.println(
-                    i + " - " +
-                    "Nome: " + turmasCadastradas.get(i).getNome() +
-                    ", início da turma: " + turmasCadastradas.get(i).getAnoInicio() +
-                    ", número de alunos: " + turmasCadastradas.get(i).getAlunos().size()
-            );
+        System.out.println("TURMAS CADASTRADAS");
+        for (Turma turma : turmasCadastradas) {
+            System.out.println(turma.toString());
         }
     }
 }
