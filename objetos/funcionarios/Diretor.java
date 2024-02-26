@@ -32,9 +32,6 @@ public class Diretor extends Funcionario {
 
     @Override
     public String toString() {
-        return "{" +
-                "nome: " + this.getNome() +
-                ", nível: " + super.getNivelCargo() +
-                '}';
+        return "Nome: " + getNome() + ", Idade: " + getIdade() + ", Usuário: " + getUsuario() + ", Salário: " + getSalario() + ", Anos de Cargo: " + getAnosCargo();
     }
 }

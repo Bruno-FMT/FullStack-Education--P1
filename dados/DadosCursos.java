@@ -13,6 +13,13 @@ public class DadosCursos {
         return cursosCadastrados;
     }
 
+    public static Curso getCursoPorId(int id) {
+        if (id < 0 || id > cursosCadastrados.size()) {
+            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
+        }
+        return cursosCadastrados.get(id);
+    }
+
     public static void removerCurso(Curso curso) {
         if (!cursoEhCadastrado(curso)) {
             throw new IllegalArgumentException("Curso não encontrado.");
