@@ -175,6 +175,7 @@ public class Main {
                 Diretor diretor = menuDiretor(entrada);
                 if (diretor == null) {
                     menuFuncionario(entrada);
+                    return;
                 }
                 Display.pagina(diretor);
                 break;
@@ -182,6 +183,7 @@ public class Main {
                 Professor professor = menuProfessor(entrada);
                 if (professor == null) {
                     menuFuncionario(entrada);
+                    return;
                 }
                 Display.pagina(professor);
                 break;

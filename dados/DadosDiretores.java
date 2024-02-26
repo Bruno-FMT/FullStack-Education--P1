@@ -61,7 +61,7 @@ public class DadosDiretores {
     public static void imprimirListaTodosDiretores() {
         System.out.println("DIRETORES CADASTRADOS");
         for (Diretor diretor : diretoresCadastrados) {
-            System.out.println("ID: " + diretor.getId() + ", Diretor:" + diretor.toString());
+            System.out.println("ID: " + diretor.getId() + ", Diretor: " + diretor);
         }
     }
 }

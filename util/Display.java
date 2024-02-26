@@ -189,6 +189,9 @@ public class Display {
 
         LOOP:
         while (true) {
+            System.out.println("Digite qualquer coisa para continuar!");
+            PedirEntrada.pedirString(scan);
+
             switch (menuOpcoes(
                     scan,
                     "PÁGINA",
@@ -439,11 +442,22 @@ public class Display {
                     break;
                 case 16:
                     System.out.println("\nSegue turmas disponíveis");
-                    DadosTurmas.listarTurmasCadastradas();
-                    System.out.print("\nInforme o ID da turma que deseja ver os aluno: ");
-                    int idTurmaSelecionada = PedirEntrada.pedirInt(scan);
+                    ArrayList<Turma> turmas = DadosTurmas.getTurmasCadastradas();
+                    String[] turmasNome = new String[turmas.size()];
+                    for (int i = 0; i < turmas.size(); i++) {
+                        turmasNome[i] = turmas.get(i).toString();
+                    }
+                    int opcao = menuOpcoes(scan, "Selecione a turma dos alunos que deseja ver", turmasNome);
+                    System.out.println();
+                    if (opcao <= 0) {
+                        continue;
+                    }
+                    if (opcao > turmas.size()) {
+                        break;
+                    }
+                    turmaId = turmas.get(opcao - 1).getID();
                     try {
-                        Turma turma = DadosTurmas.getTurmasCadastradas().get(idTurmaSelecionada);
+                        Turma turma = DadosTurmas.getTurmasCadastradas().get(turmaId);
                         turma.imprimirListaAlunos();
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
@@ -583,10 +597,6 @@ public class Display {
                         break;
                     }
                     turmaId = turmas.get(opcao - 1).getID();
-//                    DadosTurmas.listarTurmasCadastradas();
-//                    System.out.println();
-//                    System.out.print("Informe o ID da turma que deseja incluir o aluno: ");
-//                    turmaId = PedirEntrada.pedirInt(scan);
                     try {
                         Turma turma = DadosTurmas.getTurmasCadastradas().get(turmaId);
                         System.out.print("Informe o usuário do aluno para incluir à turma: ");
@@ -616,10 +626,6 @@ public class Display {
                         break;
                     }
                     turmaId = turmas.get(opcao - 1).getID();
-//                    DadosTurmas.listarTurmasCadastradas();
-//                    System.out.println();
-//                    System.out.print("Informe o ID da turma que deseja remover o aluno: ");
-//                    turmaId = PedirEntrada.pedirInt(scan);
                     try {
                         Turma turma = DadosTurmas.getTurmasCadastradas().get(turmaId);
                         System.out.print("Informe o usuário do aluno para remover da turma: ");
