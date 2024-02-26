@@ -63,7 +63,7 @@ public class DadosProfessores {
     public static void imprimirListaTodosProfessores() {
         System.out.println("PROFESSORES CADASTRADOS");
         for (Professor professor : professoresCadastrados) {
-            System.out.println("ID: " + professor.getId() + ", Professor:" + professor.toString());
+            System.out.println("ID: " + professor.getId() + ", Professor: " + professor);
         }
     }
 }
