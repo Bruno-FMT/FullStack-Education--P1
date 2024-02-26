@@ -55,15 +55,24 @@ public class Professor extends Funcionario {
         return alunos;
     }
 
-    public List<Curso> getCursos() {
-        List<Curso> cursos = new ArrayList<>();
-        List<Curso> cursosCadastrados = DadosCursos.getCursosCadastrados();
+    public ArrayList<Curso> getCursos() {
+        ArrayList<Curso> cursos = new ArrayList<>();
+        ArrayList<Curso> cursosCadastrados = DadosCursos.getCursosCadastrados();
         for (Curso curso : cursosCadastrados) {
             if(curso.getProfessores().contains(this)) {
                 cursos.add(curso);
             }
         }
         return cursos;
+    }
+
+    public ArrayList<Turma> getTurmas() {
+        ArrayList<Turma> turmas = new ArrayList<>();
+        ArrayList<Curso> cursos = this.getCursos();
+        for (Curso curso : cursos) {
+            turmas.addAll(curso.getTurmas());
+        }
+        return turmas;
     }
 
     @Override

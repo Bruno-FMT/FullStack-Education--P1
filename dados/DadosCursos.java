@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DadosCursos {
-    private static List<Curso> cursosCadastrados = new ArrayList<>();
+    private static ArrayList<Curso> cursosCadastrados = new ArrayList<>();
 
-    public static List<Curso> getCursosCadastrados() {
+    public static ArrayList<Curso> getCursosCadastrados() {
         return cursosCadastrados;
     }
 
