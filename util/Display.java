@@ -169,10 +169,8 @@ public class Display {
 
     public static void pagina(Diretor usuario) {
         Scanner scan = new Scanner(System.in);
-        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
         List<Professor> professores = DadosProfessores.getProfessoresCadastrados();
         List<Diretor> diretores = DadosDiretores.getDiretoresCadastrados();
-        List<Curso> cursos = DadosCursos.getCursosCadastrados();
 
         LOOP:
         while (true) {
@@ -435,7 +433,36 @@ public class Display {
                     }
                     break;
                 case 17:
+                    ArrayList<Aluno> alunosTurma = new ArrayList<>();
+
                     System.out.println("\nIniciando a criação de turma.");
+                    System.out.println("Os cursos disponíveis para abertura de turma, são:");
+                    DadosCursos.listarCursosCadastrados();
+                    System.out.println("Selecione o curso, pelo ID, que irá abrir turma:");
+                    Curso cursoTurma = DadosCursos.getCursoPorId(PedirEntrada.pedirInt(scan));
+
+                    System.out.println("Digite o ano de início da nova turma do curso " + cursoTurma.getNome());
+                    int dataInicioTurma = PedirEntrada.pedirInt(scan);
+
+                    System.out.println("Vamos cadastrar os alunos na turma, conforme a lista abaixo:");
+                    DadosAlunos.imprimirListaTodosAlunos();
+
+                    while (true) {
+                        System.out.println("Para adicionar o aluno à turma, digite o seu ID");
+                        alunosTurma.add(DadosAlunos.getAlunoPorId(PedirEntrada.pedirInt(scan)));
+
+                        System.out.println("Deseja adicionar mais alunos?");
+                        System.out.println("[s]im / [n]ão.");
+                        if (!PedirEntrada.pedirBoolean(scan)) {
+                            break;
+                        }
+                    }
+                    Turma turma = new Turma(cursoTurma, dataInicioTurma, alunosTurma);
+
+                    System.out.println("Turma do curso " + turma.getCurso().getNome() + " com início em " + turma.getAnoInicio()
+                            + " criada com Sucesso!");
+
+                    System.out.println(DadosTurmas.getTurmasCadastradas().get(0).getAlunos().size());
 
                     break;
                 case 18:
@@ -449,38 +476,36 @@ public class Display {
                     }
                     break;
                 case 19:
-                    Curso curso = new Curso();
+                    ArrayList<Professor> professoresCurso = new ArrayList<>();
+                    System.out.println("\nIniciando a criação de curso.");
 
                     try {
-                        System.out.println("\nIniciando a criação de curso.");
                         System.out.println("Digite o nome do novo curso:");
                         String nomeCurso = PedirEntrada.pedirString(scan);
-                        if (!DadosCursos.getCursosCadastrados().contains(nomeCurso)) {
-                            curso.setNome(nomeCurso);
 
+                        if (DadosCursos.getCursoPorNome(nomeCurso)) {
+                            System.out.println("Curso já existente, cadastro não efetuado.");
+                        } else {
+                            System.out.println("Vamos cadastrar os professores no curso, conforme a lista abaixo:");
                             DadosProfessores.imprimirListaTodosProfessores();
 
-                            LOOPCurso:
                             while (true) {
                                 System.out.println("Para adicionar o professor ao curso, digite o seu ID");
-                                curso.adicionaProfessor(DadosProfessores.getProfessorPorId(PedirEntrada.pedirInt(scan)));
+                                professoresCurso.add(DadosProfessores.getProfessorPorId(PedirEntrada.pedirInt(scan)));
 
                                 System.out.println("Deseja adicionar mais professores?");
                                 System.out.println("[s]im / [n]ão.");
                                 if (!PedirEntrada.pedirBoolean(scan)) {
-                                    break LOOPCurso;
+                                    break;
                                 }
                             }
-
-                            DadosCursos.adicionarCurso(curso);
-
-                        } else {
-                            System.out.println("Curso existente.");
+                            Curso curso = new Curso(nomeCurso, professoresCurso);
+                            System.out.println("Curso " + curso.getNome() + " criado com sucesso.");
                         }
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                         System.out.println("Não foi possível criar o curso.");
-                    }
+            }
                     break;
                 case 20:
                     DadosCursos.listarCursosCadastrados();

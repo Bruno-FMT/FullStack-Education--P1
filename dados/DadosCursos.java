@@ -1,7 +1,6 @@
 package dados;
 
 import objetos.Curso;
-import objetos.funcionarios.Diretor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +19,20 @@ public class DadosCursos {
         return cursosCadastrados;
     }
 
-    public static Curso getCursoPorNome(String nomeCurso) {
+    public static boolean getCursoPorNome(String nomeCurso) {
         for (Curso curso : cursosCadastrados) {
             if (curso.getNome().equals(nomeCurso)) {
-                return curso;
+                return true;
+            } else {
+                return false;
             }
         }
-        throw new IllegalArgumentException("Nenhum diretor encontrado com o usuário informado.");
+        throw new IllegalArgumentException("Nenhum curso encontrado com o nome informado.");
     }
 
     public static Curso getCursoPorId(int id) {
         if (id < 0 || id > cursosCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
+            throw new IllegalArgumentException("Nenhum curso encontrado com o id informado.");
         }
         return cursosCadastrados.get(id);
     }
