@@ -1,6 +1,7 @@
 package dados;
 
 import objetos.Curso;
+import objetos.funcionarios.Diretor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,22 @@ public class DadosCursos {
         return cursosCadastrados;
     }
 
+    public static Curso getCursoPorNome(String nomeCurso) {
+        for (Curso curso : cursosCadastrados) {
+            if (curso.getNome().equals(nomeCurso)) {
+                return curso;
+            }
+        }
+        throw new IllegalArgumentException("Nenhum diretor encontrado com o usuário informado.");
+    }
+
+    public static Curso getCursoPorId(int id) {
+        if (id < 0 || id > cursosCadastrados.size()) {
+            throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
+        }
+        return cursosCadastrados.get(id);
+    }
+
     public static void adicionarCurso(Curso curso) {
         if (cursoEhCadastrado(curso)) {
             throw new IllegalArgumentException("Curso já cadastrado.");
@@ -28,5 +45,15 @@ public class DadosCursos {
 
     private static boolean cursoEhCadastrado(Curso curso) {
         return cursosCadastrados.contains(curso);
+    }
+
+    public static void listarCursosCadastrados() {
+        for (int i = 0; i < cursosCadastrados.size() ; i++) {
+            System.out.println(
+                    "ID: " + i + " - " +
+                            ", Nome: " + cursosCadastrados.get(i).getNome() +
+                            ", Número de professores: " + cursosCadastrados.get(i).getProfessores().size()
+            );
+        }
     }
 }
