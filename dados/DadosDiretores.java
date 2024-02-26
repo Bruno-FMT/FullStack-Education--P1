@@ -51,4 +51,15 @@ public class DadosDiretores {
         }
         return false;
     }
+
+    public static void imprimirListaTodosDiretores() {
+        System.out.println("\nDIRETORES");
+        for (Diretor diretor : diretoresCadastrados) {
+            System.out.println(
+                    "ID: " + diretor.getId() +
+                    " - Nome: " + diretor.getNome() +
+                    ", Nível: " + diretor.getNivelCargo()
+            );
+        }
+    }
 }

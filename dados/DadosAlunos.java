@@ -50,4 +50,15 @@ public class DadosAlunos {
         }
         return false;
     }
+
+    public static void imprimirListaTodosAlunos() {
+        System.out.println("\nALUNOS");
+        for (Aluno aluno : alunosCadastrados) {
+            System.out.println(
+                    "ID: " + aluno.getId() +
+                    " - Nome: " + aluno.getNome() +
+                    ", Status: " + aluno.getStatusMatricula()
+            );
+        }
+    }
 }

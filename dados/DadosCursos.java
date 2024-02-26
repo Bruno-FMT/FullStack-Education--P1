@@ -29,4 +29,14 @@ public class DadosCursos {
     private static boolean cursoEhCadastrado(Curso curso) {
         return cursosCadastrados.contains(curso);
     }
+
+    public static void listarCursosCadastrados() {
+        for (int i = 0; i < cursosCadastrados.size() ; i++) {
+            System.out.println(
+                    "ID: " + i + " - " +
+                    ", Nome: " + cursosCadastrados.get(i).getNome() +
+                    ", Número de professores: " + cursosCadastrados.get(i).getProfessores().size()
+            );
+        }
+    }
 }

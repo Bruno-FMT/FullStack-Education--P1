@@ -41,6 +41,13 @@ public class Curso {
         this.professores.add(professor);
     }
 
+    public void removerProfessor(Professor professor) {
+        if(!professorEhCadastrado(professor)) {
+            throw new IllegalArgumentException("Professor não está neste curso.");
+        }
+        this.professores.remove(professor);
+    }
+
     private boolean professorEhCadastrado(Professor professor) {
         for (Professor professorCadastrado : this.professores) {
             if(professorCadastrado.getUsuario().equals(professor.getUsuario())) {

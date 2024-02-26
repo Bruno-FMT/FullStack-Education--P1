@@ -52,4 +52,15 @@ public class DadosProfessores {
         }
         return false;
     }
+
+    public static void imprimirListaTodosProfessores() {
+        System.out.println("\nPROFESSORES");
+        for (Professor professor : professoresCadastrados) {
+            System.out.println(
+                    "ID: " + professor.getId() +
+                    " - Nome: " + professor.getNome() +
+                    ", Nível: " + professor.getNivelCargo()
+            );
+        }
+    }
 }

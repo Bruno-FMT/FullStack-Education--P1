@@ -23,8 +23,6 @@ public class Main {
         new Professor("Gabriel Agustin", 28, 2600, 4, "gabriel", "senha123");
 
         Turma turma = new Turma(new Curso("JavaScript", (ArrayList<Professor>) DadosProfessores.getProfessoresCadastrados()), 2024);
-        System.out.println(turma.getNome());
-
         imprimirBoasVindas();
 
         while (true) {
