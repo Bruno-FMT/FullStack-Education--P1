@@ -8,6 +8,7 @@ import objetos.funcionarios.Diretor;
 import objetos.funcionarios.Funcionario;
 import objetos.funcionarios.Professor;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -213,6 +214,12 @@ public class Display {
                 case 3:
                     System.out.println();
                     System.out.println("Segue turmas disponíveis");
+                    ArrayList<Turma> turmas = professor.getTurmas();
+                    String[] turmasNome = new String[turmas.size()];
+                    for (int i = 0; i < turmas.size(); i++) {
+                        turmasNome[i] = turmas.get(i).getNome();
+                    }
+                    menuOpcoes(scan, "Selecione a turma em que deseja remover o aluno", )
                     DadosTurmas.listarTurmasCadastradas();
                     System.out.println();
                     System.out.print("Informe o ID da turma que deseja remover o aluno: ");

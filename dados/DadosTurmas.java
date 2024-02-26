@@ -15,7 +15,7 @@ public class DadosTurmas {
     public static ArrayList<Turma> getTurmasPorAluno(Aluno aluno) {
         ArrayList<Turma> turmas = new ArrayList<>();
         for (Turma turma : turmasCadastradas) {
-            if (turma.getAlunos() != null && turma.getAlunos().contains(aluno)) {
+            if (turma.getAlunos().contains(aluno)) {
                 turmas.add(turma);
             }
         }

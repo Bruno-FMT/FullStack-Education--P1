@@ -63,6 +63,15 @@ public class Professor extends Funcionario {
         return cursos;
     }
 
+    public ArrayList<Turma> getTurmas() {
+        ArrayList<Turma> turmas = new ArrayList<>();
+        ArrayList<Curso> cursos = this.getCursos();
+        for (Curso curso : cursos) {
+            turmas.addAll(curso.getTurmas());
+        }
+        return turmas;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -90,15 +99,15 @@ public class Professor extends Funcionario {
         ArrayList<Curso> cursos = getCursos();
         System.out.println("Alunos do(a) professor(a): " + getNome());
         for (Curso curso : cursos) {
-            System.out.println("Curso: " + curso.getNome());
+            System.out.println("    Curso: " + curso.getNome());
             ArrayList<Turma> turmas = curso.getTurmas();
             for (int i = 0; i < turmas.size(); i++) {
-                System.out.println("Turma: " + i + ", Início: " + turmas.get(i).getAnoInicio());
+                System.out.println("        Turma: " + i + ", Início: " + turmas.get(i).getAnoInicio() + ", ID: "+ turmas.get(i).getID());
                 ArrayList<Aluno> alunos = turmas.get(i).getAlunos();
-                System.out.println("Alunos");
+                System.out.println("             Alunos");
                 for (Aluno aluno : alunos) {
                     System.out.println(
-                            "ID: " + aluno.getId() +
+                            "           ID: " + aluno.getId() +
                             ", Nome: " + aluno.getNome() +
                             ", Usuário: " + aluno.getUsuario() +
                             ", Status:" + aluno.getStatusMatricula()
