@@ -3,6 +3,7 @@ package objetos;
 import java.util.ArrayList;
 
 import dados.DadosCursos;
+import dados.DadosTurmas;
 import objetos.funcionarios.Professor;
 
 public class Curso {
@@ -34,6 +35,27 @@ public class Curso {
         this.professores = professores;
     }
 
+    public ArrayList<Turma> getTurmas() {
+        ArrayList<Turma> turmas = new ArrayList<>();
+        ArrayList<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmasCadastradas) {
+            if (turma.getCurso().equals(this)) {
+                turmas.add(turma);
+            }
+        }
+        return turmas;
+    }
+
+    public int getId() {
+        ArrayList<Curso> cursos = DadosCursos.getCursosCadastrados();
+        for (Curso curso : cursos) {
+            if(curso.equals(this)) {
+                return cursos.indexOf(curso);
+            }
+        }
+        throw new IllegalArgumentException("Curso não encontrado.");
+    }
+
     public void adicionaProfessor(Professor professor) {
         if(professorEhCadastrado(professor)) {
             throw new IllegalArgumentException("Professor já cadastrado.");
@@ -42,7 +64,7 @@ public class Curso {
     }
 
     public void removerProfessor(Professor professor) {
-        if(!professorEhCadastrado(professor)) {
+        if (!professores.contains(professor)) {
             throw new IllegalArgumentException("Professor não está neste curso.");
         }
         this.professores.remove(professor);

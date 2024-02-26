@@ -3,12 +3,11 @@ package dados;
 import objetos.Aluno;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosAlunos {
-    private static List<Aluno> alunosCadastrados = new ArrayList<>();
+    private static ArrayList<Aluno> alunosCadastrados = new ArrayList<>();
 
-    public static List<Aluno> getAlunosCadastrados() {
+    public static ArrayList<Aluno> getAlunosCadastrados() {
         return alunosCadastrados;
     }
 
@@ -23,23 +22,16 @@ public class DadosAlunos {
         if (id < 0 || id > alunosCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.");
         }
+        DadosTurmas.excluirAluno(getAlunoPorId(id));
         alunosCadastrados.remove(id);
     }
 
-    public static Aluno getAlunoPorId(int id) {
-        if (id < 0 || id > alunosCadastrados.size()) {
-            throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.");
+    public static void removerAluno(Aluno aluno) {
+        if (!alunosCadastrados.contains(aluno)) {
+            throw new IllegalArgumentException("Aluno não encontrado.");
         }
-        return alunosCadastrados.get(id);
-    }
-
-    public static Aluno getAlunoPorUsuario(String usuario) {
-        for (Aluno aluno : alunosCadastrados) {
-            if (aluno.getUsuario().equals(usuario)) {
-                return aluno;
-            }
-        }
-        throw new IllegalArgumentException("Nenhum aluno encontrado com o usuário informado.");
+        DadosTurmas.excluirAluno(aluno);
+        alunosCadastrados.remove(aluno);
     }
 
     private static boolean alunoEhCadastrado(Aluno aluno) {
@@ -52,13 +44,26 @@ public class DadosAlunos {
     }
 
     public static void imprimirListaTodosAlunos() {
-        System.out.println("\nALUNOS");
+        System.out.println("ALUNOS CADASTRADOS");
         for (Aluno aluno : alunosCadastrados) {
-            System.out.println(
-                    "ID: " + aluno.getId() +
-                    " - Nome: " + aluno.getNome() +
-                    ", Status: " + aluno.getStatusMatricula()
-            );
+            System.out.println("ID: " + aluno.getId() + ", Aluno:" + aluno.toString());
         }
+    }
+
+    public static Aluno getAlunoPorId(int id) {
+        try {
+            return alunosCadastrados.get(id);
+        } catch (Exception e ) {
+            throw new IllegalArgumentException("Nenhum aluno encontrado com o id informado.", e);
+        }
+    }
+
+    public static Aluno getAlunoPorUsuario(String usuario) {
+        for (Aluno aluno : alunosCadastrados) {
+            if (aluno.getUsuario().equals(usuario)) {
+                return aluno;
+            }
+        }
+        throw new IllegalArgumentException("Nenhum aluno encontrado com o usuário informado.");
     }
 }

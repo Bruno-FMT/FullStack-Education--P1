@@ -4,7 +4,7 @@ import dados.DadosAlunos;
 import enums.StatusMatricula;
 import dados.DadosTurmas;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Aluno {
     private String nome;
@@ -95,7 +95,7 @@ public class Aluno {
     }
 
     public int getId() {
-        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        ArrayList<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
         if (alunos.contains(this)) {
             return alunos.indexOf(this);
         }
@@ -103,13 +103,27 @@ public class Aluno {
     }
 
     public static int getId(String usuario) {
-        List<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
+        ArrayList<Aluno> alunos = DadosAlunos.getAlunosCadastrados();
         for (Aluno aluno : alunos) {
             if (aluno.getUsuario().equals(usuario)) {
                 return alunos.indexOf(aluno);
             }
         }
         throw new IllegalArgumentException("Aluno não encontrado.");
+    }
+
+    public ArrayList<Turma> getTurmas() {
+        ArrayList<Turma> turmas = new ArrayList<>();
+        ArrayList<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
+        for (Turma turma : turmasCadastradas) {
+            if (turma.getAlunos() == null) {
+                continue;
+            }
+            if (turma.getAlunos().contains(this)) {
+                turmas.add(turma);
+            }
+        }
+        return turmas;
     }
 
     public static void imprimirOpcoesStatusMatricula() {
@@ -121,7 +135,7 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "{nome: " + nome + ", idade: " + idade + ", status: " + statusMatricula + "}";
+        return "Nome: " + nome + ", idade: " + idade + ", status: " + statusMatricula;
     }
 
     public void trancarAtivarCadastro() {
@@ -133,16 +147,25 @@ public class Aluno {
             setStatusMatricula("ATIVO");
             return;
         }
-        if (this.statusMatricula.equals(StatusMatricula.FORMADO)){
+        if (this.statusMatricula.equals(StatusMatricula.FORMADO)) {
             throw new IllegalArgumentException("Aluno formado não pode alterar seu status de matrícula.");
         }
     }
 
     public void listarTurmasMatriculadas() {
-        List<Turma> turmas = DadosTurmas.getTurmasPorAluno(this);
+        ArrayList<Turma> turmas =getTurmas();
         System.out.println("Aluno(a) " + this.getNome() + " está matriculado(a) na(s) turma(s): ");
         for (Turma turma : turmas) {
-            System.out.println("Nome da turma: "+ turma.getNome() +", curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());
+            System.out.println(turma.toString());
         }
+    }
+
+    public void formar() {
+        if (statusMatricula.equals(StatusMatricula.TRANCADO) || this.statusMatricula.equals(StatusMatricula.FORMADO)) {
+            throw new IllegalArgumentException(
+                    "Este aluno não pode se formar pois seu status de matrícula é: " + statusMatricula
+            );
+        }
+        setStatusMatricula("FORMADO");
     }
 }
