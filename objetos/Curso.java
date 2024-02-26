@@ -1,7 +1,6 @@
 package objetos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import dados.DadosCursos;
 import dados.DadosTurmas;
@@ -36,9 +35,9 @@ public class Curso {
         this.professores = professores;
     }
 
-    public List<Turma> getTurmas() {
-        List<Turma> turmas = new ArrayList<>();
-        List<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
+    public ArrayList<Turma> getTurmas() {
+        ArrayList<Turma> turmas = new ArrayList<>();
+        ArrayList<Turma> turmasCadastradas = DadosTurmas.getTurmasCadastradas();
         for (Turma turma : turmasCadastradas) {
             if (turma.getCurso().equals(this)) {
                 turmas.add(turma);
@@ -48,7 +47,7 @@ public class Curso {
     }
 
     public int getId() {
-        List<Curso> cursos = DadosCursos.getCursosCadastrados();
+        ArrayList<Curso> cursos = DadosCursos.getCursosCadastrados();
         for (Curso curso : cursos) {
             if(curso.equals(this)) {
                 return cursos.indexOf(curso);

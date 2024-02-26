@@ -30,7 +30,7 @@ public class PedirEntrada {
                 resultado = Byte.parseByte(scan.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Erro de digitação (em pedirByte). Detalhes: " + e.getMessage());
+                System.out.println("Erro de digitação (pedindo byte)");
                 System.out.print("Tente um número inteiro (entre -128 e 127): ");
             }
         }
@@ -44,7 +44,7 @@ public class PedirEntrada {
                 resultado = Short.parseShort(scan.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Erro de digitação (em pedirShort). Detalhes: " + e.getMessage());
+                System.out.println("Erro de digitação (pedindo short)");
                 System.out.print("Tente um número inteiro (entre -32768 e 32767): ");
             }
         }
@@ -58,7 +58,7 @@ public class PedirEntrada {
                 resultado = Integer.parseInt(scan.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Erro de digitação (em pedirInt). Detalhes: " + e.getMessage());
+                System.out.println("Erro de digitação (pedindo int)");
                 System.out.print("Tente um número inteiro (entre -2147483648 e 2147483647): ");
             }
         }
@@ -72,7 +72,7 @@ public class PedirEntrada {
                 resultado = Long.parseLong(scan.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Erro de digitação (em pedirLong). Detalhes: " + e.getMessage());
+                System.out.println("Erro de digitação (pedindo long)");
                 System.out.print("Tente um número inteiro (entre -9223372036854775808 e 9223372036854775807): ");
             }
         }
@@ -86,7 +86,7 @@ public class PedirEntrada {
                 resultado = Float.parseFloat(scan.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Erro de digitação (em pedirFloat). Detalhes: " + e.getMessage());
+                System.out.println("Erro de digitação (pedindo float)");
                 System.out.print("Tente um número decimal: ");
             }
         }
@@ -100,7 +100,7 @@ public class PedirEntrada {
                 resultado = Double.parseDouble(scan.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Erro de digitação (em pedirDouble). Detalhes: " + e.getMessage());
+                System.out.println("Erro de digitação (pedindo double)");
                 System.out.print("Tente um número decimal: ");
             }
         }

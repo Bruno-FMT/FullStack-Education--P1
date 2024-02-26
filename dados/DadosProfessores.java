@@ -3,12 +3,11 @@ package dados;
 import objetos.funcionarios.Professor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosProfessores {
-    private static List<Professor> professoresCadastrados = new ArrayList<>();
+    private static ArrayList<Professor> professoresCadastrados = new ArrayList<>();
 
-    public static List<Professor> getProfessoresCadastrados() {
+    public static ArrayList<Professor> getProfessoresCadastrados() {
         return professoresCadastrados;
     }
 
@@ -28,7 +27,7 @@ public class DadosProfessores {
     }
 
     public static void removerProfessorPorId(int id) {
-        if(id < 0 || id > professoresCadastrados.size()) {
+        if (id < 0 || id > professoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum Professor encontrado com o id informado.");
         }
         DadosCursos.excluirProfessor(getProfessorPorId(id));
@@ -41,6 +40,15 @@ public class DadosProfessores {
         }
         DadosCursos.excluirProfessor(professor);
         professoresCadastrados.remove(professor);
+    }
+
+    public static Professor getProfessorPorUsuario(String usuario) {
+        for (Professor professor : professoresCadastrados) {
+            if (professor.getUsuario().equals(usuario)) {
+                return professor;
+            }
+        }
+        throw new IllegalArgumentException("Nenhum professor encontrado com o usuário informado.");
     }
 
     private static boolean professorEhCadastrado(Professor professor) {

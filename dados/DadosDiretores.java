@@ -3,12 +3,11 @@ package dados;
 import objetos.funcionarios.Diretor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DadosDiretores {
-    private static List<Diretor> diretoresCadastrados = new ArrayList<>();
+    private static ArrayList<Diretor> diretoresCadastrados = new ArrayList<>();
 
-    public static List<Diretor> getDiretoresCadastrados() {
+    public static ArrayList<Diretor> getDiretoresCadastrados() {
         return diretoresCadastrados;
     }
 
@@ -28,7 +27,7 @@ public class DadosDiretores {
     }
 
     public static void removerDiretorPorId(int id) {
-        if(id < 0 || id > diretoresCadastrados.size()) {
+        if (id < 0 || id > diretoresCadastrados.size()) {
             throw new IllegalArgumentException("Nenhum diretor encontrado com o id informado.");
         }
         diretoresCadastrados.remove(id);
@@ -41,7 +40,16 @@ public class DadosDiretores {
         diretoresCadastrados.remove(diretor);
     }
 
-    private static boolean diretorEhCadastrado(Diretor diretor){
+    public static Diretor getDiretorPorUsuario(String usuario) {
+        for (Diretor diretor : diretoresCadastrados) {
+            if (diretor.getUsuario().equals(usuario)) {
+                return diretor;
+            }
+        }
+        throw new IllegalArgumentException("Nenhum diretor encontrado com o usuário informado.");
+    }
+
+    private static boolean diretorEhCadastrado(Diretor diretor) {
         for (Diretor diretorCadastrado : diretoresCadastrados) {
             if (diretorCadastrado.getUsuario().equals(diretor.getUsuario())) {
                 return true;
