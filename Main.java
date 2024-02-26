@@ -11,7 +11,6 @@ import util.PedirEntrada;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -21,8 +20,7 @@ public class Main {
         imprimirBoasVindas();
 
         while (true) {
-            imprimirMenu();
-            int itemSelecionadoMenu = PedirEntrada.pedirInt(entrada);
+            int itemSelecionadoMenu = Display.menuOpcoes(entrada, "MENU", new String[]{"Sou funcionário", "Sou aluno"});
             String itemSelecionado = trataritemSelecionadoMenu(itemSelecionadoMenu);
             switch (itemSelecionado) {
                 case "Funcionário":
@@ -50,17 +48,6 @@ public class Main {
         );
     }
 
-    public static void imprimirMenu() {
-        System.out.println("\n████████████████████████████████████████████");
-        System.out.println("                    MENU                    ");
-        System.out.println("████████████████████████████████████████████");
-        System.out.println("[1] Sou funcionário");
-        System.out.println("[2] Sou aluno");
-        System.out.println("[0] SAIR");
-        System.out.println("████████████████████████████████████████████");
-        System.out.print("Por favor, informe qual opção você deseja interagir: ");
-    }
-
     public static int loginCadastro(Scanner entrada) {
         return Display.menuOpcoes(
                 entrada,
@@ -83,14 +70,15 @@ public class Main {
         ArrayList<Aluno> alunosTurma2 = new ArrayList<>();
         new Diretor("César Abascal", 29, 3900, 8, "cesar", "diretor123");
         Professor andre = new Professor("André Santana Nunes", 32, 2600, 6, "andre", "senha123");
-        professores.add(andre);
         new Professor("Gabriel Agustin", 28, 2600, 4, "gabriel", "senha123");
-        Aluno aluno1 = new Aluno("Oswald Martins", 81, "oswald", "senha123");
-        Aluno aluno2 = new Aluno("Ana Pereira", 31, "anapereira", "senha123");
+        professores.add(andre);
+        Aluno aluno1 = new Aluno("John Cena", 46, "johncena", "senha123");
+        Aluno aluno2 = new Aluno("Oswald Martins", 81, "oswald", "senha123");
+        Aluno aluno3 = new Aluno("Ana Pereira", 31, "anapereira", "senha123");
+        Aluno aluno4 = new Aluno("Lucas Oliveira", 21, "lucasoliveira", "senha123");
+        new Aluno("João Santos", 16, "joaosantos", "senha123");
         alunosTurma1.add(aluno1);
         alunosTurma1.add(aluno2);
-        Aluno aluno3 = new Aluno("Lucas Oliveira", 21, "lucasoliveira", "senha123");
-        Aluno aluno4 = new Aluno("João Santos", 16, "joaosantos", "senha123");
         alunosTurma2.add(aluno1);
         alunosTurma2.add(aluno3);
         alunosTurma2.add(aluno4);
@@ -102,7 +90,7 @@ public class Main {
     }
 
     public static Aluno menuAluno(Scanner entrada) {
-        Aluno aluno;
+        Aluno aluno = new Aluno();
         switch (loginCadastro(entrada)) {
             case 1:
                 String nomeAluno = login(entrada);
@@ -129,7 +117,6 @@ public class Main {
                 }
                 break;
             case 2:
-                aluno = new Aluno();
                 try {
                     Display.criarAluno(entrada, aluno);
                 } catch (Exception e) {

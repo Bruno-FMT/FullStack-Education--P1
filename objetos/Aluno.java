@@ -135,7 +135,7 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "{nome: " + nome + ", idade: " + idade + ", status: " + statusMatricula + "}";
+        return "Nome: " + nome + ", idade: " + idade + ", status: " + statusMatricula;
     }
 
     public void trancarAtivarCadastro() {
@@ -156,7 +156,7 @@ public class Aluno {
         ArrayList<Turma> turmas =getTurmas();
         System.out.println("Aluno(a) " + this.getNome() + " está matriculado(a) na(s) turma(s): ");
         for (Turma turma : turmas) {
-            System.out.println("Nome da turma: " + turma.getNome() + ", curso: " + turma.getCurso().getNome() + ", início da turma: " + turma.getAnoInicio());
+            System.out.println(turma.toString());
         }
     }
 

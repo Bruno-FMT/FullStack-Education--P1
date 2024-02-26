@@ -61,13 +61,7 @@ public class DadosTurmas {
     public static void listarTurmasCadastradas() {
         System.out.println("TURMAS CADASTRADAS");
         for (Turma turma : turmasCadastradas) {
-            System.out.println(
-                    "Id: " + turma.getID() + " - " +
-                    "Nome: " + turma.getNome() +
-                    ", Curso: " + turma.getCurso().getNome() +
-                    ", início da turma: " + turma.getAnoInicio() +
-                    ", número de alunos: " + turma.getAlunos().size()
-            );
+            System.out.println(turma.toString());
         }
     }
 }

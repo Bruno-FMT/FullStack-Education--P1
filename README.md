@@ -1,8 +1,7 @@
 ![logo.png](logo.png)
  <h1 align="center"> Mini Projeto 01 </h1>
 
-**FullStack [Education] - FMT**
-> 
+**_FullStack [Education] - FMT_**
 
 ## ✒️ Desenvolvedores
 - Bruno Corrêa;
@@ -10,6 +9,20 @@
 - João Victor Olivo;
 - Pâmela Silva
 - Rodrigo Finco Junior;
+
+## ✏️ Descrição
+Este projeto foi desenvolvido conforme as especificações passadas pelo professor para realização do primeiro
+mini projeto da turma FullStack Education.
+
+## 📌 Como usar
+1. Clone este repositório: [https://github.com/Bruno-FMT/FullStack-Education--P1.git](https://github.com/Bruno-FMT/FullStack-Education--P1.git)
+2. Execute a aplicação na Main que está na raiz do projeto.
+3. Você pode optar por fazer as ações de um funcionário ou aluno.
+4. Após esta escolha você poderá se logar, segue usuário e senhas.
+   * Aluno -> usuário: johncena, senha: senha123
+   * Professor -> usuário: andre, senha senha123
+   * Diretor -> usuário: cesar, senha: diretor123
+5. Apenas o Aluno pode realizar um novo cadastro, funcionários tem que ser cadastrados pelo diretor. 
 
 ## 🚀 Bases do projeto
 ### Classes
@@ -40,11 +53,11 @@
 - [x] [Ex 4 - Interface e herança](#-m1s06-ex-4---interface-e-herança)
 - [x] [Ex 5 - Enums](#-m1s06-ex-5---enums)
 - [x] [Ex 6 - Override](#-m1s06-ex-6---override)
-- [ ] [Ex 7 - Tratamento de erros](#-m1s06-ex-7---tratamento-de-erros)
+- [x] [Ex 7 - Tratamento de erros](#-m1s06-ex-7---tratamento-de-erros)
 - [x] [Ex 8 - Listas de Dados](#-m1s06-ex-8---listas-de-dados)
-- [ ] [Ex 9 - Fluxo de Login](#-m1s06-ex-9---fluxo-de-login)
-- [ ] [Ex 10 - Fluxo de Ações](#-m1s06-ex-10---fluxo-de-ações)
-- [ ] [Alterações passadas pelo professor via Discord](#-alterações-enviadas-pelo-professor-via-discord)
+- [x] [Ex 9 - Fluxo de Login](#-m1s06-ex-9---fluxo-de-login)
+- [x] [Ex 10 - Fluxo de Ações](#-m1s06-ex-10---fluxo-de-ações)
+- [x] [Alterações passadas pelo professor via Discord](#-alterações-enviadas-pelo-professor-via-discord)
 
 ## 📚 [M1S06] Ex 1 - Gitflow
 Todo o sistema deve ser criado usando o gitflow: <br/>
@@ -114,28 +127,28 @@ Caso não selecione uma turma ele deve ser adicionar pelo diretor a uma turma po
 ## 📚 [M1S06] Ex 10 - Fluxo de Ações
 Após criação ou seleção o usuário deve ter as seguintes opções:
 - aluno pode: 
-  - [ ] listar curso, 
-  - [ ] adicionar curso, 
-  - [ ] remover curso, 
-  - [ ] também pode trancar ou ativar sua conta
+  - [x] listar curso, 
+  - [x] adicionar curso, 
+  - [x] remover curso, 
+  - [x] também pode trancar ou ativar sua conta
 - o professor pode: 
-  - [ ] listar alunos, 
-  - [ ] adicionar aluno, 
-  - [ ] remover aluno da sua turma,
-  - [ ] o professor também pode mudar aluno para formado
+  - [x] listar alunos, 
+  - [x] adicionar aluno, 
+  - [x] remover aluno da sua turma,
+  - [x] o professor também pode mudar aluno para formado
 - diretor pode: 
-  - [ ] realizar a promoção de um professor, 
-  - [ ] adicionar um professor aos DadosProfessores,
-  - [ ] remover um professor aos DadosProfessores,
-  - [ ] remover alunos aos DadosAlunos,
-  - [ ] adicionar alunos aos DadosAlunos, 
-  - [ ] diretor também pode listar todos os professores juntos dos ids,
-  - [ ] listar todos os alunos juntos dos ids deles,
-  - [ ] diretor deve poder criar uma turma
-  - [ ] deve poder criar um curso, 
-  - [ ] listar alunos da turma,
-  - [ ] adicionar alunos na turma,
-  - [ ] remover alunos da turma
+  - [x] realizar a promoção de um professor, 
+  - [x] adicionar um professor aos DadosProfessores,
+  - [x] remover um professor aos DadosProfessores,
+  - [x] remover alunos aos DadosAlunos,
+  - [x] adicionar alunos aos DadosAlunos, 
+  - [x] diretor também pode listar todos os professores juntos dos ids,
+  - [x] listar todos os alunos juntos dos ids deles,
+  - [x] diretor deve poder criar uma turma
+  - [x] deve poder criar um curso, 
+  - [x] listar alunos da turma,
+  - [x] adicionar alunos na turma,
+  - [x] remover alunos da turma
 
 - **Tela 3** - Após selecionar e executar uma ação o programa deve perguntar se o usuário
   deseja selecionar outra ação ou se deseja sair do sistema.
